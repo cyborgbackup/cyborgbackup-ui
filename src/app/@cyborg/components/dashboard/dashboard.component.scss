@@ -1,0 +1,31 @@
+
+:host ::ng-deep .fc-content {
+  color: #fff;
+  font-size: 12px;
+}
+
+:host div.row-stats {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+:host div.description {
+  padding: 10px 0 0 40px;
+  font-size: 18px;
+}
+:host div.description .stats {
+  padding-top: 8px;
+  font-size: 42px;
+}
+:host .logo {
+  width: 80px;
+  height: 80px;
+}
+:host ::ng-deep .fc-event {
+  background-color: #1b867b;
+  border: 1px solid #1b867b;
+}
+
+:host ::ng-deep .calendar-event-disable {
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(-45deg, #40beb1, #40beb1 5px, #209e91 5px, #209e91 10px);
+}

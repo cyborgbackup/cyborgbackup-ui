@@ -1,0 +1,10 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .row-toggle-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: nb-theme(text-basic-color);
+  }
+}

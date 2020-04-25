@@ -1,0 +1,22 @@
+::ng-deep .datatable-pager a {
+  height: 22px;
+  min-width: 24px;
+  line-height: 22px;
+  padding: 0 6px;
+  border-radius: 3px;
+  margin: 6px 3px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54);
+  text-decoration: none;
+  vertical-align: bottom;
+}
+
+::ng-deep .datatable-pager a:hover {
+  color: rgba(0, 0, 0, 0.75);
+  background-color: hsla(0, 0%, 62%, 0.2);
+}
+
+::ng-deep .datatable-pager li.active a {
+  background-color: hsla(0, 0%, 62%, 0.2);
+  font-weight: 700;
+}

@@ -1,0 +1,38 @@
+<div class="JobResultsStdOut">
+  <div class="JobResultsStdOut-toolbar">
+    <div class="JobResultsStdOut-toolbarNumberColumn">
+    </div>
+    <div class="JobResultsStdOut-toolbarStdoutColumn">
+      <div class="JobResultsStdOut-followButton"
+           [ngClass]="{'is-engaged': followEngaged && !jobFinished}"
+           data-tip-watch="followTooltip"
+           data-placement="left"
+           data-trigger="hover"
+           data-container="body"
+           (click)="followToggleClicked()">
+        <nb-icon class="JobResultsStdOut-followIcon" icon="arrow-down-outline"></nb-icon>
+      </div>
+    </div>
+  </div>
+  <div class="JobResultsStdOut-stdoutContainer">
+    <div class="JobResultsStdOut-numberColumnPreload"></div>
+    <nb-list class="JobResultsStdout-nbList" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+      <nb-list-item *ngFor="let event of events">
+        <div class="JobResultsStdOut-aLineOfStdOut">
+          <div class="JobResultsStdOut-lineNumberColumn">
+            <span class="JobResultsStdOut-lineExpander"></span>{{ event.counter }}</div>
+          <div class="JobResultsStdOut-stdoutColumn"><span>{{ event.stdout }}</span></div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </div>
+  <div class="JobResultsStdOut-footer">
+    <div class="JobResultsStdOut-toTop"
+         *ngIf="stdoutOverflowed">
+      <div class="JobResultsStdOut-toTop--numberColumn">
+      </div>
+      <span (click))="toTop()">^ <span>TOP</span></span>
+    </div>
+    <div class="JobResultsStdOut-footerNumberColumn"></div>
+  </div>
+</div>

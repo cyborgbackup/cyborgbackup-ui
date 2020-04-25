@@ -1,0 +1,12 @@
+<button class="row-toggle-button" [attr.aria-label]="expanded ? 'collapse' : 'expand'" [style.margin-left]="type === 'file' ? '21px' : ''">
+  <nb-icon *ngIf="type !== 'file'" [icon]="expanded ? 'chevron-down-outline' : 'chevron-right-outline'"
+           pack="nebular-essentials"
+           aria-hidden="true">
+  </nb-icon>
+  <nb-icon *ngIf="type === 'file'" icon="file-text-outline"></nb-icon>
+  <nb-icon *ngIf="type === 'symlink'" icon="external-outline"></nb-icon>
+  <nb-icon *ngIf="type === 'dir'" icon="folder-outline"></nb-icon>
+  <nb-icon *ngIf="type === 'date'" icon="clock-outline"></nb-icon>
+  <nb-icon *ngIf="type === 'client'" icon="cube-outline"></nb-icon>
+  <nb-icon *ngIf="type === 'policy'" icon="archive-outline"></nb-icon>
+</button>

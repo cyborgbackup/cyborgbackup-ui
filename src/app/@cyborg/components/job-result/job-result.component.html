@@ -1,0 +1,153 @@
+<div class="row">
+  <div [ngClass]="{'hidden': stdoutFullScreen, 'col-sm-4': !stdoutFullScreen}">
+        <nb-card>
+          <nb-card-body>
+            <div class="panelHeader row">
+              <div class="panelHeader-text col-sm-9">Details</div>
+              <div class="panelHeader-button col-sm-3">
+                <button nbButton size="tiny" class="StandardOut-actionButton"
+                        data-tip-watch="toggleStdoutFullscreenTooltip"
+                        data-placement="top"
+                        [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                        (click)="relaunch()">
+                  <fa-icon icon="rocket"></fa-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 label">
+                Status
+              </div>
+              <div class="col-sm-8">
+                <fa-icon icon="circle" class="icon-job-{{ job.status }}"></fa-icon> {{ job.status || '' }}
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Launch Mode
+              </div>
+              <div class="col-sm-8">
+                {{ job.launch_type || '' }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Job Type
+              </div>
+              <div class="col-sm-8">
+                {{ job.job_type || '' }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Policy Name
+              </div>
+              <div class="col-sm-8">
+                {{ job.summary_fields.policy.name || '' }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Policy Type
+              </div>
+              <div class="col-sm-8">
+                {{ job.summary_fields.policy.policy_type || '' }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Schedule
+              </div>
+              <div class="col-sm-8">
+                {{ job.summary_fields.schedule.name || '' }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Repository
+              </div>
+              <div class="col-sm-8">
+                {{ job.summary_fields.repository.name || '' }}
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Started
+              </div>
+              <div class="col-sm-8">
+                {{ job.started | longDate }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 label">
+                Finished
+              </div>
+              <div class="col-sm-8">
+                {{ job.finished | longDate }}
+              </div>
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+  </div>
+  <div [ngClass]="{'col-sm-8': !stdoutFullScreen, 'col-sm-12': stdoutFullScreen}">
+    <nb-card>
+      <nb-card-body>
+        <div class="row">
+          <div class="JobResults-panelRightTitleText">
+            {{ job.name || '' }}
+          </div>
+          <div class="JobResults-badgeAndActionRow">
+            <div class="JobResults-badgeRow">
+              <!-- ELAPSED TIME -->
+              <div class="JobResults-badgeTitle">Elapsed</div>
+              <span class="badge List-titleBadge">
+                {{ job.elapsed * 1000 | date: "HH:mm:ss":'UTC' }}
+              </span>
+            </div>
+
+            <div class="StandardOut-panelHeaderActions">
+
+              <!-- FULL-SCREEN TOGGLE ACTION -->
+              <button nbButton size="tiny" class="StandardOut-actionButton"
+                      data-tip-watch="toggleStdoutFullscreenTooltip"
+                      data-placement="top"
+                      [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                      (click)="toggleStdoutFullscreen()">
+                <fa-icon icon="expand-arrows-alt"></fa-icon>
+              </button>
+
+              <!-- DOWNLOAD ACTION -->
+              <a *ngIf="job.status === 'failed' ||
+                                job.status === 'successful' ||
+                                job.status === 'canceled'"
+                href="{{ localServer }}/api/v1/jobs/{{ job.id }}/stdout/?format=txt_download">
+                <button nbButton size="tiny" class="StandardOut-actionButton"
+                        data-tip-watch="standardOutTooltip"
+                        data-placement="top">
+                  <fa-icon icon="download"></fa-icon>
+                </button>
+              </a>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <cbg-job-output></cbg-job-output>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

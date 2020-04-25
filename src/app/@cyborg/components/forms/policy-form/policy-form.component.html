@@ -1,0 +1,145 @@
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-header>Policy Information</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="formPolicy" (ngSubmit)="submit()">
+            <div class="form-group row">
+              <label for="inputName" class="label col-sm-3 form-control-label">Name</label>
+              <div class="col-sm-9">
+                <input type="email" nbInput formControlName="name" [status]="formPolicy.controls.name.errors? 'danger':''" fullWidth id="inputName" placeholder="Fill Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputType" class="label col-sm-3 form-control-label">Type</label>
+              <div class="col-sm-5">
+                <nb-select (selectedChange)="changeType($event)" fullWidth id="inputType" placeholder="Select Policy Type" formControlName="policy_type">
+                  <nb-option *ngFor="let type of typesArray" [value]="type[0]">{{ type[1] }}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputSchedule" class="label col-sm-3 form-control-label">Schedule</label>
+              <div class="col-sm-5">
+                <nb-select fullWidth id="inputSchedule" placeholder="Select Schedule" formControlName="schedule">
+                  <nb-option *ngFor="let schedule of schedules" [value]="schedule.id">{{ schedule.name }}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputRepository" class="label col-sm-3 form-control-label">Repository</label>
+              <div class="col-sm-5">
+                <nb-select fullWidth id="inputRepository" placeholder="Select Repository" formControlName="repository">
+                  <nb-option *ngFor="let repository of repositories" [value]="repository.id">{{ repository.name }}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputClients" class="label col-sm-3 form-control-label">Clients</label>
+              <div class="col-sm-9">
+                <ng-select id="inputClients"
+                           nbInput
+                           appearance="outline"
+                           class="selectClients"
+                           bindLabel="name"
+                           placeholder="Select Clients"
+                           appendTo="body"
+                           multiple="true"
+                           formControlName="clients">
+                  <ng-option *ngFor="let client of clients" [value]="client.id">{{ client.hostname }}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="formPolicy.value.extra_vars !== null && formPolicy.value.extra_vars.length > 0">
+              <label for="inputExtraVars" class="label col-sm-3 form-control-label">Extra-Vars</label>
+              <div class="col-sm-9">
+                <textarea fullWidth nbInput autosize id="inputExtraVars" formControlName="extra_vars" >
+                </textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPrehook" class="label col-sm-3 form-control-label">Pre-Hook</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput formControlName="prehook" [status]="formPolicy.controls.prehook.errors? 'danger':''" fullWidth id="inputPrehook" placeholder="Enter Pre-Hook Script Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPosthook" class="label col-sm-3 form-control-label">Post-Hook</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput formControlName="posthook" [status]="formPolicy.controls.posthook.errors? 'danger':''" fullWidth id="inputPosthook" placeholder="Enter Post-Hook Script Name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-sm-2 col-sm-8">
+                <nb-tabset>
+                  <nb-tab tabTitle="Keep Hourly">
+                    <div class="row form-group">
+                      <div class="col-sm-4">
+                        <nb-toggle formControlName="boolean_keep_hourly" (checkedChange)="changeKeep('keep_hourly', $event)">Keep Hourly</nb-toggle>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="number" nbInput formControlName="keep_hourly" [status]="formPolicy.controls.keep_hourly.errors? 'danger':''" fullWidth placeholder="Keep Hourly">
+                      </div>
+                    </div>
+                  </nb-tab>
+                  <nb-tab tabTitle="Keep Daily">
+                    <div class="row form-group">
+                      <div class="col-sm-4">
+                        <nb-toggle formControlName="boolean_keep_daily" (checkedChange)="changeKeep('keep_daily', $event)">Keep Daily</nb-toggle>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="number" nbInput formControlName="keep_daily" [status]="formPolicy.controls.keep_daily.errors? 'danger':''" fullWidth placeholder="Keep Daily">
+                      </div>
+                    </div>
+                  </nb-tab>
+                  <nb-tab tabTitle="Keep Weekly">
+                    <div class="row form-group">
+                      <div class="col-sm-4">
+                        <nb-toggle formControlName="boolean_keep_weekly" (checkedChange)="changeKeep('keep_weekly', $event)">Keep Weekly</nb-toggle>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="number" nbInput formControlName="keep_weekly" [status]="formPolicy.controls.keep_weekly.errors? 'danger':''" fullWidth placeholder="Keep Weekly">
+                      </div>
+                    </div>
+                  </nb-tab>
+                  <nb-tab tabTitle="Keep Monthly">
+                    <div class="row form-group">
+                      <div class="col-sm-4">
+                        <nb-toggle formControlName="boolean_keep_monthly" (checkedChange)="changeKeep('keep_monthly', $event)">Keep Monthly</nb-toggle>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="number" nbInput formControlName="keep_monthly" [status]="formPolicy.controls.keep_monthly.errors? 'danger':''" fullWidth placeholder="Keep Monthly">
+                      </div>
+                    </div>
+                  </nb-tab>
+                  <nb-tab tabTitle="Keep Yearly">
+                    <div class="row form-group">
+                      <div class="col-sm-4">
+                        <nb-toggle formControlName="boolean_keep_yearly" (checkedChange)="changeKeep('keep_yearly', $event)">Keep Yearly</nb-toggle>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="number" nbInput formControlName="keep_yearly" [status]="formPolicy.controls.keep_yearly.errors? 'danger':''" fullWidth placeholder="Keep Yearly">
+                      </div>
+                    </div>
+                  </nb-tab>
+                </nb-tabset>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-4">
+                <nb-toggle formControlName="enabled">Enabled</nb-toggle>
+              </div>
+              <div class="col-sm-5">
+                <nb-toggle formControlName="mode_pull">Mode Pull</nb-toggle>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <button type="submit" nbButton status="warning">Save</button>
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+</div>

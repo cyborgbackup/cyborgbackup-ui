@@ -1,0 +1,57 @@
+@import '../../../@theme/styles/themes';
+
+:host .hidden {
+  display: none;
+}
+
+:host .label {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400!important;
+}
+:host .panelHeader-text {
+  color: nb-theme(text-hint-color);
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+:host hr {
+  border-color: nb-theme(color-basic-transparent-600);
+}
+
+:host .JobResults-badgeRow {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+:host .JobResults-badgeTitle {
+  color: nb-theme(text-hint-color);
+  font-size: 14px;
+  margin-right: 10px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-left: 20px;
+}
+
+:host .JobResults-badgeAndActionRow {
+  display:flex;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+:host span.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 10px;
+}

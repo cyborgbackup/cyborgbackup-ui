@@ -1,0 +1,287 @@
+:host {
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  height: calc(100% - 800px);
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #D7D7D7;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+:host .JobResultsStdOut {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+:host .JobResultsStdOut-toolbar {
+  flex: initial;
+  display: flex;
+  border-bottom: 0px;
+  border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+:host .JobResultsStdOut-toolbarNumberColumn {
+  background-color: #EBEBEB;
+  color: #B7B7B7;
+  flex: initial;
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 10px;
+  border-top-left-radius: 5px;
+  z-index: 1;
+  border-right: 1px solid #D7D7D7;
+}
+
+:host .JobResultsStdOut-stdoutContainer .ng-star-inserted {
+  padding: 0px;
+  border: 0px;
+}
+
+:host .JobResultsStdOut-expandAllButton {
+  height: 18px;
+  width: 18px;
+  padding-left: 4px;
+  padding-top: 1px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  cursor: pointer;
+  color: #848992;
+}
+
+:host .JobResultsStdOut-expandAllButton:hover .JobResultsStdOut-expandAllIcon,
+:host .JobResultsStdOut-expandAllIcon:hover {
+  color: #161B1F;
+}
+
+:host .JobResultsStdOut-toolbarStdoutColumn {
+  white-space: normal;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  background-color: #FCFCFC;
+  border-top-right-radius: 5px;
+}
+
+:host .JobResultsStdOut-followButton {
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  margin-top: 10px;
+  font-size: 1.25em;
+  background-color: #848992;
+  color: #FFFFFF;
+}
+
+:host .JobResultsStdOut-followIcon {
+  color: #FFFFFF;
+}
+
+:host .JobResultsStdOut-followButton:hover {
+  background-color: #161B1F;
+}
+
+:host .JobResultsStdOut-followButton.is-engaged {
+  background-color: #337AB7;
+  color: #FFFFFF;
+}
+
+:host .JobResultsStdOut-followButton.is-engaged .JobResultsStdOut-followIcon {
+  color: #FFFFFF;
+}
+
+:host .JobResultsStdOut-followButton.is-engaged:hover {
+  background-color: #848992;
+}
+
+:host .JobResultsStdOut-followButton.is-engaged:hover .JobResultsStdOut-followIcon,
+:host .JobResultsStdOut-followButton.is-engaged .JobResultsStdOut-followIcon:hover {
+  color: #D7D7D7;
+}
+
+:host .JobResultsStdOut-stdoutContainer {
+  flex: 1;
+  position: relative;
+  background-color: #FCFCFC;
+}
+
+:host .JobResultsStdOut-stdoutContainer .JobResultsStdout-nbList {
+  height: 50vh;
+}
+
+:host .JobResultsStdOut-numberColumnPreload {
+  background-color: #EBEBEB;
+  border-right: 1px solid #D7D7D7;
+  position: absolute;
+  height: 100%;
+  width: 70px;
+}
+
+:host .JobResultsStdOut-aLineOfStdOut {
+  display: flex;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+}
+
+:host .JobResultsStdOut-lineExpander {
+  text-align: left;
+  padding-left: 11px;
+  margin-right: auto;
+}
+
+:host .JobResultsStdOut-lineExpanderIcon {
+  font-size: 19px;
+  cursor: pointer;
+}
+
+:host .JobResultsStdOut-lineExpanderIcon:hover {
+  color: #161B1F;
+}
+
+:host .JobResultsStdOut-lineNumberColumn {
+  display: flex;
+  background-color: #EBEBEB;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: 75px;
+  flex: 1 0 70px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  z-index: 1;
+  border-right: 1px solid #D7D7D7;
+  color: #848992;
+}
+
+:host .JobResultsStdOut-stdoutColumn {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #707070;
+  display: inline-block;
+  white-space: pre-wrap;
+  word-break: break-all;
+  width:100%;
+  background-color: #FCFCFC;
+}
+
+:host .JobResultsStdOut-stdoutColumn--tooMany {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #D9534F;
+}
+
+:host .JobResultsStdOut-stdoutColumn--clickable {
+  cursor: pointer;
+}
+
+:host .JobResultsStdOut-aLineOfStdOut:hover,
+:host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-lineNumberColumn,
+:host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-stdoutColumn {
+  background-color: #FFFFFF;
+}
+
+:host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-lineNumberColumn {
+  border-right: 1px solid #FFFFFF;
+}
+
+:host .JobResultsStdOut-footer {
+  height: 20px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #FCFCFC;
+  border-top: 0px;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  overflow: hidden;
+  margin-top: -1px;
+}
+
+:host .JobResultsStdOut-footerNumberColumn {
+  background-color: #EBEBEB;
+  width: 70px;
+  height: 100%;
+  border-right: 1px solid #D7D7D7;
+}
+
+:host .JobResultsStdOut-followAnchor {
+  height: 0px;
+}
+
+:host .JobResultsStdOut-toTop {
+  color: #848992;
+  cursor: pointer;
+  font-family: monaco;
+  font-size: 10px;
+  margin-right: 20px;
+  text-align: right;
+  display: flex;
+
+  span {
+    margin-left: auto;
+  }
+}
+
+:host .JobResultsStdOut-toTop--numberColumn {
+  background: #EBEBEB;
+  height: 40px;
+  width: 70px;
+  border-right: 1px solid #D7D7D7;
+}
+
+:host .JobResultsStdOut-toTop:hover {
+  color: #161B1F;
+}
+
+:host .JobResultsStdOut-cappedLine {
+  color: #B7B7B7;
+  font-style: italic;
+}
+
+@media (max-width: 1200px) {
+  :host .JobResultsStdOut-numberColumnPreload {
+    display: none;
+  }
+
+  :host .JobResultsStdOut-topAnchor {
+    position: static;
+    width: 100%;
+    top: -20px;
+    margin-top: -250px;
+    margin-bottom: 250px;
+  }
+
+  :host .JobResultsStdOut-followAnchor {
+    height: 0px;
+  }
+
+  :host .JobResultsStdOut-stdoutContainer {
+    overflow-y: auto;
+  }
+
+  :host .JobResultsStdOut-lineAnchor {
+    display: none !important;
+  }
+}

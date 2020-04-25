@@ -1,0 +1,43 @@
+::ng-deep body {
+  background-image: url('assets/images/blur-bg.jpg');
+}
+
+:host .logo {
+  background-image: url('assets/images/cyborgbackup-sidebar-white.png');
+  height: 500px;
+  width: 500px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+:host .enter {
+  font-size: 40px;
+  height: 300px;
+  width: 520px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+:host .enter h1 {
+  color: #ffffff;
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+:host .enter span {
+  color: #209e91;
+}
+
+:host .enter .btn {
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-3">
+    <nb-card>
+      <nb-card-body>
+        <div class="row row-stats">
+          <div class="description col-sm-6">
+            <div class="text">Clients</div>
+            <div class="value stats">{{ clients }}</div>
+          </div>
+          <nb-icon class="col-sm-6 logo" icon="monitor-outline"></nb-icon>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-3">
+    <nb-card>
+      <nb-card-body>
+        <div class="row row-stats">
+          <div class="description col-sm-6">
+            <div class="text">Tasks</div>
+            <div class="value stats">{{tasks}}</div>
+          </div>
+          <nb-icon class="col-sm-6 logo" icon="archive-outline"></nb-icon>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-3">
+    <nb-card>
+      <nb-card-body>
+        <div class="row row-stats">
+          <div class="description col-sm-6">
+            <div class="text">Policies</div>
+            <div class="value stats">{{policies}}</div>
+          </div>
+          <nb-icon class="col-sm-6 logo" icon="file"></nb-icon>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-3">
+    <nb-card>
+      <nb-card-body>
+        <div class="row row-stats">
+          <div class="description col-sm-6">
+            <div class="text">Errors</div>
+            <div class="value stats">{{errors}}</div>
+          </div>
+          <nb-icon class="col-sm-6 logo" icon="alert-circle"></nb-icon>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Backup Statistics</nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="options" [merge]="updateOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Backup Schedules</nb-card-header>
+      <nb-card-body>
+        <full-calendar deepChangeDetection="true" defaultView="dayGridMonth" [plugins]="calendarPlugins" [events]="events"></full-calendar>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

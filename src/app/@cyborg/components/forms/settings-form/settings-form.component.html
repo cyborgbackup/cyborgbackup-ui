@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-header>Settings</nb-card-header>
+  <nb-card-body>
+    <form *ngIf="settings" [formGroup]="formSetting" (ngSubmit)="onSubmit()">
+      <ng-container *ngFor="let form_elem of settings">
+        <ng-container [ngSwitch]="form_elem.setting_type">
+          <div *ngSwitchCase="'string'" class="row">
+            <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
+            <div class="col-sm-9">
+                <input type="text" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
+              </div>
+          </div>
+          <div *ngSwitchCase="'integer'" class="row">
+            <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
+            <div class="col-sm-9">
+              <input type="number" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
+            </div>
+          </div>
+          <div *ngSwitchCase="'boolean'" class="row">
+            <nb-toggle class="offset-sm-3" formControlName="{{form_elem.key}}">{{form_elem.key| settingName}}</nb-toggle>
+          </div>
+          <div *ngSwitchCase="'password'" class="row">
+            <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
+            <div class="col-sm-9">
+              <div class="form-field">
+                <div class="nb-form-field-control-with-suffix">
+                  <input nbInput fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" type="password" formControlName="{{form_elem.key}}" class="with-danger-addon" [placeholder]="encryptedPlaceholder[form_elem.key]"/>
+                </div>
+                <button class="btn btn-danger btn-with-input" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'privatekey'" class="row">
+            <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
+            <div class="col-sm-9">
+              <div class="form-field">
+                <button class="btn btn-danger btn-with-textarea" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
+                <div class="nb-form-field-control-with-prefix">
+                  <textarea nbInput class="textarea-privatekey" formControlName="{{form_elem.key}}" fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" >{{form_elem.encrypted && 'ENCRYPTED' || form_elem.value}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-9">
+          <button type="submit" nbButton status="warning">Save</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

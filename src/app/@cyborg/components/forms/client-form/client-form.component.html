@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-header>Client Information</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="formClient" (ngSubmit)="submit()">
+            <div class="form-group row">
+              <label for="inputHostname" class="label col-sm-3 form-control-label">Hostname</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput formControlName="hostname" [status]="formClient.controls.hostname.errors? 'danger':''" fullWidth id="inputHostname" placeholder="Hostname">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <nb-toggle formControlName="boolean_bandwidth_limit" (checkedChange)="changeBandwidthLimit($event)">Limit Bandwidth</nb-toggle>
+                  </div>
+                  <div class="col-sm-9">
+                    <input type="number" nbInput formControlName="bandwidth_limit" [status]="formClient.controls.bandwidth_limit.errors? 'danger':''" fullWidth placeholder="Bandwidth Limit">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="client">
+              <label for="inputPolicies" class="label col-sm-3 form-control-label">Associated Policies</label>
+              <div class="col-sm-9">
+                <ng-select id="inputPolicies"
+                           nbInput
+                           appearance="outline"
+                           class="selectPolicies"
+                           bindLabel="name"
+                           placeholder="Associated Backup Policies"
+                           appendTo="body"
+                           multiple="true"
+                           [formControl]="policiesForm">
+                  <ng-option *ngFor="let policy of policies" [value]="policy.id">{{ policy.name }}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <nb-toggle formControlName="enabled">Enabled</nb-toggle>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <button type="submit" nbButton status="warning">Save</button>
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+</div>
