@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { MENU_ITEMS } from './pages-menu';
 import {WebsocketService} from '../websocket.service';
-import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {NbToastrService} from "@nebular/theme";
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-pages',
@@ -22,7 +20,6 @@ export class PagesComponent implements OnInit {
   menu = MENU_ITEMS;
 
   constructor(private websocketService: WebsocketService,
-              private router: Router,
               private toastrService: NbToastrService) {
   }
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ClientsService, PoliciesService} from '../../../services';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'cbg-client-form',
@@ -21,7 +21,6 @@ export class ClientFormComponent implements OnInit {
               private policiesService: PoliciesService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService,
               private router: Router) {
   }
 

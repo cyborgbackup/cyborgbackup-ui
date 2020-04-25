@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import {
     NbAuthIllegalTokenError,
     NbAuthResult,
     NbAuthStrategy,
-    NbAuthStrategyClass, NbPasswordAuthStrategy,
+    NbAuthStrategyClass,
     NbPasswordAuthStrategyOptions,
     passwordStrategyOptions,
 } from '@nebular/auth';
@@ -167,7 +167,6 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
 
     authenticate(data?: any): Observable<NbAuthResult> {
         const module = 'login';
-        const method = this.getOption(`${module}.method`);
         let url = this.getActionEndpoint(module);
         if (data.hasOwnProperty('server')) {
             url = data.server + url;

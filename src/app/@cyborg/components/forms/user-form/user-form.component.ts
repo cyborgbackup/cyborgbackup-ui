@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users/users.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'cbg-user-form',
@@ -19,7 +19,6 @@ export class UserFormComponent implements OnInit {
               private usersService: UsersService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService,
               private router: Router) {
   }
 

@@ -4,7 +4,7 @@ export interface CronOptions {
     formRadioClass: string;
     formCheckboxClass: string;
 
-    defaultTime: string,
+    defaultTime: string;
 
     hideMinutesTab: boolean;
     hideHourlyTab: boolean;
@@ -13,7 +13,7 @@ export interface CronOptions {
     hideMonthlyTab: boolean;
     hideYearlyTab: boolean;
     hideAdvancedTab: boolean;
-    hideSpecificWeekDayTab : boolean;
+    hideSpecificWeekDayTab: boolean;
     hideSpecificMonthWeekTab: boolean;
 
     use24HourTime: boolean;

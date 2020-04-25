@@ -27,9 +27,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     size: any[],
     dedup: any[]
   };
-  private oneDay = 24 * 3600 * 1000;
-  private now: Date;
-  private value: number ;
 
   private mockData =   [{
         date: '2020-04-02',
@@ -131,8 +128,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
       size: [],
       dedup: []
     };
-    this.now = new Date(1997, 9, 3);
-    this.value = Math.random() * 1000;
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
       const colors: any = config.variables;

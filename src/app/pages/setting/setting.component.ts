@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'setting',
+  selector: 'cbg-setting',
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss']
 })

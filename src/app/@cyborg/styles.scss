@@ -130,14 +130,34 @@ div.row {
 }
 
 @-webkit-keyframes pulsate {
-  0% { -moz-transform: scale(.3); opacity: .2; }
-  100% { -moz-transform: scale(1.1); opacity: 1; }
+  0% {
+    -moz-transform: scale(0.3);
+    opacity: 0.2;
+  }
+  100% {
+    -moz-transform: scale(1.1);
+    opacity: 1;
+  }
 }
 @-webkit-keyframes pulsate {
-  0% { -webkit-transform: scale(.3); opacity: .2; }
-  100% { -webkit-transform: scale(1.1); opacity: 1; }
+  0% {
+    -webkit-transform: scale(0.3);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    opacity: 1;
+  }
 }
 @keyframes pulsate {
-  0% { -webkit-transform: scale(.3); transform:scale(.3); opacity: .2;}
-  100% { -webkit-transform: scale(1.1); transform:scale(1.1); opacity: 1;}
+  0% {
+    -webkit-transform: scale(0.3);
+    transform:scale(0.3);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform:scale(1.1);
+    opacity: 1;
+  }
 }

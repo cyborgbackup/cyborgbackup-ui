@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RepositoriesService} from '../../../services/repositories/repositories.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'cbg-repository-form',
@@ -18,7 +18,6 @@ export class RepositoryFormComponent implements OnInit {
               private repositoriesService: RepositoriesService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService,
               private router: Router) {
   }
 

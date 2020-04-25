@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'client',
+  selector: 'cbg-client',
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.scss']
 })

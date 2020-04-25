@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import {Observable, Subject, Observer, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { delay, retryWhen, switchMap } from 'rxjs/operators';
 
@@ -10,7 +10,6 @@ export class WebsocketService implements OnDestroy {
   private protocol: string;
   private url: string;
   private host: string;
-  private store: any;
 
   constructor() {
     const usedServer: string = localStorage.getItem('localServer');

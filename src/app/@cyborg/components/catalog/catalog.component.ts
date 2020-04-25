@@ -1,15 +1,12 @@
 import {Component, HostListener, OnInit, OnDestroy, TemplateRef, ViewChild} from '@angular/core';
 import {
-  NbContextMenuDirective,
   NbTreeGridDataSource,
   NbTreeGridDataSourceBuilder,
-  NbAdjustment,
-  NbPosition,
   NbDialogService, NbMenuService
 } from '@nebular/theme';
 import {CatalogsService} from '../../services';
 import {ContextMenuDirective} from '../context-menu/context-menu.directive';
-import {map, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 

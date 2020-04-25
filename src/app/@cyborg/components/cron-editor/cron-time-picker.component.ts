@@ -16,7 +16,7 @@ function* range(start: number, end: number) {
 }
 
 @Component({
-  selector: 'cron-time-picker',
+  selector: 'cbg-cron-time-picker',
   templateUrl: './cron-time-picker.template.html',
   providers: []
 })

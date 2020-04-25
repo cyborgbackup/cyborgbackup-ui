@@ -11,12 +11,12 @@
 
           <span class="cron-form-label">Every </span>
 
-            <cron-time-picker
+            <cbg-cron-time-picker
               [formGroup]="minutesForm"
               [use24HourTime]="options.use24HourTime"
               [hideHours]="true"
               [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-            </cron-time-picker>
+            </cbg-cron-time-picker>
         </div>
       </mat-tab>
 
@@ -25,10 +25,10 @@
         <div class="cron-editor-tab-content">
           <span class="cron-form-label">Every </span>
 
-          <cron-time-picker [formGroup]="hourlyForm"
+          <cbg-cron-time-picker [formGroup]="hourlyForm"
                               [use24HourTime]="options.use24HourTime"
                               [hideSeconds]="options.hideSeconds ||  !isCronFlavorQuartz">
-          </cron-time-picker>
+          </cbg-cron-time-picker>
         </div>
       </mat-tab>
 
@@ -53,11 +53,11 @@
 
                at
 
-              <cron-time-picker
+              <cbg-cron-time-picker
                 formGroupName="everyDays"
                 [use24HourTime]="options.use24HourTime"
                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
+              </cbg-cron-time-picker>
 
             </mat-radio-button>
 
@@ -65,11 +65,11 @@
 
               <span>Week Day (MON-FRI) at </span>
 
-              <cron-time-picker
+              <cbg-cron-time-picker
                 formGroupName="everyWeekDay"
                 [use24HourTime]="options.use24HourTime"
                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
+              </cbg-cron-time-picker>
 
             </mat-radio-button>
           </mat-radio-group>
@@ -95,10 +95,10 @@
 
           <span class="cron-form-label">at time </span>
 
-          <cron-time-picker [formGroup]="weeklyForm"
+          <cbg-cron-time-picker [formGroup]="weeklyForm"
                             [use24HourTime]="options.use24HourTime"
                             [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
-          </cron-time-picker>
+          </cbg-cron-time-picker>
         </div>
 
     </mat-tab>
@@ -155,10 +155,10 @@
 
                 at time
 
-                <cron-time-picker [disabled]="disabled" [formGroup]="monthlyForm.controls.specificDay"
+                <cbg-cron-time-picker [disabled]="disabled" [formGroup]="monthlyForm.controls.specificDay"
                                   [use24HourTime]="options.use24HourTime"
                                   [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-                </cron-time-picker>
+                </cbg-cron-time-picker>
               </span>
 
 
@@ -202,11 +202,11 @@
 
                 at time
 
-                <cron-time-picker [formGroup]="monthlyForm.controls.specificWeekDay"
+                <cbg-cron-time-picker [formGroup]="monthlyForm.controls.specificWeekDay"
                                   [use24HourTime]="options.use24HourTime"
                                   [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
 
-                </cron-time-picker>
+                </cbg-cron-time-picker>
 
 
               </span>
@@ -259,11 +259,11 @@
 
               at time
 
-              <cron-time-picker [disabled]="disabled"
+              <cbg-cron-time-picker [disabled]="disabled"
                                 [formGroup]="yearlyForm.controls.specificMonthDay"
                                 [use24HourTime]="options.use24HourTime"
                                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
+              </cbg-cron-time-picker>
             </mat-radio-button>
 
             <mat-radio-button name="yearly-radio" value="specificMonthWeek" [ngClass]="state.formRadioClass">
@@ -301,11 +301,11 @@
 
               at time
 
-              <cron-time-picker [disabled]="disabled"
+              <cbg-cron-time-picker [disabled]="disabled"
                                 [formGroup]="yearlyForm.controls.specificMonthWeek"
                                 [use24HourTime]="options.use24HourTime"
                                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
+              </cbg-cron-time-picker>
             </mat-radio-button>
           </mat-radio-group>
         </div>

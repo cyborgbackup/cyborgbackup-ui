@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SchedulesService} from '../../../services';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {CronGenComponent, CronOptions} from '../../cron-editor';
 
 @Component({
@@ -41,7 +41,6 @@ export class ScheduleFormComponent implements OnInit {
               private schedulesService: SchedulesService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
-              private dialogService: NbDialogService,
               private router: Router) {
     this.cronExpression = '* * * * *';
     this.schedule = {

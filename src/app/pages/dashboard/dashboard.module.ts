@@ -3,7 +3,7 @@ import { NbCardModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
-import {CyborgModule} from "../../@cyborg/cyborg.module";
+import {CyborgModule} from '../../@cyborg/cyborg.module';
 
 @NgModule({
     imports: [

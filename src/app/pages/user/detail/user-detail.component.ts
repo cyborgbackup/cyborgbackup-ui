@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-
 @Component({
   selector: 'cbg-user-detail',
   templateUrl: './user-detail.component.html',

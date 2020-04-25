@@ -6,7 +6,7 @@
   height: calc(100% - 800px);
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid #D7D7D7;
+  border: 1px solid #d7d7d7;
   border-radius: 5px;
   margin-top: 20px;
 }
@@ -22,10 +22,10 @@
 :host .JobResultsStdOut-toolbar {
   flex: initial;
   display: flex;
-  border-bottom: 0px;
+  border-bottom: 0;
   border-radius: 5px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -33,8 +33,8 @@
 }
 
 :host .JobResultsStdOut-toolbarNumberColumn {
-  background-color: #EBEBEB;
-  color: #B7B7B7;
+  background-color: #ebebeb;
+  color: #b7b7b7;
   flex: initial;
   display: flex;
   justify-content: space-between;
@@ -45,12 +45,12 @@
   padding-top: 10px;
   border-top-left-radius: 5px;
   z-index: 1;
-  border-right: 1px solid #D7D7D7;
+  border-right: 1px solid #d7d7d7;
 }
 
 :host .JobResultsStdOut-stdoutContainer .ng-star-inserted {
-  padding: 0px;
-  border: 0px;
+  padding: 0;
+  border: 0;
 }
 
 :host .JobResultsStdOut-expandAllButton {
@@ -59,7 +59,7 @@
   padding-left: 4px;
   padding-top: 1px;
   border-radius: 50%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-size: 12px;
   cursor: pointer;
   color: #848992;
@@ -67,7 +67,7 @@
 
 :host .JobResultsStdOut-expandAllButton:hover .JobResultsStdOut-expandAllIcon,
 :host .JobResultsStdOut-expandAllIcon:hover {
-  color: #161B1F;
+  color: #161b1f;
 }
 
 :host .JobResultsStdOut-toolbarStdoutColumn {
@@ -76,7 +76,7 @@
   display: flex;
   justify-content: flex-end;
   padding-right: 10px;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
   border-top-right-radius: 5px;
 }
 
@@ -88,24 +88,24 @@
   margin-top: 10px;
   font-size: 1.25em;
   background-color: #848992;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 :host .JobResultsStdOut-followIcon {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 :host .JobResultsStdOut-followButton:hover {
-  background-color: #161B1F;
+  background-color: #161b1f;
 }
 
 :host .JobResultsStdOut-followButton.is-engaged {
-  background-color: #337AB7;
-  color: #FFFFFF;
+  background-color: #337ab7;
+  color: #ffffff;
 }
 
 :host .JobResultsStdOut-followButton.is-engaged .JobResultsStdOut-followIcon {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 :host .JobResultsStdOut-followButton.is-engaged:hover {
@@ -114,13 +114,13 @@
 
 :host .JobResultsStdOut-followButton.is-engaged:hover .JobResultsStdOut-followIcon,
 :host .JobResultsStdOut-followButton.is-engaged .JobResultsStdOut-followIcon:hover {
-  color: #D7D7D7;
+  color: #d7d7d7;
 }
 
 :host .JobResultsStdOut-stdoutContainer {
   flex: 1;
   position: relative;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
 }
 
 :host .JobResultsStdOut-stdoutContainer .JobResultsStdout-nbList {
@@ -128,8 +128,8 @@
 }
 
 :host .JobResultsStdOut-numberColumnPreload {
-  background-color: #EBEBEB;
-  border-right: 1px solid #D7D7D7;
+  background-color: #ebebeb;
+  border-right: 1px solid #d7d7d7;
   position: absolute;
   height: 100%;
   width: 70px;
@@ -137,7 +137,7 @@
 
 :host .JobResultsStdOut-aLineOfStdOut {
   display: flex;
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
 }
 
 :host .JobResultsStdOut-lineExpander {
@@ -152,12 +152,12 @@
 }
 
 :host .JobResultsStdOut-lineExpanderIcon:hover {
-  color: #161B1F;
+  color: #161b1f;
 }
 
 :host .JobResultsStdOut-lineNumberColumn {
   display: flex;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   text-align: right;
   padding-right: 10px;
   padding-top: 2px;
@@ -169,7 +169,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   z-index: 1;
-  border-right: 1px solid #D7D7D7;
+  border-right: 1px solid #d7d7d7;
   color: #848992;
 }
 
@@ -183,13 +183,13 @@
   white-space: pre-wrap;
   word-break: break-all;
   width:100%;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
 }
 
 :host .JobResultsStdOut-stdoutColumn--tooMany {
   font-weight: bold;
   text-transform: uppercase;
-  color: #D9534F;
+  color: #d9534f;
 }
 
 :host .JobResultsStdOut-stdoutColumn--clickable {
@@ -199,35 +199,35 @@
 :host .JobResultsStdOut-aLineOfStdOut:hover,
 :host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-lineNumberColumn,
 :host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-stdoutColumn {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 :host .JobResultsStdOut-aLineOfStdOut:hover .JobResultsStdOut-lineNumberColumn {
-  border-right: 1px solid #FFFFFF;
+  border-right: 1px solid #ffffff;
 }
 
 :host .JobResultsStdOut-footer {
   height: 20px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  background-color: #FCFCFC;
-  border-top: 0px;
+  background-color: #fcfcfc;
+  border-top:0;
   border-radius: 5px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  border-top-left-radius:0;
+  border-top-right-radius:0;
   overflow: hidden;
   margin-top: -1px;
 }
 
 :host .JobResultsStdOut-footerNumberColumn {
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   width: 70px;
   height: 100%;
-  border-right: 1px solid #D7D7D7;
+  border-right: 1px solid #d7d7d7;
 }
 
 :host .JobResultsStdOut-followAnchor {
-  height: 0px;
+  height:0;
 }
 
 :host .JobResultsStdOut-toTop {
@@ -245,18 +245,18 @@
 }
 
 :host .JobResultsStdOut-toTop--numberColumn {
-  background: #EBEBEB;
+  background: #ebebeb;
   height: 40px;
   width: 70px;
-  border-right: 1px solid #D7D7D7;
+  border-right: 1px solid #d7d7d7;
 }
 
 :host .JobResultsStdOut-toTop:hover {
-  color: #161B1F;
+  color: #161b1f;
 }
 
 :host .JobResultsStdOut-cappedLine {
-  color: #B7B7B7;
+  color: #b7b7b7;
   font-style: italic;
 }
 
@@ -274,7 +274,7 @@
   }
 
   :host .JobResultsStdOut-followAnchor {
-    height: 0px;
+    height:0;
   }
 
   :host .JobResultsStdOut-stdoutContainer {
