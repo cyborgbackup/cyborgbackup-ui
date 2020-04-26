@@ -1,0 +1,12 @@
+Source: cyborgbackup-ui
+Section: system
+Priority: optional
+Maintainer: Gaëtan Ferez <gaetan@cyborgbackup.dev>
+Build-Depends: debhelper (>= 9), docker
+Standards-Version: 3.9.5
+
+Package: cyborgbackup-ui
+Architecture: all
+Depends: ${misc:Depends}, nginx
+Description: CyBorgBackup UI interface frontend of CyBorgBackup utility.
+ CyBorgBackup-UI is a web interface to manage backup from multiple clients and policy. It's a frontend of CyBorgBackup utility based on Borg software.
