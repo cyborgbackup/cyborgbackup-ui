@@ -28,5 +28,11 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-      - name: Debian Package
-        run: make -f debian/rules binary
+      - name: Build Debian package
+        uses: dawidd6/action-debian-package@v1
+        with:
+          artifacts_directory: output
+      - uses: actions/upload-artifact@v1
+        with:
+          name: debian-package
+          path: output
