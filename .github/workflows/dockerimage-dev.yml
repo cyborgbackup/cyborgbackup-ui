@@ -12,8 +12,8 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Get the version
         id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA_SHORT})
       - name: Build the tagged Docker image
         run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
       - name: Push the tagged Docker image
-        run: docker push tinywan/angular-cli:${{steps.vars.outputs.tag}}
+        run: docker push cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
