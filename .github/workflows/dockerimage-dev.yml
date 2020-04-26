@@ -3,8 +3,9 @@ name: Docker-Image-Build-CI-DEV
 on: push
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  docker-build:
+    runs-on: debian-latest
+    if: true == false
 
     steps:
       - uses: actions/checkout@v1
@@ -17,3 +18,15 @@ jobs:
         run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
       - name: Push the tagged Docker image
         run: docker push cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
+
+  debian-build:
+    runs-on: debian-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+      - name: Debian Package
+        run: make -f debian/rules binary
