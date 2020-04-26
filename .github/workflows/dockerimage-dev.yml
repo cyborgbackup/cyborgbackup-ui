@@ -1,5 +1,7 @@
 name: Docker-Image-Build-CI-DEV
 
+on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
