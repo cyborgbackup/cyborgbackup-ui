@@ -5,17 +5,19 @@ on: push
 jobs:
   docker-build:
     runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
 
     steps:
       - uses: actions/checkout@v1
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-${{ env.GITHUB_SHA_SHORT }}
+        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-$SHA8
       - name: Tag Docker Image to Develop
-        run: docker tag cyborgbackup/cyborgbackup-ui:dev-${{ env.GITHUB_SHA_SHORT }} cyborgbackup/cyborgbackup-ui:develop
+        run: docker tag cyborgbackup/cyborgbackup-ui:dev-$SHA8 cyborgbackup/cyborgbackup-ui:develop
       - name: Push the tagged Docker image
-        run: docker push cyborgbackup/cyborgbackup-ui:dev-${{ env.GITHUB_SHA_SHORT }}
+        run: docker push cyborgbackup/cyborgbackup-ui:dev-$SHA8
 
   debian-build:
     runs-on: ubuntu-latest
