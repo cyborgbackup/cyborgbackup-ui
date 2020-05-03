@@ -33,21 +33,21 @@ jobs:
           artifacts_directory: output
       - uses: actions/upload-artifact@v1
         with:
-          name: cyborgbackup-ui.debv
-          path: 'output/*.deb'
+          name: cyborgbackup-ui.deb
+          path: '**/*.deb'
       - uses: actions/upload-artifact@v1
         with:
           name: cyborgbackup-ui.tar.xz
-          path: 'output/*.tar.xz'
+          path: '**/*.tar.xz'
       - uses: actions/upload-artifact@v1
         with:
           name: cyborgbackup-ui.dsc
-          path: 'output/*.dsc'
+          path: '**/*.dsc'
       - uses: actions/upload-artifact@v1
         with:
           name: cyborgbackup-ui.buildinfo
-          path: 'output/*.buildinfo'
+          path: '**/*.buildinfo'
       - uses: actions/upload-artifact@v1
         with:
           name: cyborgbackup-ui.changes
-          path: 'output/*.changes'
+          path: '**/*.changes'
