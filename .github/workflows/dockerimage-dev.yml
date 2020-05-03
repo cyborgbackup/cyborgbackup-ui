@@ -10,13 +10,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      - name: Get the version
-        id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA_SHORT})
       - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
+        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-$GITHUB_SHA_SHORT
+      - name: Tag Docker Image to Develop
+        run: docker tag cyborgbackup/cyborgbackup-ui:dev-$GITHUB_SHA_SHORT cyborgbackup/cyborgbackup-ui:develop
       - name: Push the tagged Docker image
-        run: docker push cyborgbackup/cyborgbackup-ui:dev-${{steps.vars.outputs.tag}}
+        run: docker push cyborgbackup/cyborgbackup-ui:dev-$GITHUB_SHA_SHORT
 
   debian-build:
     runs-on: ubuntu-latest
