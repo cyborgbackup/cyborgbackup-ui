@@ -73,19 +73,11 @@ $nb-themes: nb-register-theme((
   actions-background-color: #1c2b36,
   menu-background-color: #1c2b36,
   background-basic-color-3: #f0f3f4,
-  // card-background-color: #fff,
   divider-color: rgba(0, 0, 0, 0.12),
   card-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25),
   header-shadow: 0 0.5rem 0.5rem 0 #1c2b36,
   text-control-color: #fff,
   menu-item-icon-color: #fff,
-  // input-basic-focus-background-color: #fff,
-  // input-primary-focus-background-color: #fff,
-  // input-success-focus-background-color: #fff,
-  // input-danger-focus-background-color: #fff,
-  // input-info-focus-background-color: #fff,
-  // input-warning-focus-background-color: #fff,
-  // input-control-focus-background-color: #fff,
   color-primary-400: #209e91,
   color-primary-500: #1b867b,
   color-basic-100: #fff, // color-basic-100: #666,
@@ -103,6 +95,4 @@ $nb-themes: nb-register-theme((
   toggle-basic-checked-background-color: #209e91,
   color-basic-default-border: #d1d1d1
 
-  // tree-grid-row-background-color: #fff,
-  // tree-grid-row-hover-background-color: #fff
 ), legacy, dark);
