@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/Rx';
   styleUrls: ['./settings-form.component.scss']
 })
 export class SettingsFormComponent implements OnInit {
-  private settings: any;
+  public settings: any;
   public formSetting: FormGroup;
   private formData: any = {};
   public encryptedPlaceholder: any = {};
