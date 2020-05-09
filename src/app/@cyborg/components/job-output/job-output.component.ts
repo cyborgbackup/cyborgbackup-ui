@@ -39,6 +39,10 @@ export class JobOutputComponent implements OnInit {
     this.followEngaged = !this.followEngaged;
   }
 
+  relaunch(): void {
+    console.log('Relaunch job');
+  }
+
   loadNext(): void {
     if (this.job === undefined
         || this.loading
