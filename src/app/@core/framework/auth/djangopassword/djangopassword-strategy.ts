@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpXsrfTokenExtractor} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -150,8 +150,7 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         return [DjangoPasswordAuthStrategy, options];
     }
 
-    constructor(protected http: HttpClient, private route: ActivatedRoute,
-                private cookieExtractor: HttpXsrfTokenExtractor) {
+    constructor(protected http: HttpClient, private route: ActivatedRoute) {
         super();
     }
 
