@@ -1,10 +1,15 @@
+@import '../../../@theme/styles/themes';
+
 :host ::ng-deep .nb-tree-grid-cell {
   border: 0;
 }
 
-:host .btn-context {
-  background: transparent;
-  border: none;
-  padding: 0;
-  padding-left: 5px;
+@include nb-install-component() {
+  .btn-context {
+    background: transparent;
+    border: none;
+    padding: 0;
+    padding-left: 5px;
+    color: nb-theme(text-basic-color);
+  }
 }

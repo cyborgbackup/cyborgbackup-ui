@@ -27,6 +27,9 @@
       <nb-card-header>Archive Detail</nb-card-header>
       <nb-card-body>
         <div class="row">
+          Name : {{ archiveDetail.archive_name }}
+        </div>
+        <div class="row">
           Client : {{ archiveDetail.hostname }}
         </div>
         <div class="row">
@@ -108,14 +111,14 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="inputPath" class="label col-sm-3 form-control-label">Path</label>
+          <label for="inputPath" class="label col-sm-3 form-control-label">Destination folder</label>
           <div class="col-sm-9">
-            <input type="text" nbInput fullWidth formControlName="path" id="inputPath" placeholder="Enter path folder of item"/>
+            <input type="text" nbInput fullWidth formControlName="dest_folder" id="inputPath" placeholder="Enter path folder of item"/>
           </div>
         </div>
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
-            <nb-toggle formControlName="dryrun">Dry-run</nb-toggle>
+            <nb-toggle formControlName="dry_run">Dry-run</nb-toggle>
           </div>
         </div>
       </form>

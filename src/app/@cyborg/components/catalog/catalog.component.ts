@@ -2,9 +2,9 @@ import {Component, HostListener, OnInit, OnDestroy, TemplateRef, ViewChild} from
 import {
   NbTreeGridDataSource,
   NbTreeGridDataSourceBuilder,
-  NbDialogService, NbMenuService
+  NbDialogService, NbMenuService, NbGlobalPhysicalPosition, NbToastrService
 } from '@nebular/theme';
-import {CatalogsService} from '../../services';
+import {CatalogsService, RestoreService} from '../../services';
 import {ContextMenuDirective} from '../context-menu/context-menu.directive';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
@@ -73,12 +73,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
               private catalogsService: CatalogsService,
               private dialogService: NbDialogService,
               private menuService: NbMenuService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private restoreService: RestoreService,
+              private toastrService: NbToastrService) {
     this.loadInitialTree();
     this.formRestore = this.formBuilder.group({
       destination: ['', Validators.required],
-      path: [],
-      dryrun: [],
+      dest_folder: [],
+      dry_run: [],
       host: ['']
     });
   }
@@ -261,7 +263,26 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.dialogService.open(this.restoreDialog, {
       context: item
     }).onClose.subscribe((res) => {
-      console.log(res);
+      if (res && this.formRestore.valid) {
+        const data = this.formRestore.value;
+        console.log(item);
+        data['archive_name'] = item.tag.archive_name;
+        data['item'] = '';
+        if (item.tag.type !== 'date') {
+          data['item'] = item.tag.name;
+        }
+        this.restoreService.post(this.formRestore.value).subscribe((restoreres) => {
+          this.toastrService.show('', 'Restore launched', {
+            position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+            status: 'success'
+          });
+        }, (err) => {
+          this.toastrService.show(err, 'Error on Restore', {
+            position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+            status: 'danger'
+          });
+        });
+      }
     });
   }
 

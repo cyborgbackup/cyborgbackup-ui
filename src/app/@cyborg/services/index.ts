@@ -7,3 +7,4 @@ export * from './schedules/schedules.service';
 export * from './settings/settings.service';
 export * from './stats/stats.service';
 export * from './users/users.service';
+export * from './restore/restore.service';

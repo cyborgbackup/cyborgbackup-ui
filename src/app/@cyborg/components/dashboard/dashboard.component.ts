@@ -28,7 +28,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     dedup: any[]
   };
 
-  private mockData =   [{
+  /*private mockData =   [{
         date: '2020-04-02',
         size: 543789800590,
         dedup: 18708982268,
@@ -111,7 +111,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
         dedup: 64899886069,
         success: 39,
         failed: 1
-    }];
+    }];*/
 
   constructor(private theme: NbThemeService,
               private statsService: StatsService,
@@ -267,7 +267,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
         ],
       };
       this.statsService.fetch().subscribe((res) => {
-        for (const el of this.mockData ) {
+        for (const el of res ) {
           this.data.success.push([new Date(el.date).toISOString(), el.success]);
           this.data.failed.push([new Date(el.date).toISOString(), el.failed]);
           this.data.size.push([new Date(el.date).toISOString(), el.size]);
