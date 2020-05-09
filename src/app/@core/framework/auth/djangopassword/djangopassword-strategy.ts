@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpXsrfTokenExtractor} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -150,7 +150,8 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         return [DjangoPasswordAuthStrategy, options];
     }
 
-    constructor(protected http: HttpClient, private route: ActivatedRoute) {
+    constructor(protected http: HttpClient, private route: ActivatedRoute,
+                private cookieExtractor: HttpXsrfTokenExtractor) {
         super();
     }
 
@@ -168,38 +169,44 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
     authenticate(data?: any): Observable<NbAuthResult> {
         const module = 'login';
         let url = this.getActionEndpoint(module);
+        let loginUrl = '/api/login/';
         if (data.hasOwnProperty('server')) {
             url = data.server + url;
+            loginUrl = data.server + loginUrl;
         }
         const httpOptions = {
             headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})
         };
         const requireValidToken = this.getOption(`${module}.requireValidToken`);
         return new Observable<NbAuthResult>((subscriber) => {
-            this.http.post(url, data, httpOptions).subscribe((res: any) => {
-                this.registerServer(data.server);
-                subscriber.next(new NbAuthResult(
-                    true,
-                    res,
-                    this.getOption(`${module}.redirect.success`),
-                    [],
-                    this.getOption('messages.getter')(module, res, this.options),
-                    this.createToken(this.getOption('token.getter')(module, res, this.options), requireValidToken)));
-            }, (error) => {
-                let errors = [];
-                if (error instanceof HttpErrorResponse) {
-                    errors = this.getOption('errors.getter')(module, error, this.options);
-                } else if (error instanceof NbAuthIllegalTokenError) {
-                    errors.push(error.message);
-                } else {
-                    errors.push('Something went wrong.');
-                }
-                subscriber.next(new NbAuthResult(
-                    false,
-                    error,
-                    this.getOption(`${module}.redirect.failure`),
-                    errors,
-                ));
+            this.http.get(loginUrl, {responseType: 'text', observe: 'response'}).subscribe((resget: any) => {
+                const csrfmiddlewaretoken = /name="csrfmiddlewaretoken" value="([0-9a-zA-Z]+)"/.exec(resget.body)[1];
+                localStorage.setItem('csrftoken', csrfmiddlewaretoken);
+                this.http.post(url, data, httpOptions).subscribe((res: any) => {
+                    this.registerServer(data.server);
+                    subscriber.next(new NbAuthResult(
+                        true,
+                        res,
+                        this.getOption(`${module}.redirect.success`),
+                        [],
+                        this.getOption('messages.getter')(module, res, this.options),
+                        this.createToken(this.getOption('token.getter')(module, res, this.options), requireValidToken)));
+                }, (error) => {
+                    let errors = [];
+                    if (error instanceof HttpErrorResponse) {
+                        errors = this.getOption('errors.getter')(module, error, this.options);
+                    } else if (error instanceof NbAuthIllegalTokenError) {
+                        errors.push(error.message);
+                    } else {
+                        errors.push('Something went wrong.');
+                    }
+                    subscriber.next(new NbAuthResult(
+                        false,
+                        error,
+                        this.getOption(`${module}.redirect.failure`),
+                        errors,
+                    ));
+                });
             });
         });
     }
@@ -207,7 +214,10 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
     requestPassword(data?: any): Observable<NbAuthResult> {
         const module = 'requestPass';
         const method = this.getOption(`${module}.method`);
-        const url = this.getActionEndpoint(module);
+        let url = this.getActionEndpoint(module);
+        if (data.hasOwnProperty('server')) {
+            url = data.server + url;
+        }
         return this.http.request(method, url, {body: data, observe: 'response'})
             .pipe(
                 map((res) => {
@@ -234,8 +244,11 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
     resetPassword(data: any = {}): Observable<NbAuthResult> {
         const module = 'resetPass';
         const method = this.getOption(`${module}.method`);
-        const url = this.getActionEndpoint(module);
+        let url = this.getActionEndpoint(module);
         const tokenKey = this.getOption(`${module}.resetPasswordTokenKey`);
+        if (data.hasOwnProperty('server')) {
+            url = data.server + url;
+        }
         console.log(tokenKey);
         console.log(this.route.snapshot);
         console.log(this.route.snapshot.queryParams[tokenKey]);
@@ -267,8 +280,10 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
 
         const module = 'logout';
         const method = this.getOption(`${module}.method`);
-        const url = this.getActionEndpoint(module);
-
+        let url = this.getActionEndpoint(module);
+        if (localStorage.getItem('localServer') !== '') {
+            url = localStorage.getItem('localServer') + url;
+        }
         return observableOf({})
             .pipe(
                 switchMap((res: any) => {
@@ -302,8 +317,11 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
 
         const module = 'refreshToken';
         const method = this.getOption(`${module}.method`);
-        const url = this.getActionEndpoint(module);
+        let url = this.getActionEndpoint(module);
         const requireValidToken = this.getOption(`${module}.requireValidToken`);
+        if (localStorage.getItem('localServer') !== '') {
+            url = localStorage.getItem('localServer') + url;
+        }
 
         return this.http.request(method, url, {body: data, observe: 'response'})
             .pipe(
