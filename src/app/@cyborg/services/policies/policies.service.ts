@@ -43,4 +43,19 @@ export class PoliciesService extends CrudService {
       });
     });
   }
+
+  public launch(id): Observable<any> {
+    return new Observable((subscriber) => {
+      const params = {
+        'verbosity': 0,
+        'extra_vars': {}
+      };
+      this.http.post('/api/v1/' + this.endpoint + '/' + id + '/launch/', params).subscribe((res: any) => {
+        subscriber.next(res);
+      }, (error) => {
+        // console.log('send query', error);
+        subscriber.error(error);
+      });
+    });
+  }
 }
