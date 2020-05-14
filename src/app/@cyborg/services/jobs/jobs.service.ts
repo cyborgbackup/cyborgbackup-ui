@@ -59,6 +59,16 @@ export class JobsService extends CrudService {
     });
   }
 
+  public getReport(jobId: number): Observable<any> {
+    return new Observable((subscriber) => {
+      this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe((result: any) => {
+        subscriber.next(result);
+      }, (error) => {
+        subscriber.error(error);
+      });
+    });
+  }
+
   public count(params = {}): Observable<any> {
     return new Observable((subscriber) => {
       this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {

@@ -15,7 +15,7 @@ import {
   NbTabsetModule,
   NbTreeGridModule,
   NbIconModule,
-  NbAutocompleteModule,
+  NbAutocompleteModule, NbTooltipModule,
   NbListModule, NbContextMenuModule, NbAlertModule, NbCheckboxModule
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -60,7 +60,8 @@ const NB_MODULES = [
   FullCalendarModule,
   NbAlertModule,
   NbCheckboxModule,
-  NbAutocompleteModule
+  NbAutocompleteModule,
+  NbTooltipModule
 ];
 const PIPES = [
     JobStatePipe,

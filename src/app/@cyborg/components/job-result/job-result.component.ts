@@ -25,12 +25,26 @@ export class JobResultComponent implements OnInit {
     };
     this.route.paramMap.subscribe(params => {
       this.jobId = +params.get('id');
-      console.log(this.jobId);
       if (this.jobId !== 0) {
         this.jobsService.get(this.jobId).subscribe((res) => {
           this.job = res;
         });
       }
+    });
+  }
+
+  downloadLog(): void {
+    this.jobsService.getReport(this.jobId).subscribe(data => {
+      const blob = new Blob([data], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = url;
+      a.download = this.jobId + '.log';
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove(); // remove the element
     });
   }
 

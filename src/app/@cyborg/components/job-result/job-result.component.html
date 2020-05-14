@@ -5,7 +5,7 @@
             <div class="panelHeader row">
               <div class="panelHeader-text col-sm-9">Details</div>
               <div class="panelHeader-button col-sm-3">
-                <button nbButton size="tiny" class="StandardOut-actionButton"
+                <button nbTooltip="Relaunch Job" nbTooltipStatus="primary"  nbButton size="tiny" class="StandardOut-actionButton"
                         data-tip-watch="toggleStdoutFullscreenTooltip"
                         data-placement="top"
                         [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
@@ -121,7 +121,7 @@
             <div class="StandardOut-panelHeaderActions">
 
               <!-- FULL-SCREEN TOGGLE ACTION -->
-              <button nbButton size="tiny" class="StandardOut-actionButton"
+              <button nbButton nbTooltip="Expand display" nbTooltipStatus="primary" size="tiny" class="StandardOut-actionButton"
                       data-tip-watch="toggleStdoutFullscreenTooltip"
                       data-placement="top"
                       [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
@@ -130,16 +130,17 @@
               </button>
 
               <!-- DOWNLOAD ACTION -->
-              <a *ngIf="job.status === 'failed' ||
+              <!--<a *ngIf="job.status === 'failed' ||
                                 job.status === 'successful' ||
                                 job.status === 'canceled'"
-                href="{{ localServer }}/api/v1/jobs/{{ job.id }}/stdout/?format=txt_download">
-                <button nbButton size="tiny" class="StandardOut-actionButton"
+                href="{{ localServer }}/api/v1/jobs/{{ job.id }}/stdout/?format=txt_download">//-->
+                <button nbTooltip="Download log" nbTooltipStatus="primary"  nbButton size="tiny" class="StandardOut-actionButton"
                         data-tip-watch="standardOutTooltip"
-                        data-placement="top">
+                        data-placement="top"
+                        (click)="downloadLog()">
                   <fa-icon icon="download"></fa-icon>
                 </button>
-              </a>
+              <!--</a>-->
 
             </div>
           </div>
