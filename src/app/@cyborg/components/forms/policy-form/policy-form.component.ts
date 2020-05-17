@@ -1,8 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
 import {ClientsService, PoliciesService, RepositoriesService, SchedulesService} from '../../../services';
+import {DialogFormPolicyDBModuleComponent, DialogFormPolicyVMModuleComponent} from '../../dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NONE_TYPE} from '@angular/compiler';
+
 
 @Component({
   selector: 'cbg-policy-form',
@@ -26,7 +32,8 @@ export class PolicyFormComponent implements OnInit {
               private clientsService: ClientsService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
-              private router: Router) {
+              private router: Router,
+              private dialogService: NbDialogService) {
     this.typesArray = [];
     this.schedules = [];
     this.repositories = [];
@@ -100,6 +107,54 @@ export class PolicyFormComponent implements OnInit {
     });
   }
 
+  showClientEditor(): boolean {
+    return this.formPolicy.value.policy_type === 'proxmox' ||
+        this.formPolicy.value.policy_type === 'mysql' ||
+        this.formPolicy.value.policy_type === 'postgresql';
+  }
+
+  showExtraVars(): boolean {
+    return this.formPolicy.value.extra_vars.length > 0 &&
+        this.formPolicy.value.policy_type !== 'proxmox' &&
+        this.formPolicy.value.policy_type !== 'mysql' &&
+        this.formPolicy.value.policy_type !== 'postgresql';
+  }
+
+  editClient(event, client_id): void {
+    let client = null;
+    this.clients.forEach((el) => {
+      if (el.id === client_id) {
+        client = el;
+      }
+    });
+    let theClass = null;
+    if (this.formPolicy.value['policy_type'] === 'proxmox') {
+      theClass = DialogFormPolicyVMModuleComponent;
+    } else {
+      theClass = DialogFormPolicyDBModuleComponent;
+    }
+    const extra_vars = JSON.parse(this.formPolicy.value.extra_vars);
+    if ( !Object.keys(extra_vars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
+      extra_vars['extended_' + this.formPolicy.value['policy_type']] = {};
+    }
+    const extended_vars = extra_vars['extended_' + this.formPolicy.value['policy_type']][client.id];
+    this.dialogService.open(theClass, {
+      context: {
+        client,
+        module: this.formPolicy.value['policy_type'],
+        vars: extended_vars
+      }
+    }).onClose.subscribe((res) => {
+      if (res) {
+        if ( !Object.keys(extra_vars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
+          extra_vars['extended_' + this.formPolicy.value['policy_type']] = {};
+        }
+        extra_vars['extended_' + this.formPolicy.value['policy_type']][client.id] = res;
+        this.formPolicy.patchValue({extra_vars: JSON.stringify(extra_vars, null, 4)});
+      }
+    });
+  }
+
   updatePolicy(data) {
     this.policiesService.patch(this.policyId, data).subscribe((res) => {
       this.toastrService.show('', 'Policy updated', {
@@ -131,8 +186,6 @@ export class PolicyFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.formPolicy);
-    console.log(this.formPolicy.valid);
     if (this.formPolicy.valid) {
       if (this.policyId !== 0) {
         this.updatePolicy(this.formPolicy.value);
@@ -150,7 +203,7 @@ export class PolicyFormComponent implements OnInit {
     } else if (model === 'piped') {
       this.formPolicy.patchValue({extra_vars: '{\n"command":""\n}'});
     } else {
-      this.formPolicy.patchValue({extra_vars: ''});
+      this.formPolicy.patchValue({extra_vars: '{}'});
     }
   }
 

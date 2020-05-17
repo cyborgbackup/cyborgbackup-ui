@@ -26,7 +26,6 @@ export class PoliciesService extends CrudService {
           subscriber.next(res);
         });
       }, (error) => {
-        // console.log('send query', error);
         subscriber.error(error);
       });
     });
@@ -38,10 +37,31 @@ export class PoliciesService extends CrudService {
       this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
         subscriber.next(result.count);
       }, (error) => {
-        // console.log('send query', error);
         subscriber.error(error);
       });
     });
+  }
+
+  public moduleItems(module, client, data = null): Observable<any> {
+    if (data) {
+      return new Observable((subscriber) => {
+        this.http.post('/api/v1/' + this.endpoint + '/module/' + module + '/' + client + '/',
+            data, {observe: 'response'}).subscribe((result: any) => {
+          subscriber.next(result);
+        }, (error) => {
+          subscriber.error(error);
+        });
+      });
+    } else {
+      return new Observable((subscriber) => {
+        this.http.get('/api/v1/' + this.endpoint + '/module/' + module + '/' + client + '/',
+            {observe: 'response'}).subscribe((result: any) => {
+          subscriber.next(result);
+        }, (error) => {
+          subscriber.error(error);
+        });
+      });
+    }
   }
 
   public launch(id): Observable<any> {
@@ -53,7 +73,6 @@ export class PoliciesService extends CrudService {
       this.http.post('/api/v1/' + this.endpoint + '/' + id + '/launch/', params).subscribe((res: any) => {
         subscriber.next(res);
       }, (error) => {
-        // console.log('send query', error);
         subscriber.error(error);
       });
     });

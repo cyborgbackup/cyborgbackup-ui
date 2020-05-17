@@ -1,3 +1,12 @@
 :host .selectClients {
   border: 0;
 }
+
+:host ::ng-deep svg.pen-icon {
+  padding: 2px !important;
+}
+
+:host .ionicon::before {
+  font-family: 'Ionicons';
+  content: '\f37e';
+}

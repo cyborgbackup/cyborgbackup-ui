@@ -1,6 +1,7 @@
 export * from './job-state-selector/job-state-selector.component';
 export * from './job-result/job-result.component';
 export * from './job-output/job-output.component';
+export * from './dialog';
 export * from './forms';
 export * from './table';
 export * from './grid-row-toggle/grid-row-toggle.component';

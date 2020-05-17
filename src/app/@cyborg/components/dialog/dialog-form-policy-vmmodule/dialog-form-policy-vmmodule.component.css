@@ -1,0 +1,32 @@
+:host .listVM {
+    margin-left: 2em;
+    margin-right: 2em;
+    min-width: 10rem;
+}
+
+:host span.check-header {
+    float: left;
+    margin-right: 10px;
+}
+
+:host mat-list {
+    width: 100%;
+}
+
+:host .list-header {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+:host .list-header nb-icon {
+    float: right;
+}
+
+:host .item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+:host .subInfo {
+    font-size: 0.75em;
+}

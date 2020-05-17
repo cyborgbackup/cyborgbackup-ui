@@ -8,6 +8,7 @@ import {JobsService} from '../../services';
   styleUrls: ['./job-result.component.scss']
 })
 export class JobResultComponent implements OnInit {
+  private counter: any;
   public job: any;
   public jobId: number;
   public stdoutFullScreen: boolean = false;
@@ -28,9 +29,23 @@ export class JobResultComponent implements OnInit {
       if (this.jobId !== 0) {
         this.jobsService.get(this.jobId).subscribe((res) => {
           this.job = res;
+          if (this.job.status === 'running' ) {
+            this.startCounter();
+          }
         });
       }
     });
+  }
+  startCounter(): void {
+    this.counter = setInterval (() => {
+      console.log('Add elapsed');
+      console.log(this.job.status);
+      if (this.job.status !== 'running ') {
+        clearInterval(this.counter);
+      } else {
+        this.job.elapsed += 1;
+      }
+    }, 1000);
   }
 
   downloadLog(): void {

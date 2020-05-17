@@ -47,6 +47,13 @@ export const NB_CORE_PROVIDERS = [
             failure: null,
           },
         },
+        refreshToken: {
+          endpoint: '/api/token/refresh/',
+          redirect: {
+            success: '/dashboard',
+            failure: null,
+          },
+        },
         resetPass: {
           endpoint: '/api/password_reset/confirm/',
           resetPasswordTokenKey: 'token',

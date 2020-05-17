@@ -7,16 +7,16 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import {
-  NbCardModule,
-  NbButtonModule,
-  NbInputModule,
-  NbToggleModule,
-  NbSelectModule,
-  NbTabsetModule,
-  NbTreeGridModule,
-  NbIconModule,
-  NbAutocompleteModule, NbTooltipModule,
-  NbListModule, NbContextMenuModule, NbAlertModule, NbCheckboxModule
+    NbCardModule,
+    NbButtonModule,
+    NbInputModule,
+    NbToggleModule,
+    NbSelectModule,
+    NbTabsetModule,
+    NbTreeGridModule,
+    NbIconModule,
+    NbAutocompleteModule, NbTooltipModule,
+    NbListModule, NbContextMenuModule, NbAlertModule, NbCheckboxModule, NbSpinnerModule
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -30,7 +30,8 @@ import {
   RepositoryTableComponent, RepositoryFormComponent,
   UserTableComponent, UserFormComponent, ProfileFormComponent,
   ScheduleTableComponent, ScheduleFormComponent, SettingsFormComponent,
-  LoginComponent, ContextMenuDirective
+  LoginComponent, ContextMenuDirective, DialogFormPolicyVMModuleComponent,
+  DialogFormPolicyDBModuleComponent
 } from './components';
 import {
   JobStatePipe, LongDatePipe, HumanSizePipe, SettingNamePipe
@@ -90,12 +91,14 @@ const COMPONENTS = [
   ProfileFormComponent,
   DashboardComponent,
   LoginComponent,
-  ContextMenuDirective
+  ContextMenuDirective,
+  DialogFormPolicyDBModuleComponent,
+  DialogFormPolicyVMModuleComponent
 ];
 const SERVICES = [];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES, TextFieldModule],
+    imports: [CommonModule, ...NB_MODULES, TextFieldModule, NbSpinnerModule],
   exports: [CommonModule, ...COMPONENTS, ...PIPES, ...SERVICES],
   declarations: [...COMPONENTS, ...PIPES]
 })

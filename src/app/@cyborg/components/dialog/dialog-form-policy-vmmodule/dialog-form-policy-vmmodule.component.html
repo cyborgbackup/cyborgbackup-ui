@@ -1,0 +1,55 @@
+<nb-card size="medium">
+    <nb-card-header>Select specific Virtual Machine</nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="success">
+        <div class="row">
+            <div class="col-sm-12">
+                Select Virtual Machine to backup of <b>"{{ client.hostname }}"</b>
+            </div>
+        </div>
+        <div class="row listVM">
+            <mat-list *ngIf="!loading && error === null">
+                <ng-container *ngIf="vms['qemu'] !== undefined">
+                    <div mat-subheader >
+                        <span class="check-header">
+                            <input type="checkbox" name="checkAll" (change)="checkAll('qemu', $event)"/>
+                        </span>
+                        <a class="list-header" (click)="toggle('qemu')">
+                            Qemu
+                            <nb-icon [icon]="state['qemu']?'chevron-down-outline' :'chevron-up-outline'"></nb-icon>
+                        </a>
+                    </div>
+                    <ng-container *ngIf="state['qemu']">
+                        <mat-list-item *ngFor="let vm of vms['qemu']" >
+                            <div class="item row" (click)="select(vm, $event)">
+                                <div class="col-sm-1">
+                                    <input type="checkbox" name="check-{{vm.vmid}}" [(ngModel)]="checked[vm.vmid]"/>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div mat-line>{{vm.name}}</div>
+                                    <div mat-line class="subInfo">Status : {{vm.status}} VMID : {{vm.vmid}}</div>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                    </ng-container>
+                </ng-container>
+                <mat-divider *ngIf="vms['qemu'] !== undefined && vms['lxc'] !== undefined"></mat-divider>
+                <ng-container *ngIf="vms['lxc'] !== undefined">
+                    <div mat-subheader>LXC<nb-icon icon="chevron-down-outline"></nb-icon></div>
+                    <mat-list-item *ngFor="let vm of vms['lxc']">
+                        <div class="item">
+                            <div mat-line>{{vm.name}}</div>
+                            <div mat-line class="subInfo">Status : {{vm.status}} VMID : {{vm.vmid}}</div>
+                        </div>
+                    </mat-list-item>
+                </ng-container>
+            </mat-list>
+            <span *ngIf="!loading && error !== null">
+                {{error}}
+            </span>
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton (click)="close()">Cancel</button>
+        <button nbButton status="danger" (click)="close(true)">OK</button>
+    </nb-card-footer>
+</nb-card>

@@ -29,8 +29,8 @@ export class JobOutputComponent implements OnInit {
       this.jobId = +params.get('id');
       this.jobsService.get(this.jobId).subscribe((res) => {
         this.job = res;
-        this.startWebsocket();
         this.loadNext();
+        this.startWebsocket();
       });
     });
   }
@@ -47,7 +47,7 @@ export class JobOutputComponent implements OnInit {
     if (this.job === undefined
         || this.loading
         || this.noMore
-        || ['successful', 'failed', 'finished'].indexOf(this.job.status) === -1
+        // || ['successful', 'failed', 'finished'].indexOf(this.job.status) === -1
     ) { return ; }
     this.loading = true;
     this.jobsService.getEvents(this.jobId, this.pageToLoad)

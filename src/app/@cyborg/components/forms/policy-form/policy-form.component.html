@@ -47,10 +47,19 @@
                            multiple="true"
                            formControlName="clients">
                   <ng-option *ngFor="let client of clients" [value]="client.id">{{ client.hostname }}</ng-option>
+                  <ng-template ng-label-tmp let-item="item" let-clear="clear" let-label="label" *ngIf="!showClientEditor()">
+                    <span class="ng-value-icon left" (click)="clear(item);" aria-hidden="true">×</span>
+                    <span class="ng-value-label">{{label}}</span>
+                  </ng-template>
+                  <ng-template ng-label-tmp let-item="item" let-clear="clear" let-label="label" *ngIf="showClientEditor()">
+                    <span class="ng-value-icon left" (click)="clear(item);" aria-hidden="true">×</span>
+                    <span class="ng-value-label">{{label}}</span>
+                    <span class="ng-value-icon right ionicon" (click)="editClient($event, item);" aria-hidden="true"></span>
+                  </ng-template>
                 </ng-select>
               </div>
             </div>
-            <div class="form-group row" *ngIf="formPolicy.value.extra_vars !== null && formPolicy.value.extra_vars.length > 0">
+            <div class="form-group row" *ngIf="formPolicy.value.extra_vars !== null && showExtraVars()">
               <label for="inputExtraVars" class="label col-sm-3 form-control-label">Extra-Vars</label>
               <div class="col-sm-9">
                 <textarea fullWidth nbInput autosize id="inputExtraVars" formControlName="extra_vars" >
