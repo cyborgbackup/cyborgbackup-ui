@@ -7,7 +7,6 @@ import {DialogFormPolicyDBModuleComponent, DialogFormPolicyVMModuleComponent} fr
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
-import {NONE_TYPE} from '@angular/compiler';
 
 
 @Component({

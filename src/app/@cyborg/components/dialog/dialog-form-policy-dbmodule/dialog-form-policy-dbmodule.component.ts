@@ -1,7 +1,7 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {PoliciesService} from '../../../services';
 import {NbDialogRef, NbDialogService} from '@nebular/theme';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'cbg-dialog-form-policy-dbmodule',
