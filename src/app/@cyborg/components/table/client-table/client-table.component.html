@@ -6,13 +6,14 @@
     <ngx-datatable
             [rows]="clients"
             [columns]="columns"
+            columnMode="flex"
             [externalPaging]="true"
             [footerHeight]="50"
             [count]="page.totalElements"
             [offset]="page.pageNumber"
             [limit]="page.size"
-            (page)="setPage($event)">
-    </ngx-datatable>
+            (page)="setPage($event)"
+    ></ngx-datatable>
   </nb-card-body>
 </nb-card>
 

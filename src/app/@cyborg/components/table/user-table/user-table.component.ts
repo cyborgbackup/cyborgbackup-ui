@@ -77,11 +77,11 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'id', name: '#' },
-      { prop: 'email', name: 'Email' },
-      { prop: 'first_name', name: 'FirstName'},
-      { prop: 'last_name', name: 'LastName'},
-      { name: '', cellTemplate: this.actionButtons }
+      { prop: 'id', name: '#', flexGrow: 1 },
+      { prop: 'email', name: 'Email', flexGrow: 2 },
+      { prop: 'first_name', name: 'FirstName', flexGrow: 1},
+      { prop: 'last_name', name: 'LastName', flexGrow: 1},
+      { name: '', cellTemplate: this.actionButtons, flexGrow: 1 }
     ];
     this.setPage({ offset: 0 });
   }

@@ -86,13 +86,13 @@ export class PolicyTableComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'id', name: '#' },
-      { prop: 'name', name: 'Name' },
-      { prop: 'summary_fields.schedule.name', name: 'Schedule'},
-      { prop: 'summary_fields.repository.name', name: 'Repository'},
-      { prop: 'next_run', name: 'Next Run', pipe: new LongDatePipe() },
-      { prop: 'enabled', cellTemplate: this.enabledButton },
-      { name: '', cellTemplate: this.actionButtons }
+      { prop: 'id', name: '#', flexGrow: 1 },
+      { prop: 'name', name: 'Name', flexGrow: 2 },
+      { prop: 'summary_fields.schedule.name', name: 'Schedule', flexGrow: 2},
+      { prop: 'summary_fields.repository.name', name: 'Repository', flexGrow: 2},
+      { prop: 'next_run', name: 'Next Run', pipe: new LongDatePipe(), flexGrow: 2 },
+      { prop: 'enabled', cellTemplate: this.enabledButton, flexGrow: 1 },
+      { name: '', cellTemplate: this.actionButtons, flexGrow: 1 }
     ];
     this.setPage({ offset: 0 });
   }

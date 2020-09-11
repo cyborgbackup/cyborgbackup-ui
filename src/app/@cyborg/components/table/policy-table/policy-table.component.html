@@ -5,7 +5,9 @@
   <nb-card-body>
     <ngx-datatable
             [rows]="policies"
-            [columns]="columns"[externalPaging]="true"
+            [columns]="columns"
+            [externalPaging]="true"
+            columnMode="flex"
             [footerHeight]="50"
             [count]="page.totalElements"
             [offset]="page.pageNumber"

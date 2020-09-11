@@ -68,11 +68,11 @@ export class RepositoryTableComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'id', name: '#' },
-      { prop: 'name', name: 'Name' },
-      { prop: 'path', name: 'Path'},
-      { prop: 'enabled', cellTemplate: this.enabledButton },
-      { name: '', cellTemplate: this.actionButtons }
+      { prop: 'id', name: '#', flexGrow: 1 },
+      { prop: 'name', name: 'Name', flexGrow: 2 },
+      { prop: 'path', name: 'Path', flexGrow: 3},
+      { prop: 'enabled', cellTemplate: this.enabledButton, flexGrow: 1 },
+      { name: '', cellTemplate: this.actionButtons, flexGrow: 1 }
     ];
     this.setPage({ offset: 0 });
   }

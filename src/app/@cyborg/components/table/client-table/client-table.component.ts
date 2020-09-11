@@ -68,12 +68,12 @@ export class ClientTableComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'id', name: '#' },
-      { prop: 'hostname', name: 'Hostname' },
-      { prop: 'version', name: 'Version' },
-      { prop: 'ips', name: 'IPs' },
-      { prop: 'enabled', cellTemplate: this.enabledButton },
-      { name: '', cellTemplate: this.actionButtons }
+      { prop: 'id', name: '#', flexGrow: 1 },
+      { prop: 'hostname', name: 'Hostname', flexGrow: 2 },
+      { prop: 'version', name: 'Version', flexGrow: 1 },
+      { prop: 'ips', name: 'IPs', flexGrow: 3 },
+      { prop: 'enabled', cellTemplate: this.enabledButton, flexGrow: 1 },
+      { name: '', cellTemplate: this.actionButtons, flexGrow: 1 }
     ];
     this.setPage({ offset: 0 });
   }
