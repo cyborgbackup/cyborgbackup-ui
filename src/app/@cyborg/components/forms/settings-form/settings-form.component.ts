@@ -35,14 +35,13 @@ export class SettingsFormComponent implements OnInit {
           }
         }
       });
-      console.log(this.settings);
       this.formSetting = new FormGroup(group);
       this.formSetting.setValue(this.formData);
   }
 
   ngOnInit() {
       this.settingsService.fetch().subscribe((res) => {
-        this.settings = res;
+        this.settings = res.results;
         this.buildForm();
       });
   }
