@@ -4,13 +4,13 @@
 module.exports = function (config) {
   const configuration = {
     basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    frameworks: ["jasmine", "@angular-devkit/build-angular"],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require("karma-jasmine"),
+      require("karma-chrome-launcher"),
+      require("karma-jasmine-html-reporter"),
+      require("karma-coverage-istanbul-reporter"),
+      require("@angular-devkit/build-angular/plugins/karma")
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -29,7 +29,7 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
-      Chrome_travis_ci: {
+      chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
@@ -38,7 +38,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['chrome_travis_ci'];
   }
 
   config.set(configuration);
