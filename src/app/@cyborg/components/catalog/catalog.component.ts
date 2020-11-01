@@ -136,7 +136,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
   getDataEntry(item, entry= this.data): any {
     for ( const v of entry ) {
       if (v) {
-        if (v.data && v.data.name === item.data.name && v.data.type === item.data.type) {
+        if (v.data
+            && v.data.name === item.data.name
+            && v.data.type === item.data.type
+            && v.data.archive_name === item.data.archive_name ) {
           return v;
         } else {
           if ( v.children && v.children.length > 0 ) {
@@ -167,42 +170,44 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   getDataExpanded(row: any): void {
-    this.getInfos(row);
-    if (row.children === undefined) {
-      const entry = this.getDataEntry(row, this.data);
-      if ( entry && entry.data ) {
-        let path = null;
-        if ( ['dir', 'file', 'symlink'].indexOf(entry.data.type) !== -1 ) {
-          path = entry.data.name;
-        }
-        this.catalogsService.getPathEntries(entry.data.archive_name, path).subscribe((data) => {
-          for ( const v of data ) {
-            let type = 'file';
-            if ( v.mode[0] === 'd' ) {
-              type = 'dir';
-            }
-            const newEntry = {
-              data: {
-                name: v.path,
-                type,
-                size: v.size,
-                mtime: v.mtime,
-                owner: v.owner,
-                group: v.group,
-                mode: v.mode,
-                healthy: v.healthy,
-                archive_name: entry.data.archive_name,
-              },
-              children: []
-            };
-            entry.children.push(newEntry);
+    if (row.expanded === false) {
+      this.getInfos(row);
+      if (row.children === undefined) {
+        const entry = this.getDataEntry(row, this.data);
+        if (entry && entry.data) {
+          let path = null;
+          if (['dir', 'file', 'symlink'].indexOf(entry.data.type) !== -1) {
+            path = entry.data.name;
           }
-          entry.expanded = true;
-          this.setExpanded(entry);
-          this.dataSource.setData(this.data);
-        }, (err) => {
-          console.log(err);
-        });
+          this.catalogsService.getPathEntries(entry.data.archive_name, path).subscribe((data) => {
+            for (const v of data) {
+              let type = 'file';
+              if (v.mode[0] === 'd') {
+                type = 'dir';
+              }
+              const newEntry = {
+                data: {
+                  name: v.path,
+                  type,
+                  size: v.size,
+                  mtime: v.mtime,
+                  owner: v.owner,
+                  group: v.group,
+                  mode: v.mode,
+                  healthy: v.healthy,
+                  archive_name: entry.data.archive_name,
+                },
+                children: []
+              };
+              entry.children.push(newEntry);
+            }
+            entry.expanded = true;
+            this.setExpanded(entry);
+            this.dataSource.setData(this.data);
+          }, (err) => {
+            console.log(err);
+          });
+        }
       }
     }
   }
