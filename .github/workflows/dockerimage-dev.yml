@@ -8,14 +8,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Set env
-        run: echo ::set-env name=GITHUB_SHA_SHORT::$(echo $GITHUB_SHA | cut -c 1-6)
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-$GITHUB_SHA_SHORT
+        run: docker build . --file Dockerfile --tag cyborgbackup/cyborgbackup-ui:dev-$(echo $GITHUB_SHA | cut -c 1-6)
       - name: Tag Docker Image to Develop
-        run: docker tag cyborgbackup/cyborgbackup-ui:dev-$GITHUB_SHA_SHORT cyborgbackup/cyborgbackup-ui:develop
+        run: docker tag cyborgbackup/cyborgbackup-ui:dev-$(echo $GITHUB_SHA | cut -c 1-6) cyborgbackup/cyborgbackup-ui:develop
       - name: Push the tagged Docker image
         run: docker push cyborgbackup/cyborgbackup-ui
 
