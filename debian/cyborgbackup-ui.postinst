@@ -1,5 +1,5 @@
 #!/bin/sh
-dpkg --get-selections | grep -qE '^cyborgbackup\s+'
+dpkg --get-selections |grep -qE '^cyborgbackup\s+'
 returnCode=$?
 if [ ! -f /etc/nginx/sites-available/cyborg ]
 then
