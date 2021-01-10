@@ -25,7 +25,7 @@ export class ScheduleFormComponent implements OnInit {
     hideWeeklyTab: false,
     hideMonthlyTab: false,
     hideYearlyTab: false,
-    hideAdvancedTab: true,
+    hideAdvancedTab: false,
     hideSpecificWeekDayTab : false,
     hideSpecificMonthWeekTab : false,
     use24HourTime: true,

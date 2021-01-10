@@ -225,14 +225,14 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
 
   private computeMinutesCron(state: any) {
     this.cron = `${this.isCronFlavorQuartz ? state.seconds : ''}`;
-    this.cron += ` 0/${state.minutes} * 1/1 * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
+    this.cron += ` 0/${state.minutes} * * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
     this.cron = this.cron.trim();
     this.cronForm.setValue(this.cron);
   }
 
   private computeHourlyCron(state: any) {
     this.cron = `${this.isCronFlavorQuartz ? state.seconds : ''}`;
-    this.cron += ` ${state.minutes} 0/${state.hours} 1/1 * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
+    this.cron += ` ${state.minutes} */${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
     this.cron = this.cron.trim();
     this.cronForm.setValue(this.cron);
   }
@@ -243,7 +243,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
         this.cron = `${this.isCronFlavorQuartz ? state.everyDays.seconds : ''}`;
         this.cron += ` ${state.everyDays.minutes} `;
         this.cron += `${this.hourToCron(state.everyDays.hours, state.everyDays.hourType)}`;
-        this.cron += ` 1/${state.everyDays.days} * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
+        this.cron += ` */${state.everyDays.days} * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
         this.cron = this.cron.trim();
         break;
       case 'everyWeekDay':
@@ -276,7 +276,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
         this.cron = `${this.isCronFlavorQuartz ? state.specificDay.seconds : ''} `;
         this.cron += `${state.specificDay.minutes} `;
         this.cron += `${this.hourToCron(state.specificDay.hours, state.specificDay.hourType)} `;
-        this.cron += `${state.specificDay.day} 1/${state.specificDay.months} `;
+        this.cron += `${state.specificDay.day} */${state.specificDay.months} `;
         this.cron += `${this.weekDayDefaultChar} ${this.yearDefaultChar}`;
         this.cron = this.cron.trim();
         break;
@@ -284,7 +284,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
         this.cron = `${this.isCronFlavorQuartz ? state.specificWeekDay.seconds : ''} `;
         this.cron += `${state.specificWeekDay.minutes} `;
         this.cron += `${this.hourToCron(state.specificWeekDay.hours, state.specificWeekDay.hourType)} `;
-        this.cron += `${this.monthDayDefaultChar} 1/${state.specificWeekDay.months} `;
+        this.cron += `${this.monthDayDefaultChar} */${state.specificWeekDay.months} `;
         this.cron += `${state.specificWeekDay.day}${state.specificWeekDay.monthWeek} ${this.yearDefaultChar}`;
         this.cron = this.cron.trim();
         break;
