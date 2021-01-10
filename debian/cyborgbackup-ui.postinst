@@ -11,5 +11,5 @@ then
   cp /usr/share/cyborgbackup-ui/share/${sourceFile} /etc/nginx/sites-available/cyborg
   rm /etc/nginx/sites-enabled/default
   ln -s /etc/nginx/sites-available/cyborg /etc/nginx/sites-enabled/cyborg
-  nginx -t && nginx -s reload
+  nginx -t && test -e /run/nginx.pid && test -s /run/ngind.pid && nginx -s reload || true
 fi
