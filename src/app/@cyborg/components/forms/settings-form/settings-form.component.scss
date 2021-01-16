@@ -8,17 +8,21 @@
   border-bottom-left-radius: 0;
 }
 
-
 :host .btn-with-textarea {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   height: 96px;
+  margin-top: -4px;
+}
+
+:host ::ng-deep .ng-dropdown-panel {
+  z-index: 9999;
 }
 
 :host textarea.textarea-privatekey {
   height: 96px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   resize: none;
 }
 
@@ -34,6 +38,15 @@
 :host .form-field {
     display: flex;
     align-items: center;
+}
+
+:host ::ng-deep .nb-accordion {
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+:host nb-accordion {
+  border: 1px solid #ccc;
 }
 
 :host .nb-form-field-control-with-prefix, .nb-form-field-control-with-suffix {

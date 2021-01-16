@@ -93,6 +93,7 @@ $nb-themes: nb-register-theme((
   toggle-outline-color: #fff,
   button-outline-width: 0,
   toggle-basic-checked-background-color: #209e91,
-  color-basic-default-border: #d1d1d1
-
+  color-basic-default-border: #d1d1d1,
+  accordion-shadow: none,
+  accordion-header-border-color: #ccc,
 ), legacy, dark);

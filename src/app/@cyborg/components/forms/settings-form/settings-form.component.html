@@ -2,47 +2,66 @@
   <nb-card-header>Settings</nb-card-header>
   <nb-card-body>
     <form *ngIf="settings" [formGroup]="formSetting" (ngSubmit)="onSubmit()">
-      <ng-container *ngFor="let form_elem of settings">
-        <ng-container [ngSwitch]="form_elem.setting_type">
-          <div *ngSwitchCase="'string'" class="row">
-            <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
-            <div class="col-sm-9">
-                <input type="text" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
+    <nb-accordion>
+        <nb-accordion-item *ngFor="let keySet of settingsKeys">
+          <nb-accordion-item-header>
+            {{ keySet }}
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="row" *ngIf="keySet==='4 - SSH'">
+              <div class="offset-sm-3 col-sm-3">
+                <button type="button" nbButton status="primary" (click)="generateSshKeyPair()">Generate SSH Key Pair</button>
               </div>
-          </div>
-          <div *ngSwitchCase="'integer'" class="row">
-            <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
-            <div class="col-sm-9">
-              <input type="number" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
-            </div>
-          </div>
-          <div *ngSwitchCase="'boolean'" class="row">
-            <nb-toggle class="offset-sm-3" formControlName="{{form_elem.key}}">{{form_elem.key| settingName}}</nb-toggle>
-          </div>
-          <div *ngSwitchCase="'password'" class="row">
-            <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
-            <div class="col-sm-9">
-              <div class="form-field">
-                <div class="nb-form-field-control-with-suffix">
-                  <input nbInput fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" type="password" formControlName="{{form_elem.key}}" class="with-danger-addon" [placeholder]="encryptedPlaceholder[form_elem.key]"/>
-                </div>
-                <button class="btn btn-danger btn-with-input" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
+              <div class="offset-sm-1 col-sm-3">
+                <button type="button" nbButton status="primary" (click)="getPublicSshKey()">Get Public SSH Key</button>
               </div>
             </div>
-          </div>
-          <div *ngSwitchCase="'privatekey'" class="row">
-            <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
-            <div class="col-sm-9">
-              <div class="form-field">
-                <button class="btn btn-danger btn-with-textarea" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
-                <div class="nb-form-field-control-with-prefix">
-                  <textarea nbInput class="textarea-privatekey" formControlName="{{form_elem.key}}" fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" >{{form_elem.encrypted && 'ENCRYPTED' || form_elem.value}}</textarea>
+          <ng-container *ngFor="let form_elem of settings[keySet]">
+
+            <ng-container [ngSwitch]="form_elem.setting_type">
+              <div *ngSwitchCase="'string'" class="row">
+                <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
                 </div>
               </div>
-            </div>
-          </div>
-        </ng-container>
-      </ng-container>
+              <div *ngSwitchCase="'integer'" class="row">
+                <label for="{{form_elem.key}}" class="label col-sm-3 form-control-label">{{form_elem.key| settingName}}</label>
+                <div class="col-sm-9">
+                  <input type="number" nbInput fullWidth id="{{form_elem.key}}" formControlName="{{form_elem.key}}"/>
+                </div>
+              </div>
+              <div *ngSwitchCase="'boolean'" class="row">
+                <nb-toggle class="offset-sm-3" formControlName="{{form_elem.key}}">{{form_elem.key| settingName}}</nb-toggle>
+              </div>
+              <div *ngSwitchCase="'password'" class="row">
+                <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
+                <div class="col-sm-9">
+                  <div class="form-field">
+                    <div class="nb-form-field-control-with-suffix">
+                      <input nbInput fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" type="password" formControlName="{{form_elem.key}}" class="with-danger-addon" [placeholder]="encryptedPlaceholder[form_elem.key]"/>
+                    </div>
+                    <button class="btn btn-danger btn-with-input" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
+                  </div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'privatekey'" class="row">
+                <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>
+                <div class="col-sm-9">
+                  <div class="form-field">
+                    <div class="nb-form-field-control-with-suffix">
+                      <textarea nbInput class="textarea-privatekey" formControlName="{{form_elem.key}}" fullWidth name="{{form_elem.key}}" id="{{form_elem.key}}" >{{form_elem.encrypted && 'ENCRYPTED' || form_elem.value}}</textarea>
+                    </div>
+                    <button class="btn btn-danger btn-with-textarea" (click)="replaceEncrypted(form_elem)" type="button">Replace</button>
+                  </div>
+                </div>
+              </div>
+
+            </ng-container>
+          </ng-container>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
       <div class="form-group row">
         <div class="offset-sm-3 col-sm-9">
           <button type="submit" nbButton status="warning">Save</button>
@@ -51,3 +70,71 @@
     </form>
   </nb-card-body>
 </nb-card>
+
+<ng-template #generateSshKeyDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Generate SSH Key</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="formGenerateSshKey" submit="launchGenerateSshKey()" >
+        <div class="row">
+          <div class="col-sm-12" *ngIf="data.status !== 204">
+            WARNING ! SSH Key already configured !
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputType" class="label col-sm-3 form-control-label">Select Type</label>
+          <div class="col-sm-9">
+            <ng-select formControlName="type" id="inputType" placeholder="Type...">
+              <ng-option value="ed25519">ED25519</ng-option>
+              <ng-option value="ecdsa">ECDSA</ng-option>
+              <ng-option value="rsa">RSA</ng-option>
+              <ng-option value="ds">DSA</ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputSize" class="label col-sm-3 form-control-label">Select Size</label>
+          <div class="col-sm-9">
+            <ng-select formControlName="size" id="inputSize" placeholder="Size...">
+              <ng-option value="1024" *ngIf="formGenerateSshKey.controls['type'].value === 'rsa'">1024</ng-option>
+              <ng-option value="2048" *ngIf="formGenerateSshKey.controls['type'].value === 'rsa'">2048</ng-option>
+              <ng-option value="3072" *ngIf="formGenerateSshKey.controls['type'].value === 'rsa'">3072</ng-option>
+              <ng-option value="4096" *ngIf="formGenerateSshKey.controls['type'].value === 'rsa'">4096</ng-option>
+              <ng-option value="1024" *ngIf="formGenerateSshKey.controls['type'].value === 'dsa'">1024</ng-option>
+              <ng-option value="256" *ngIf="formGenerateSshKey.controls['type'].value === 'ecdsa'">256</ng-option>
+              <ng-option value="384" *ngIf="formGenerateSshKey.controls['type'].value === 'ecdsa'">384</ng-option>
+              <ng-option value="521" *ngIf="formGenerateSshKey.controls['type'].value === 'ecdsa'">521</ng-option>
+              <ng-option value="256" *ngIf="formGenerateSshKey.controls['type'].value === 'ed25519'">256</ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12" *ngIf="data.status !== 204">
+            <nb-toggle formControlName="force">Force</nb-toggle>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Cancel</button>
+      <button nbButton status="danger" (click)="ref.close(true)">Generate</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #getSshPublicKeyDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>SSH Public Key</nb-card-header>
+    <nb-card-body>
+      <div class="form-group row">
+        <label for="inputPublicKey" class="label col-sm-3 form-control-label">Public-Key</label>
+        <div class="col-sm-9">
+          <input type="text" nbInput fullWidth formControlName="inputPublicKey" id="inputPublicKey" readonly value="{{ data }}"/>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Close</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

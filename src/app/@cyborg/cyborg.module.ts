@@ -15,6 +15,7 @@ import {
     NbTabsetModule,
     NbTreeGridModule,
     NbIconModule,
+    NbAccordionModule,
     NbAutocompleteModule, NbTooltipModule,
     NbListModule, NbContextMenuModule, NbAlertModule, NbCheckboxModule, NbSpinnerModule
 } from '@nebular/theme';
@@ -62,7 +63,8 @@ const NB_MODULES = [
   NbAlertModule,
   NbCheckboxModule,
   NbAutocompleteModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbAccordionModule
 ];
 const PIPES = [
     JobStatePipe,
