@@ -1,15 +1,12 @@
 #!/bin/sh
 dpkg --get-selections |grep -qE '^cyborgbackup\s+'
 returnCode=$?
-if [ ! -f /etc/nginx/sites-available/cyborg ]
-then
-  if [ $? -eq 0 ]; then
-     sourceFile=nginx.vhost.full
-  else
-     sourceFile=nginx.vhost
-  fi
-  cp /usr/share/cyborgbackup-ui/share/${sourceFile} /etc/nginx/sites-available/cyborg
-  rm /etc/nginx/sites-enabled/default
-  ln -s /etc/nginx/sites-available/cyborg /etc/nginx/sites-enabled/cyborg
-  nginx -t && test -e /run/nginx.pid && test -s /run/ngind.pid && nginx -s reload || true
+if [ $? -eq 0 ]; then
+   sourceFile=nginx.vhost.full
+else
+   sourceFile=nginx.vhost
 fi
+cp /usr/share/cyborgbackup-ui/share/${sourceFile} /etc/nginx/sites-available/cyborg
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/cyborg /etc/nginx/sites-enabled/cyborg
+nginx -t && test -e /run/nginx.pid && test -s /run/ngind.pid && nginx -s reload || true

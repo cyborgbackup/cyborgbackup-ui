@@ -12,7 +12,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
@@ -74,10 +74,10 @@
     "rxjs-compat": "6.3.0",
     "socicon": "3.0.5",
     "ts-md5": "^1.2.7",
+    "tslib": "^1.10.0",
     "typeface-exo": "0.0.22",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
-    "zone.js": "~0.10.2",
-    "tslib": "^1.10.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.4",
@@ -104,9 +104,9 @@
     "rimraf": "2.6.1",
     "stylelint": "7.13.0",
     "ts-node": "3.2.2",
+    "tslib": "^1.10.0",
     "tslint": "^5.7.0",
     "tslint-language-service": "^0.9.9",
-    "typescript": "3.7.5",
-    "tslib": "^1.10.0"
+    "typescript": "3.7.5"
   }
 }
