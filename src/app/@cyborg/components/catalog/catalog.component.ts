@@ -80,7 +80,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.formRestore = this.formBuilder.group({
       destination: ['', Validators.required],
       dest_folder: [],
-      dry_run: [],
+      dry_run: [false],
       host: ['']
     });
   }
