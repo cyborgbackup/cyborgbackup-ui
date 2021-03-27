@@ -85,7 +85,6 @@ export const NB_CORE_PROVIDERS = [
       },
     },
   }).providers,
-
   {
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   }

@@ -12,6 +12,13 @@
                         (click)="relaunch()">
                   <fa-icon icon="rocket"></fa-icon>
                 </button>
+                <button nbTooltip="Cancel Job" nbTooltipStatus="primary"  nbButton size="tiny" class="StandardOut-actionButton"
+                        data-tip-watch="toggleStdoutFullscreenTooltip"
+                        data-placement="top"
+                        [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                        (click)="cancel()">
+                  <fa-icon icon="stop-circle"></fa-icon>
+                </button>
               </div>
             </div>
             <div class="row">
@@ -19,7 +26,7 @@
                 Status
               </div>
               <div class="col-sm-8">
-                <fa-icon icon="circle" class="icon-job-{{ job.status }}"></fa-icon> {{ job.status || '' }}
+                <fa-icon icon="circle" class="icon-job-{{ job.status }}"></fa-icon> {{ job.status || '' }}
               </div>
             </div>
 
@@ -30,7 +37,7 @@
                 Launch Mode
               </div>
               <div class="col-sm-8">
-                {{ job.launch_type || '' }}
+                {{ job.launch_type || '' }}
               </div>
             </div>
 
@@ -39,7 +46,7 @@
                 Job Type
               </div>
               <div class="col-sm-8">
-                {{ job.job_type || '' }}
+                {{ job.job_type || '' }}
               </div>
             </div>
 
@@ -48,7 +55,7 @@
                 Policy Name
               </div>
               <div class="col-sm-8">
-                {{ job.summary_fields.policy.name || '' }}
+                {{ job.summary_fields.policy.name || '' }}
               </div>
             </div>
 
@@ -57,7 +64,7 @@
                 Policy Type
               </div>
               <div class="col-sm-8">
-                {{ job.summary_fields.policy.policy_type || '' }}
+                {{ job.summary_fields.policy.policy_type || '' }}
               </div>
             </div>
 
@@ -66,7 +73,7 @@
                 Schedule
               </div>
               <div class="col-sm-8">
-                {{ job.summary_fields.schedule.name || '' }}
+                {{ job.summary_fields.schedule.name || '' }}
               </div>
             </div>
 
@@ -75,7 +82,7 @@
                 Repository
               </div>
               <div class="col-sm-8">
-                {{ job.summary_fields.repository.name || '' }}
+                {{ job.summary_fields.repository.name || '' }}
               </div>
             </div>
 
@@ -107,7 +114,7 @@
       <nb-card-body>
         <div class="row">
           <div class="JobResults-panelRightTitleText">
-            {{ job.name || '' }}
+            {{ job.name || '' }}
           </div>
           <div class="JobResults-badgeAndActionRow">
             <div class="JobResults-badgeRow">

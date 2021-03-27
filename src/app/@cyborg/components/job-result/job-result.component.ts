@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {JobsService} from '../../services';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'cbg-job-result',
@@ -15,7 +16,8 @@ export class JobResultComponent implements OnInit {
   public localServer = localStorage.getItem('localServer') ? localStorage.getItem('localServer') : '';
 
   constructor(private route: ActivatedRoute,
-              private jobsService: JobsService) {
+              private jobsService: JobsService,
+              private toastrService: NbToastrService) {
     this.job = {
       summary_fields: {
         policy: {},
@@ -60,6 +62,20 @@ export class JobResultComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(url);
       a.remove(); // remove the element
+    });
+  }
+
+  cancel(): void {
+    this.jobsService.cancelJob(this.jobId).subscribe(data => {
+      this.toastrService.show('', 'Job canceled', {
+        position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+        status: 'success'
+      });
+    }, (err) => {
+      this.toastrService.show(err, 'Cannot cancel this Job', {
+        position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+        status: 'danger'
+      });
     });
   }
 

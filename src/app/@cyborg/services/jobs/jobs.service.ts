@@ -59,6 +59,22 @@ export class JobsService extends CrudService {
     });
   }
 
+  public cancelJob(jobId: number): Observable<any> {
+    return new Observable((subscriber) => {
+      this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe((resultGet: any) => {
+        if (resultGet.can_cancel) {
+          this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe((resultPost: any) => {
+            subscriber.next(true);
+          });
+        } else {
+          subscriber.error('Cannot cancel this job');
+        }
+      }, (error) => {
+        subscriber.error(error);
+      });
+    });
+  }
+
   public getReport(jobId: number): Observable<any> {
     return new Observable((subscriber) => {
       this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe((result: any) => {
