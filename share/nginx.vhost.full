@@ -18,10 +18,16 @@ server {
     keepalive_timeout 65;
     client_max_body_size 10M;
 
-    root /usr/share/cyborgbackup-ui/www;
+    root /usr/share/cyborgbackup-ui/dist;
 
     location / {
-        try_files $uri $uri @uwsgi;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api {
+        uwsgi_read_timeout 120s;
+        uwsgi_pass uwsgi_cyborgbackup;
+        include /etc/nginx/uwsgi_params;
     }
 
     location /websocket {
@@ -34,11 +40,5 @@ server {
         proxy_redirect off;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
-    }
-
-    location @uwsgi {
-        uwsgi_read_timeout 120s;
-        uwsgi_pass uwsgi_cyborgbackup;
-        include /etc/nginx/uwsgi_params;
     }
 }
