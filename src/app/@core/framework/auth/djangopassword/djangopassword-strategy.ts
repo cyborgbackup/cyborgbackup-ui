@@ -206,6 +206,15 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
                         errors,
                     ));
                 });
+            }, (error) => {
+                const errors = [];
+                errors.push(error.message);
+                subscriber.next(new NbAuthResult(
+                    false,
+                    error,
+                    this.getOption(`${module}.redirect.failure`),
+                    errors,
+                ));
             });
         });
     }
