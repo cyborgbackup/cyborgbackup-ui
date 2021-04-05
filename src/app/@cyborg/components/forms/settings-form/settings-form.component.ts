@@ -111,40 +111,44 @@ export class SettingsFormComponent implements OnInit {
   onSubmit(): void {
       if (this.formSetting.valid) {
           const arUpdates = [];
-          for (const set of this.settings ) {
-              if ( set.value !== this.formSetting.value[set.key]
-                  && set.encrypted === false
-                  && ! /\$encrypted\$/.test(this.formSetting.value[set.key])
-                  && this.formSetting.value[set.key] !== ''
-              ) {
-                  arUpdates.push(this.settingsService.set(set.id, {
-                      value: this.formSetting.value[set.key]
-                  }));
+          for (const key of this.settingsKeys) {
+              for (const set of this.settings[key] ) {
+                  if ( set.value !== this.formSetting.value[set.key]
+                      && set.encrypted === false
+                      && ! /\$encrypted\$/.test(this.formSetting.value[set.key])
+                      && this.formSetting.value[set.key] !== ''
+                  ) {
+                      arUpdates.push(this.settingsService.set(set.id, {
+                          value: this.formSetting.value[set.key]
+                      }));
+                  }
               }
           }
           Observable.forkJoin(arUpdates).subscribe((res: any) => {
               let errors = 0;
               for (const el of res ) {
                   let found = false;
-                  for (let v of this.settings ) {
-                      if (v.id === el.id) {
-                          v = el;
-                          const newValue = {};
-                          if (/\$encrypted\$/.test(el.value)) {
-                              if ( el.setting_type === 'privatekey' ) {
-                                  newValue[el.key] = 'ENCRYPTED';
+                  for (const key of this.settingsKeys) {
+                      for (let v of this.settings[key]) {
+                          if (v.id === el.id) {
+                              v = el;
+                              const newValue = {};
+                              if (/\$encrypted\$/.test(el.value)) {
+                                  if (el.setting_type === 'privatekey') {
+                                      newValue[el.key] = 'ENCRYPTED';
+                                  } else {
+                                      newValue[el.key] = '';
+                                  }
+                                  v.value = '';
+                                  v.encrypted = true;
+                                  this.encryptedPlaceholder[el.key] = 'ENCRYPTED';
                               } else {
-                                  newValue[el.key] = '';
+                                  v.encrypted = false;
+                                  newValue[el.key] = el.value;
                               }
-                              v.value = '';
-                              v.encrypted = true;
-                              this.encryptedPlaceholder[el.key] = 'ENCRYPTED';
-                          } else {
-                              v.encrypted = false;
-                              newValue[el.key] = el.value;
+                              this.formSetting.patchValue(newValue);
+                              found = true;
                           }
-                          this.formSetting.patchValue(newValue);
-                          found = true;
                       }
                   }
                   if ( !found ) {
