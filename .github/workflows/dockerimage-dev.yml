@@ -43,36 +43,39 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm install @electron-forge/cli
-      - name: Electron-forge import
-        run: npx electron-forge import
-      - name: Electron-forge Make
-        run: npm run make
+          npm run build:electron
+      - name: Electron-Builder Linux App
+        run: npm run package:linux
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.exe
 
   windows-app:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
       - name: npm install, build, and test
         run: |
           npm install
-          npm install @electron-forge/cli
-      - name: Electron-forge import
-        run: npx electron-forge import
-      - name: Electron-forge Make
-        run: npm run make
+          npm run build:electron
+      - name: Electron-Builder Linux App
+        run: npm run package:win
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.exe
 
   macos-app:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
       - name: npm install, build, and test
         run: |
           npm install
-          npm install @electron-forge/cli
-      - name: Electron-forge import
-        run: npx electron-forge import
-      - name: Electron-forge Make
-        run: npm run make
+          npm run build:electron
+      - name: Electron-Builder Linux App
+        run: npm run package:mac
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.dmg

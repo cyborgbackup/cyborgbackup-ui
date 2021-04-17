@@ -1,0 +1,52 @@
+{
+  "appId": "dev.cyborgbackup.app",
+  "productName": "CyBorgBackup",
+  "directories": {
+    "output": "packages",
+    "app": "."
+  },
+  "win": {
+    "target": "nsis",
+    "publisherName": "Gaëtan FEREZ",
+    "rfc3161TimeStampServer": "http://timestamp.digicert.com"
+  },
+  "nsis": {
+    "artifactName": "cyborgbackup.${version}.${ext}"
+  },
+  "mac": {
+    "target": "dmg",
+    "type": "distribution",
+    "artifactName": "cyborgbackup.${version}.${ext}",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist"
+  },
+  "dmg": {
+    "sign": false
+  },
+  "linux": {
+    "target": [
+      {
+        "target": "AppImage"
+      },
+      {
+        "target": "snap"
+      },
+      {
+        "target": "deb"
+      },
+      {
+        "target": "rpm"
+      }
+    ],
+    "category": "Development",
+    "icon": "build",
+    "artifactName": "cyborgbackup-${version}.${ext}",
+    "desktop": {
+      "Name": "CyBorgBackup",
+      "Type": "Application",
+      "Categories": "Backup"
+    }
+  }
+}
