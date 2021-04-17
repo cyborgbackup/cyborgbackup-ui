@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 FROM node:15.14-alpine AS build
-RUN apk add git
+RUN apk add git python make g++
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install
