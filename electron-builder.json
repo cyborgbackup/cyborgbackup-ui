@@ -8,7 +8,11 @@
   "win": {
     "target": "nsis",
     "publisherName": "Gaëtan FEREZ",
-    "rfc3161TimeStampServer": "http://timestamp.digicert.com"
+    "rfc3161TimeStampServer": "http://timestamp.digicert.com",
+    "files": [
+      "dist",
+      "main.*"
+    ]
   },
   "nsis": {
     "artifactName": "cyborgbackup.${version}.${ext}"
@@ -20,7 +24,11 @@
     "hardenedRuntime": true,
     "gatekeeperAssess": false,
     "entitlements": "build/entitlements.mac.plist",
-    "entitlementsInherit": "build/entitlements.mac.plist"
+    "entitlementsInherit": "build/entitlements.mac.plist",
+    "files": [
+      "dist",
+      "main.*"
+    ]
   },
   "dmg": {
     "sign": false
@@ -47,6 +55,10 @@
       "Name": "CyBorgBackup",
       "Type": "Application",
       "Categories": "Backup"
-    }
+    },
+    "files": [
+      "dist",
+      "main.*"
+    ]
   }
 }

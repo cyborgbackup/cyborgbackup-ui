@@ -48,7 +48,16 @@ jobs:
         run: npm run package:linux
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.exe
+          path: packages/cyborgbackup.*.AppImage
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.snap
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.deb
+      - uses: actions/upload-artifact@v2
+        with:
+          path: packages/cyborgbackup.*.rpm
 
   windows-app:
     runs-on: ubuntu-latest
@@ -57,7 +66,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: npm install, build, and test
         run: |
-          apt install wine
+          sudo apt install wine
           npm install
           npm run build:electron
       - name: Electron-Builder Linux App
