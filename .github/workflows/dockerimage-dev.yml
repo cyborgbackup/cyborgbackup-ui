@@ -76,12 +76,12 @@ jobs:
           sudo apt install wine32
           npm install
           npm run build:electron
-      - name: Electron-Builder Linux App
+      - name: Electron-Builder Windows App
         run: npm run package:win
       - uses: actions/upload-artifact@v2
         with:
           name: cyborgbackup-win-app.exe
-          path: packages/cyborgbackup-*.exe
+          path: packages/cyborgbackup.*.exe
 
   macos-app:
     runs-on: macos-latest
@@ -92,7 +92,7 @@ jobs:
         run: |
           npm install
           npm run build:electron
-      - name: Electron-Builder Linux App
+      - name: Electron-Builder MacOS App
         run: npm run package:mac
       - uses: actions/upload-artifact@v2
         with:
