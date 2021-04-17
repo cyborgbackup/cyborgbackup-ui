@@ -116,6 +116,6 @@
     "tslib": "^1.10.0",
     "tslint": "^5.7.0",
     "tslint-language-service": "^0.9.9",
-    "typescript": "3.8"
+    "typescript": "3.7"
   }
 }
