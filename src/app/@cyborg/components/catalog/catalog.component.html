@@ -48,7 +48,7 @@
           Started : {{ archiveDetail.started | longDate }}
         </div>
         <div class="row">
-          Duration : {{ archiveDetail.elapsed | date:'mm:ss' }}
+          Duration : {{ archiveDetail.elapsed * 1000 | date:'mm:ss'  }}
         </div>
       </nb-card-body>
     </nb-card>

@@ -12,6 +12,7 @@ export class LoginComponent extends  NbLoginComponent implements OnInit {
   options: string[];
   specificServer = false;
   filteredOptions$: Observable<string[]>;
+  electronRunning: boolean = false;
   @ViewChild('cyborgServerInput') cyborgServerInput;
 
   private filter(value: string): string[] {
@@ -34,6 +35,9 @@ export class LoginComponent extends  NbLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (process.versions.hasOwnProperty('electron')) {
+      this.electronRunning = true;
+    }
     const savedServers = JSON.parse(localStorage.getItem('cyborgServers'));
     this.options = [];
     if (savedServers !== null && typeof savedServers === 'object' ) {

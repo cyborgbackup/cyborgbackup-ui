@@ -14,6 +14,7 @@ export class JobOutputComponent implements OnInit {
   private jobId: number;
   private job: any;
   public events = [];
+  public stdoutOverflowed: boolean = false;
   pageSize = 100;
   pageToLoad = 1;
   loading = false;

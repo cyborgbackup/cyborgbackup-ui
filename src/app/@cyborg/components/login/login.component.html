@@ -78,11 +78,11 @@
     <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Bouh me</nb-checkbox>
   </div>//-->
 
-  <div class="form-control-group accept-group">
+  <div class="form-control-group accept-group" *ngIf="!electronRunning">
     <nb-checkbox name="changeServer" (checkedChange)="checkServer($event)" [(ngModel)]="specificServer">Specific CyBorg server</nb-checkbox>
   </div>
 
-  <div class="form-control-group" *ngIf="specificServer">
+  <div class="form-control-group" *ngIf="specificServer || electronRunning">
     <label class="label" for="input-server">CyBorg Server Address :</label>
     <input #cyborgServerInput type="text" [(ngModel)]="user.server" id="input-server" (input)="onChange()" nbInput fullWidth name="cyborgServer" placeholder="Enter CyBorg Server Address" [nbAutocomplete]="auto" />
     <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
@@ -102,6 +102,6 @@
   </button>
 </form>
 
-<section class="another-action" aria-label="Register">
+<section class="another-action" aria-label="Register" *ngIf="!electronRunning">
   Don't have an account? <a class="text-link" routerLink="../register">Register</a>
 </section>

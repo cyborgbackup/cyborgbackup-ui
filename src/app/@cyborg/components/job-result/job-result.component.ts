@@ -79,6 +79,8 @@ export class JobResultComponent implements OnInit {
     });
   }
 
+  relaunch(): void {}
+
   toggleStdoutFullscreen(): void {
     this.stdoutFullScreen = !this.stdoutFullScreen;
   }
