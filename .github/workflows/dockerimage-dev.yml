@@ -34,3 +34,45 @@ jobs:
         with:
           name: debian-package
           path: output
+
+  linux-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm install @electron-forge/cli
+      - name: Electron-forge import
+        run: npx electron-forge import
+      - name: Electron-forge Make
+        run: npm run make
+
+  windows-app:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm install @electron-forge/cli
+      - name: Electron-forge import
+        run: npx electron-forge import
+      - name: Electron-forge Make
+        run: npm run make
+
+  macos-app:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm install @electron-forge/cli
+      - name: Electron-forge import
+        run: npx electron-forge import
+      - name: Electron-forge Make
+        run: npm run make
