@@ -48,16 +48,20 @@ jobs:
         run: npm run package:linux
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.AppImage
+          name: cyborgbackup-linux-app.AppImage
+          path: packages/cyborgbackup-*.AppImage
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.snap
+          name: cyborgbackup-linux-app.snap
+          path: packages/cyborgbackup-*.snap
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.deb
+          name: cyborgbackup-linux-app.deb
+          path: packages/cyborgbackup-*.deb
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.rpm
+          name: cyborgbackup-linux-app.rpm
+          path: packages/cyborgbackup-*.rpm
 
   windows-app:
     runs-on: ubuntu-latest
@@ -67,13 +71,17 @@ jobs:
       - name: npm install, build, and test
         run: |
           sudo apt install wine
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt install wine32
           npm install
           npm run build:electron
       - name: Electron-Builder Linux App
         run: npm run package:win
       - uses: actions/upload-artifact@v2
         with:
-          path: packages/cyborgbackup.*.exe
+          name: cyborgbackup-win-app.exe
+          path: packages/cyborgbackup-*.exe
 
   macos-app:
     runs-on: macos-latest
@@ -88,4 +96,5 @@ jobs:
         run: npm run package:mac
       - uses: actions/upload-artifact@v2
         with:
+          name: cyborgbackup-mac-app.dmg
           path: packages/cyborgbackup.*.dmg
