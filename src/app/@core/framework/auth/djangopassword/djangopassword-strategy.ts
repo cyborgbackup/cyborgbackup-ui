@@ -172,6 +172,9 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         if (data.hasOwnProperty('server')) {
             url = data.server + url;
             loginUrl = data.server + loginUrl;
+        } else {
+            url = 'http://' + window.location.hostname + ':8000' + url;
+            loginUrl = 'http://' + window.location.hostname + ':8000' + loginUrl;
         }
         const httpOptions = {
             headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})
