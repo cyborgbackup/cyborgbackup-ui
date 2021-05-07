@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class CrudService {
         return new Observable((subscriber) => {
             params['page_size'] = size;
             params['page'] = page;
-            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
+            this.http.get('/api/v1/' + this.endpoint + '/', {params: params}).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
               // console.log('send query', error);
