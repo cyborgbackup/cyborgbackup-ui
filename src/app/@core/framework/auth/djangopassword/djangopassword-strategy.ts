@@ -155,6 +155,9 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
     }
 
     protected registerServer(server): void {
+        if (server === undefined)
+            server = 'http://' + window.location.hostname + ':8000';
+
         let servers = JSON.parse(localStorage.getItem('cyborgServers'));
         if (servers !== null && typeof servers === 'object' && servers.indexOf(server) === -1 ) {
             servers.push(server);
@@ -172,6 +175,9 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         if (data.hasOwnProperty('server')) {
             url = data.server + url;
             loginUrl = data.server + loginUrl;
+        } else {
+            url = 'http://' + window.location.hostname + ':8000' + url;
+            loginUrl = 'http://' + window.location.hostname + ':8000' + loginUrl;
         }
         const httpOptions = {
             headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})
