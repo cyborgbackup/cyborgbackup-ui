@@ -187,9 +187,9 @@ export class PolicyFormComponent implements OnInit {
   submit() {
     if (this.formPolicy.valid) {
       if (this.policyId !== 0) {
-        this.updatePolicy(this.formPolicy.value);
+        this.updatePolicy(this.formPolicy.getRawValue());
       } else {
-        this.createPolicy(this.formPolicy.value);
+        this.createPolicy(this.formPolicy.getRawValue());
       }
     }
   }
