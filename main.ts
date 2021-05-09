@@ -1,4 +1,5 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, autoUpdater, dialog } from 'electron';
+import { electronIsDev } from 'electron-is-dev';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -78,6 +79,38 @@ try {
             app.quit();
         }
     });
+
+    if (electronIsDev) {
+        console.log('Running Development mode');
+    } else {
+        const server = 'https://download.cyborgbackup.dev';
+        const url_update = `${server}/update/${process.platform}/${app.getVersion()}`;
+
+        autoUpdater.setFeedURL({ url: url_update });
+
+        autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+            const dialogOpts = {
+                type: 'info',
+                buttons: ['Restart', 'Later'],
+                title: 'Application Update',
+                message: process.platform === 'win32' ? releaseNotes : releaseName,
+                detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+            };
+
+            dialog.showMessageBox(dialogOpts).then((returnValue) => {
+                if (returnValue.response === 0) autoUpdater.quitAndInstall()
+            });
+        });
+
+        autoUpdater.on('error', message => {
+            console.error('There was a problem updating the application');
+            console.error(message);
+        });
+
+        setInterval(() => {
+            autoUpdater.checkForUpdates()
+        }, 60000);
+    }
 
     app.on('activate', () => {
         // On OS X it's common to re-create a window in the app when the
