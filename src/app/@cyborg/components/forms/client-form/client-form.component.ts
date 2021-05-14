@@ -27,10 +27,10 @@ export class ClientFormComponent implements OnInit {
   ngOnInit() {
     this.formClient = this.formBuilder.group({
       hostname: ['', Validators.required],
-      bandwidth_limit: [22, Validators.min(1), Validators.max(65535)],
+      bandwidth_limit: [''],
       enabled: [],
       boolean_bandwidth_limit: [false],
-      port: ['']
+      port: [22, Validators.min(1), Validators.max(65535)]
     });
 
     this.policiesService.fetch().subscribe((res) => {
