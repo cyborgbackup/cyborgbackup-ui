@@ -198,7 +198,7 @@ export class PolicyFormComponent implements OnInit {
     if (model === 'mysql' || model === 'postgresql') {
       this.formPolicy.patchValue({extra_vars:  '{\n"user":"",\n"password": ""\n}'});
     } else if (model === 'folders') {
-      this.formPolicy.patchValue({extra_vars: '{\n"folders":[""]\n}'});
+      this.formPolicy.patchValue({extra_vars: '{\n"folders":[""],\n"exclude":[]\n}'});
     } else if (model === 'piped') {
       this.formPolicy.patchValue({extra_vars: '{\n"command":""\n}'});
     } else {
