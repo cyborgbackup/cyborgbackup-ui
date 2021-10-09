@@ -30,7 +30,7 @@ export class ClientFormComponent implements OnInit {
       bandwidth_limit: [''],
       enabled: [],
       boolean_bandwidth_limit: [false],
-      port: [22, Validators.min(1), Validators.max(65535)]
+      port: [22, [Validators.min(1), Validators.max(65535)]]
     });
 
     this.policiesService.fetch().subscribe((res) => {
