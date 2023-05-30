@@ -12,6 +12,7 @@ import {Page} from '../page';
 export class ClientTableComponent implements OnInit {
   @ViewChild('actionButtons', { static: true }) actionButtons: TemplateRef<any>;
   @ViewChild('enabledButton', { static: true }) enabledButton: TemplateRef<any>;
+  @ViewChild('versionField', { static: true }) versionField: TemplateRef<any>;
   @ViewChild('confirmationDialog', { static: true }) confirmationDialog: TemplateRef<any>;
   page = new Page();
   clients = [];
@@ -28,6 +29,16 @@ export class ClientTableComponent implements OnInit {
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
     this.clientsService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+  }
+
+  markAsToUpdate(item): void {
+    item.can_be_updated = !item.enabled;
+    this.clientsService.patch(item.id, {mark_as_to_update: true}).subscribe((res) => {
+      this.toastrService.show('', 'Client will be updated on next backup', {
+        position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+        status: 'success'
+      });
+    });
   }
 
   setPage(pageInfo) {
@@ -70,7 +81,7 @@ export class ClientTableComponent implements OnInit {
     this.columns = [
       { prop: 'id', name: '#', flexGrow: 1 },
       { prop: 'hostname', name: 'Hostname', flexGrow: 2 },
-      { prop: 'version', name: 'Version', flexGrow: 1 },
+      { prop: 'version', name: 'Version', cellTemplate: this.versionField, flexGrow: 1 },
       { prop: 'ips', name: 'IPs', flexGrow: 3 },
       { prop: 'enabled', cellTemplate: this.enabledButton, flexGrow: 1 },
       { name: '', cellTemplate: this.actionButtons, flexGrow: 1 }
