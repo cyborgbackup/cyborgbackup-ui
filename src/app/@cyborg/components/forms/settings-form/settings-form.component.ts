@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {SettingsService} from '../../../services';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
-import {Observable} from 'rxjs/Rx';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'cbg-settings-form',
@@ -124,7 +124,7 @@ export class SettingsFormComponent implements OnInit {
                   }
               }
           }
-          Observable.forkJoin(arUpdates).subscribe((res: any) => {
+          forkJoin(arUpdates).subscribe((res: any) => {
               let errors = 0;
               for (const el of res ) {
                   let found = false;

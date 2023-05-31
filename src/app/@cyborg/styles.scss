@@ -1,9 +1,6 @@
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@angular/material/theming';
+//@import '@fullcalendar/core/main.css';
+//@import '@fullcalendar/daygrid/main.css';
+@import '@angular/material/theming';
 
 @include mat-core();
 
@@ -160,4 +157,8 @@ div.row {
     transform:scale(1.1);
     opacity: 1;
   }
+}
+
+.button-toolbar {
+  margin: 10px;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {CrudService} from '../crud/crud.service';
-import {Observable} from 'rxjs';
+import {Observable, combineLatest} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +12,25 @@ export class PoliciesService extends CrudService {
   public calendar(): Observable<any> {
     return new Observable((subscriber) => {
       const params = {};
-      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-        const policiesCalendar = [];
-        for (const el of result.results ) {
-          policiesCalendar.push(this.http.get(el.related.calendar, params).map((res: any) => {
-            return {
-              name: el.name,
-                enabled: el.enabled && el.summary_fields.schedule.enabled && el.summary_fields.repository.enabled,
-                schedules: res
-            };
-          }));
+      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe({
+        next: (result: any) => {
+          const policiesCalendar = [];
+          for (const el of result.results ) {
+            policiesCalendar.push(this.http.get(el.related.calendar, params).pipe(map((res: any) => {
+              return {
+                name: el.name,
+                  enabled: el.enabled && el.summary_fields.schedule.enabled && el.summary_fields.repository.enabled,
+                  schedules: res
+              };
+            })));
+          }
+          combineLatest(policiesCalendar).subscribe((res) => {
+            subscriber.next(res);
+          });
+        },
+        error: (error) => {
+          subscriber.error(error);
         }
-        Observable.combineLatest(policiesCalendar).subscribe((res) => {
-          subscriber.next(res);
-        });
-      }, (error) => {
-        subscriber.error(error);
       });
     });
   }
@@ -34,10 +38,13 @@ export class PoliciesService extends CrudService {
   public count(): Observable<any> {
     return new Observable((subscriber) => {
       const params = {};
-      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-        subscriber.next(result.count);
-      }, (error) => {
-        subscriber.error(error);
+      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe({
+        next: (result: any) => {
+            subscriber.next(result.count);
+        },
+        error: (error) => {
+          subscriber.error(error);
+        }
       });
     });
   }
@@ -46,19 +53,25 @@ export class PoliciesService extends CrudService {
     if (data) {
       return new Observable((subscriber) => {
         this.http.post('/api/v1/' + this.endpoint + '/module/' + module + '/' + client + '/',
-            data, {observe: 'response'}).subscribe((result: any) => {
-          subscriber.next(result);
-        }, (error) => {
-          subscriber.error(error);
+            data, {observe: 'response'}).subscribe({
+          next: (result:any) => {
+            subscriber.next(result);
+          },
+          error: (error) => {
+            subscriber.error(error);
+          }
         });
       });
     } else {
       return new Observable((subscriber) => {
         this.http.get('/api/v1/' + this.endpoint + '/module/' + module + '/' + client + '/',
-            {observe: 'response'}).subscribe((result: any) => {
-          subscriber.next(result);
-        }, (error) => {
-          subscriber.error(error);
+            {observe: 'response'}).subscribe({
+          next: (result: any) => {
+            subscriber.next(result);
+          },
+          error: (error) => {
+            subscriber.error(error);
+          }
         });
       });
     }
@@ -70,10 +83,13 @@ export class PoliciesService extends CrudService {
         'verbosity': 0,
         'extra_vars': {}
       };
-      this.http.post('/api/v1/' + this.endpoint + '/' + id + '/launch/', params).subscribe((res: any) => {
-        subscriber.next(res);
-      }, (error) => {
-        subscriber.error(error);
+      this.http.post('/api/v1/' + this.endpoint + '/' + id + '/launch/', params).subscribe({
+        next: (res: any) => {
+          subscriber.next(res);
+        },
+        error: (error) => {
+          subscriber.error(error);
+        }
       });
     });
   }

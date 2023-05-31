@@ -20,6 +20,7 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbThemeModule
 } from '@nebular/theme';
 import { DjangoPasswordAuthStrategy } from './@core/framework/auth/djangopassword/djangopassword-strategy';
 import { HomeComponent } from './home/home.component';

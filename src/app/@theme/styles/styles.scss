@@ -1,3 +1,8 @@
+//@use 'themes' as *;
+
+// framework component styles
+//@use '@nebular/theme/styles/globals' as *;
+
 $font-path: '/assets/fonts/';
 @-webkit-keyframes spin {
   0%{transform:rotate(0); }
@@ -62,14 +67,20 @@ $font-path: '/assets/fonts/';
 // themes - our custom or/and out of the box themes
 @import 'themes';
 
-// framework component themes (styles tied to theme variables)
-@import '~@nebular/theme/styles/globals';
-@import '~@nebular/auth/styles/all';
+@import '@nebular/theme/styles/globals';
+@import '@nebular/auth/styles/globals';
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/grid';
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+
+@import '@swimlane/ngx-datatable/index';
+@import '@swimlane/ngx-datatable/themes/material';
 
 // loading progress bar theme
 @import './pace.theme';
@@ -79,9 +90,8 @@ $font-path: '/assets/fonts/';
 
 @import '../../@cyborg/styles';
 
-// install the framework and custom global styles
+// install the framework styles
 @include nb-install() {
-
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
@@ -91,4 +101,4 @@ $font-path: '/assets/fonts/';
   @include ngx-pace-theme();
 
   @include nb-overrides();
-};
+}

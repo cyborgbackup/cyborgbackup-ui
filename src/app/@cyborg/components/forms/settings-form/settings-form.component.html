@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div *ngSwitchCase="'boolean'" class="row">
-                <nb-toggle class="offset-sm-3" formControlName="{{form_elem.key}}">{{form_elem.key| settingName}}</nb-toggle>
+                <nb-toggle class="col offset-sm-3" formControlName="{{form_elem.key}}">{{form_elem.key| settingName}}</nb-toggle>
               </div>
               <div *ngSwitchCase="'password'" class="row">
                 <label class="label col-sm-3 form-control-label" for="{{form_elem.key}}">{{form_elem.key | settingName}} </label>

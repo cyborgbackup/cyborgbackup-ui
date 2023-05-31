@@ -1,7 +1,12 @@
 // @nebular theming framework
-@import '~@nebular/theme/styles/theming';
+//@import '~@nebular/theme/styles/theming';
 // @nebular out of the box themes
-@import '~@nebular/theme/styles/themes';
+//@import '~@nebular/theme/styles/themes';
+
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default';
+@use '@nebular/theme/styles/themes/dark';
 
 $nb-enabled-themes: (default, dark, legacy);
 

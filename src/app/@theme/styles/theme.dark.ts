@@ -2,7 +2,7 @@ import { NbJSThemeOptions, DARK_THEME as baseTheme } from '@nebular/theme';
 
 const baseThemeVariables = baseTheme.variables;
 
-export const DARK_THEME = {
+export const DARK_THEME: NbJSThemeOptions = {
   name: 'dark',
   base: 'dark',
   variables: {
@@ -13,7 +13,8 @@ export const DARK_THEME = {
       splitLineColor: baseThemeVariables.separator,
       itemHoverShadowColor: 'rgba(0, 0, 0, 0.5)',
       tooltipBackgroundColor: baseThemeVariables.primary,
+      tooltipTextStyleColor: '#000000',
       areaOpacity: '0.7',
     },
   },
-} as NbJSThemeOptions;
+};

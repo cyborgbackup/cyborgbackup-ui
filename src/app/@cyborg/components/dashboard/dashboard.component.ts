@@ -3,6 +3,7 @@ import {NbThemeService} from '@nebular/theme';
 import {ClientsService, JobsService, PoliciesService, StatsService} from '../../services';
 import {HumanSizePipe} from '../../pipes';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import {CalendarOptions} from "@fullcalendar/core";
 
 @Component({
   selector: 'cbg-dashboard',
@@ -13,7 +14,10 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
   options: any = {};
   themeSubscription: any;
   updateOptions: any;
-  calendarPlugins = [dayGridPlugin]; // important!
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin]
+  }
   events: any;
 
   clients: number;
@@ -27,91 +31,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     size: any[],
     dedup: any[]
   };
-
-  /*private mockData =   [{
-        date: '2020-04-02',
-        size: 543789800590,
-        dedup: 18708982268,
-        success: 39,
-        failed: 1
-      },
-    {
-      date: '2020-04-03',
-      size: 540434390590,
-      dedup: 19904342589,
-      success: 39,
-      failed: 1
-    },
-    {
-      date: '2020-04-04',
-        size: 439494530760,
-        dedup: 6686386239,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-05',
-        size: 440108420590,
-        dedup: 6396784188,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-06',
-        size: 509719200588,
-        dedup: 41831943077,
-        success: 73,
-        failed: 3
-    },
-    {
-      date: '2020-04-07',
-        size: 544408550590,
-        dedup: 27740714979,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-08',
-        size: 544715450590,
-        dedup: 66020465209,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-09',
-        size: 544079060590,
-        dedup: 65902826198,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-10',
-        size: 545432720590,
-        dedup: 65329186568,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-11',
-        size: 552946810590,
-        dedup: 66480286849,
-        success: 40,
-        failed: 1
-    },
-    {
-      date: '2020-04-12',
-        size: 547500700590,
-        dedup: 64684836069,
-        success: 39,
-        failed: 1
-    },
-    {
-      date: '2020-04-13',
-        size: 545054090590,
-        dedup: 64899886069,
-        success: 39,
-        failed: 1
-    }];*/
 
   constructor(private theme: NbThemeService,
               private statsService: StatsService,
@@ -132,13 +51,17 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
 
       const colors: any = config.variables;
       const echarts: any = config.variables.echarts;
-
+      console.log(echarts);
       this.options = {
         backgroundColor: echarts.bg,
         tooltip: {
           trigger: 'none',
           axisPointer: {
             type: 'cross',
+            label: {
+              color: echarts.tooltipTextStyleColor,
+              backgroundColor: echarts.textColor
+            },
           },
         },
         legend: {
@@ -266,6 +189,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
           },
         ],
       };
+      console.log(this.options);
       this.statsService.fetch().subscribe((res) => {
         for (const el of res ) {
           this.data.success.push([new Date(el.date).toISOString(), el.success]);

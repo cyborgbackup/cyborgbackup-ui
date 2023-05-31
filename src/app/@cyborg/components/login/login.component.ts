@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends  NbLoginComponent implements OnInit {
-  options: string[];
+  declare options: string[];
   specificServer = false;
   filteredOptions$: Observable<string[]>;
   electronRunning: boolean = false;
@@ -35,7 +35,7 @@ export class LoginComponent extends  NbLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (process.versions.hasOwnProperty('electron')) {
+    if (process && process.versions.hasOwnProperty('electron')) {
       this.electronRunning = true;
     }
     const savedServers = JSON.parse(localStorage.getItem('cyborgServers'));

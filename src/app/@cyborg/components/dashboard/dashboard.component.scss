@@ -1,7 +1,16 @@
 
-:host ::ng-deep .fc-content {
+:host ::ng-deep .fc-event-title {
   color: #fff;
   font-size: 12px;
+}
+
+:host ::ng-deep .fc-event-time {
+  color: #fff;
+  font-size: 12px;
+}
+
+:host ::ng-deep .fc-daygrid-event-dot {
+  display: none;
 }
 
 :host div.row-stats {

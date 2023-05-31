@@ -58,7 +58,9 @@ const NB_MODULES = [
   NbIconModule,
   NbListModule,
   NbContextMenuModule,
-  NgxEchartsModule,
+  NgxEchartsModule.forRoot({
+    echarts: () => import('echarts')
+  }),
   FullCalendarModule,
   NbAlertModule,
   NbCheckboxModule,
@@ -108,8 +110,8 @@ export class CyborgModule {
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
   }
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<CyborgModule> {
+    return {
       ngModule: CyborgModule,
       providers: [],
     };
