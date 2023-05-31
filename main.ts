@@ -1,13 +1,15 @@
 import { app, BrowserWindow, screen, autoUpdater, dialog } from 'electron';
+// @ts-ignore
 import { electronIsDev } from 'electron-is-dev';
 import * as path from 'path';
 import * as url from 'url';
+import MessageBoxOptions = Electron.MessageBoxOptions;
 
 let win: BrowserWindow = null;
-const args = process.argv.slice(1),
-    serve = args.some(val => val === '--serve');
+const args = process.argv.slice(1);
+const serve = args.some(val => val === '--serve');
 
-function createWindow(): BrowserWindow {
+const createWindow = (): BrowserWindow => {
 
     const electronScreen = screen;
     const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -58,11 +60,11 @@ function createWindow(): BrowserWindow {
     });
 
     return win;
-}
+};
 
 try {
 
-    app.allowRendererProcessReuse = true;
+    //app.allowRendererProcessReuse = true;
 
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
@@ -84,12 +86,12 @@ try {
         console.log('Running Development mode');
     } else {
         const server = 'https://download.cyborgbackup.dev';
-        const url_update = `${server}/update/${process.platform}/${app.getVersion()}`;
+        const urlUpdate = `${server}/update/${process.platform}/${app.getVersion()}`;
 
-        autoUpdater.setFeedURL({ url: url_update });
+        autoUpdater.setFeedURL({ url: urlUpdate });
 
         autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-            const dialogOpts = {
+            const dialogOpts: MessageBoxOptions = {
                 type: 'info',
                 buttons: ['Restart', 'Later'],
                 title: 'Application Update',
@@ -98,7 +100,9 @@ try {
             };
 
             dialog.showMessageBox(dialogOpts).then((returnValue) => {
-                if (returnValue.response === 0) autoUpdater.quitAndInstall()
+                if (returnValue.response === 0) {
+                    autoUpdater.quitAndInstall();
+                }
             });
         });
 

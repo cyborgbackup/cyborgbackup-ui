@@ -1,11 +1,14 @@
 "use strict";
 exports.__esModule = true;
 var electron_1 = require("electron");
+// @ts-ignore
+var electron_is_dev_1 = require("electron-is-dev");
 var path = require("path");
 var url = require("url");
 var win = null;
-var args = process.argv.slice(1), serve = args.some(function (val) { return val === '--serve'; });
-function createWindow() {
+var args = process.argv.slice(1);
+var serve = args.some(function (val) { return val === '--serve'; });
+var createWindow = function () {
     var electronScreen = electron_1.screen;
     var size = electronScreen.getPrimaryDisplay().workAreaSize;
     // Create the browser window.
@@ -18,19 +21,19 @@ function createWindow() {
             nodeIntegration: true,
             allowRunningInsecureContent: (serve) ? true : false
         },
-        icon: path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png')
+        icon: path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png')
     });
     electron_1.app.setName('CyBorgBackup');
-    if (process.platform == 'darwin') {
-        electron_1.app.dock.setIcon(path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png'));
+    if (process.platform === 'darwin') {
+        electron_1.app.dock.setIcon(path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png'));
     }
     else {
-        win.setRepresentedFilename(path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png'));
+        win.setRepresentedFilename(path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png'));
     }
     if (serve) {
         win.webContents.openDevTools();
         require('electron-reload')(__dirname, {
-            electron: require(__dirname + "/node_modules/electron")
+            electron: require("".concat(__dirname, "/node_modules/electron"))
         });
         win.loadURL('http://localhost:4200');
     }
@@ -49,9 +52,9 @@ function createWindow() {
         win = null;
     });
     return win;
-}
+};
 try {
-    electron_1.app.allowRendererProcessReuse = true;
+    //app.allowRendererProcessReuse = true;
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
@@ -66,6 +69,35 @@ try {
             electron_1.app.quit();
         }
     });
+    if (electron_is_dev_1.electronIsDev) {
+        console.log('Running Development mode');
+    }
+    else {
+        var server = 'https://download.cyborgbackup.dev';
+        var urlUpdate = "".concat(server, "/update/").concat(process.platform, "/").concat(electron_1.app.getVersion());
+        electron_1.autoUpdater.setFeedURL({ url: urlUpdate });
+        electron_1.autoUpdater.on('update-downloaded', function (event, releaseNotes, releaseName) {
+            var dialogOpts = {
+                type: 'info',
+                buttons: ['Restart', 'Later'],
+                title: 'Application Update',
+                message: process.platform === 'win32' ? releaseNotes : releaseName,
+                detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+            };
+            electron_1.dialog.showMessageBox(dialogOpts).then(function (returnValue) {
+                if (returnValue.response === 0) {
+                    electron_1.autoUpdater.quitAndInstall();
+                }
+            });
+        });
+        electron_1.autoUpdater.on('error', function (message) {
+            console.error('There was a problem updating the application');
+            console.error(message);
+        });
+        setInterval(function () {
+            electron_1.autoUpdater.checkForUpdates();
+        }, 60000);
+    }
     electron_1.app.on('activate', function () {
         // On OS X it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
