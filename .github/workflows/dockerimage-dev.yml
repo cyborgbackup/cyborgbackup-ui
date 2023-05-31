@@ -70,10 +70,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: npm install, build, and test
         run: |
-          sudo apt install wine
+          sudo apt update
+          sudo apt install -y wine
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install wine32
+          sudo apt -f install
+          sudo apt install -y wine32
           npm install
           npm run build:electron
       - name: Electron-Builder Windows App
