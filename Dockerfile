@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 FROM node:19.9.0-alpine AS build
-RUN apk add git python make g++
+RUN apk add git python3 make g++
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install
