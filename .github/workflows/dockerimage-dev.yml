@@ -75,7 +75,7 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt-get update
           sudo apt -f install
-          sudo apt install -y wine32
+          sudo apt install -y libgcc-s1:i386 libgcc-s1:i386 libstdc++6:i386 wine32
           npm install
           npm run build:electron
       - name: Electron-Builder Windows App
