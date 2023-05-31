@@ -1,6 +1,4 @@
 import { app, BrowserWindow, screen, autoUpdater, dialog } from 'electron';
-// @ts-ignore
-import { electronIsDev } from 'electron-is-dev';
 import * as path from 'path';
 import * as url from 'url';
 import MessageBoxOptions = Electron.MessageBoxOptions;
@@ -8,6 +6,10 @@ import MessageBoxOptions = Electron.MessageBoxOptions;
 let win: BrowserWindow = null;
 const args = process.argv.slice(1);
 const serve = args.some(val => val === '--serve');
+const isEnvSet = 'ELECTRON_IS_DEV' in process.env;
+const getFromEnv = Number.parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
+
+const electronIsDev = isEnvSet ? getFromEnv : !app.isPackaged;
 
 const createWindow = (): BrowserWindow => {
 

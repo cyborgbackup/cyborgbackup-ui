@@ -1,13 +1,14 @@
 "use strict";
 exports.__esModule = true;
 var electron_1 = require("electron");
-// @ts-ignore
-var electron_is_dev_1 = require("electron-is-dev");
 var path = require("path");
 var url = require("url");
 var win = null;
 var args = process.argv.slice(1);
 var serve = args.some(function (val) { return val === '--serve'; });
+var isEnvSet = 'ELECTRON_IS_DEV' in process.env;
+var getFromEnv = Number.parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
+var electronIsDev = isEnvSet ? getFromEnv : !electron_1.app.isPackaged;
 var createWindow = function () {
     var electronScreen = electron_1.screen;
     var size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -69,7 +70,7 @@ try {
             electron_1.app.quit();
         }
     });
-    if (electron_is_dev_1.electronIsDev) {
+    if (electronIsDev) {
         console.log('Running Development mode');
     }
     else {
