@@ -73,7 +73,7 @@ export class ScheduleFormComponent implements OnInit {
   }
 
   updateSchedule(data) {
-    this.schedulesService.patch(this.scheduleId, data).subscribe((res) => {
+    this.schedulesService.patch(this.scheduleId, data).subscribe(() => {
       this.toastrService.show('', 'Schedule updated', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'

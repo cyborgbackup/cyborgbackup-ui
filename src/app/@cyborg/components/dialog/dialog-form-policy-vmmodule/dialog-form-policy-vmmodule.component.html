@@ -20,7 +20,7 @@
                     </div>
                     <ng-container *ngIf="state['qemu']">
                         <mat-list-item *ngFor="let vm of vms['qemu']" >
-                            <div class="item row" (click)="select(vm, $event)">
+                            <div class="item row" (click)="select(vm)">
                                 <div class="col-sm-1">
                                     <input type="checkbox" name="check-{{vm.vmid}}" [(ngModel)]="checked[vm.vmid]"/>
                                 </div>

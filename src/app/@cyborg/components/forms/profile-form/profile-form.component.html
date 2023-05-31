@@ -53,14 +53,14 @@
                       type="password"
                       nbInput
                       *ngIf="formProfile.controls['password']"
-                      [status]="formProfile.controls['password'].value != formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
+                      [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
                       fullWidth
                       id="inputPassword"
                       formControlName="password"
                       placeholder="Password"
               />
               <ng-container *ngIf="formProfile.controls['password'].touched">
-                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value != formProfile.controls['password_confirm'].value">
+                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
                   Password does not match the confirm password.
                 </p>
               </ng-container>
@@ -74,7 +74,7 @@
               <input
                       type="password"
                       *ngIf="formProfile.controls['password']"
-                      [status]="formProfile.controls['password'].value != formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
+                      [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
                       nbInput
                       fullWidth
                       id="inputPassConfirm"
@@ -82,7 +82,7 @@
                       placeholder="Password Confirmation"
               />
               <ng-container *ngIf="formProfile.controls['password_confirm'].touched">
-                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value != formProfile.controls['password_confirm'].value">
+                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
                   Password does not match the confirm password.
                 </p>
               </ng-container>

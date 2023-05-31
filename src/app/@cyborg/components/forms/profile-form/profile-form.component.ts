@@ -16,16 +16,25 @@ export class ProfileFormComponent implements OnInit {
               private formBuilder: FormBuilder,
               private toastrService: NbToastrService) {
     this.formProfile = this.formBuilder.group({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       first_name: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       password_confirm: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_daily: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_failed: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_monthly: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_success: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_summary: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_weekly: [''],
     },
         {validator: this.checkPasswords });
@@ -52,7 +61,7 @@ export class ProfileFormComponent implements OnInit {
         delete data.password;
         delete data.password_confirm;
       }
-      this.usersService.patch(this.userId, data).subscribe((res) => {
+      this.usersService.patch(this.userId, data).subscribe(() => {
         this.toastrService.show('', 'Profile updated', {
           position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
           status: 'success'

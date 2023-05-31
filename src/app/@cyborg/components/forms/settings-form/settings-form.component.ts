@@ -17,8 +17,8 @@ export class SettingsFormComponent implements OnInit {
   public settingsKeys: any;
   public formSetting: FormGroup;
   public formGenerateSshKey: FormGroup;
-  private formData: any = {};
   public encryptedPlaceholder: any = {};
+  private formData: any = {};
 
   constructor(private settingsService: SettingsService,
               private toastrService: NbToastrService,
@@ -34,17 +34,17 @@ export class SettingsFormComponent implements OnInit {
   buildForm(): void {
       const group: any = {};
       Object.keys(this.settings).forEach(key => {
-          this.settings[key].forEach(input_template => {
-              group[input_template.key] = new FormControl('');
-              this.formData[input_template.key] = input_template.value;
-              input_template.encrypted = false;
-              if (/\$encrypted\$/.test(input_template.value)) {
-                  input_template.encrypted = true;
-                  if (input_template.setting_type === 'privatekey') {
-                      this.formData[input_template.key] = 'ENCRYPTED';
+          this.settings[key].forEach(inputTemplate => {
+              group[inputTemplate.key] = new FormControl('');
+              this.formData[inputTemplate.key] = inputTemplate.value;
+              inputTemplate.encrypted = false;
+              if (/\$encrypted\$/.test(inputTemplate.value)) {
+                  inputTemplate.encrypted = true;
+                  if (inputTemplate.setting_type === 'privatekey') {
+                      this.formData[inputTemplate.key] = 'ENCRYPTED';
                   } else {
-                      this.encryptedPlaceholder[input_template.key] = 'ENCRYPTED';
-                      this.formData[input_template.key] = '';
+                      this.encryptedPlaceholder[inputTemplate.key] = 'ENCRYPTED';
+                      this.formData[inputTemplate.key] = '';
                   }
               }
           });
@@ -61,14 +61,10 @@ export class SettingsFormComponent implements OnInit {
                 sets[item['group']] = [];
             }
             sets[item['group']].push(item);
-            sets[item['group']].sort(function(a, b) {
-                return a.order - b.order;
-            });
+            sets[item['group']].sort((a, b) => a.order - b.order);
         });
         this.settings = sets;
-        this.settingsKeys = Object.keys(this.settings).sort(function(a, b) {
-            return parseInt(a[0], 10) - parseInt(b[0], 10);
-        });
+        this.settingsKeys = Object.keys(this.settings).sort((a, b) => parseInt(a[0], 10) - parseInt(b[0], 10));
         this.buildForm();
       });
   }
@@ -86,7 +82,7 @@ export class SettingsFormComponent implements OnInit {
       this.settingsService.isSshPrivateKeySet().subscribe((res) => {
           this.dialogService.open(this.generateSshKeyDialog, {context: res}).onClose.subscribe((resDialog) => {
               if (resDialog && this.formGenerateSshKey.valid) {
-                  this.settingsService.generateSshKey(this.formGenerateSshKey.value).subscribe((resGenerated) => {
+                  this.settingsService.generateSshKey(this.formGenerateSshKey.value).subscribe(() => {
                       this.toastrService.show('', 'SSH Key Generated', {
                           position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
                           status: 'success'

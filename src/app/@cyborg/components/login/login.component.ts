@@ -9,16 +9,11 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends  NbLoginComponent implements OnInit {
+  @ViewChild('cyborgServerInput') cyborgServerInput;
   declare options: string[];
   specificServer = false;
   filteredOptions$: Observable<string[]>;
-  electronRunning: boolean = false;
-  @ViewChild('cyborgServerInput') cyborgServerInput;
-
-  private filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
-  }
+  electronRunning = false;
 
   getFilteredOptions(value: string): Observable<string[]> {
     return of(value).pipe(
@@ -49,5 +44,10 @@ export class LoginComponent extends  NbLoginComponent implements OnInit {
     if (!event) {
       this.user.server = '';
     }
+  }
+
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
   }
 }

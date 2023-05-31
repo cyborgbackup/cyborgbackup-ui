@@ -21,9 +21,9 @@ describe('djangopassword-auth-strategy', () => {
 
     const successResponse: any = {
         data: {
-            'token': 'token',
-            'messages': ['Success message'],
-            'errors': ['Error message'],
+            token: 'token',
+            messages: ['Success message'],
+            errors: ['Error message'],
         },
     };
 
@@ -31,13 +31,13 @@ describe('djangopassword-auth-strategy', () => {
 
     const noMessageResponse: any = {
         data: {
-            'token': 'token',
+            token: 'token',
         },
     };
     const customResponse: any = {
-        'token': 'token',
-        'messages': ['Success message'],
-        'errors': ['Error message'],
+        token: 'token',
+        messages: ['Success message'],
+        errors: ['Error message'],
     };
     const loginData: any = {email: 'test@test.com', password: '123456'};
 
@@ -1182,7 +1182,7 @@ describe('djangopassword-auth-strategy', () => {
             strategy.setOptions({
                 name: ownerStrategyName,
                 token: {
-                    getter: (module: string, res: HttpResponse<Object>) => res.body['token'],
+                    getter: (module: string, res: HttpResponse<object>) => res.body['token'],
                 },
             });
         });
@@ -1352,7 +1352,7 @@ describe('djangopassword-auth-strategy', () => {
                     key: 'token',
                 },
                 messages: {
-                    getter: (module: string, res: HttpResponse<Object>) => res.body['messages'],
+                    getter: (module: string, res: HttpResponse<object>) => res.body['messages'],
                 },
                 errors: {
                     getter: (module: string, res: HttpErrorResponse) => res.error['errors'],

@@ -14,6 +14,10 @@ export class TokenInterceptor implements HttpInterceptor {
                 @Inject(NB_AUTH_TOKEN_INTERCEPTOR_FILTER) protected filter) {
     }
 
+    protected get authService(): NbAuthService {
+        return this.injector.get(NbAuthService);
+    }
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (!this.filter(req)) {
             return this.authService.isAuthenticatedOrRefresh()
@@ -25,6 +29,7 @@ export class TokenInterceptor implements HttpInterceptor {
                                     const JWT = `Bearer ${token.getValue()}`;
                                     req = req.clone({
                                         setHeaders: {
+                                            // eslint-disable-next-line @typescript-eslint/naming-convention
                                             Authorization: JWT,
                                         },
                                     });
@@ -40,9 +45,4 @@ export class TokenInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
     }
-
-    protected get authService(): NbAuthService {
-        return this.injector.get(NbAuthService);
-    }
-
 }

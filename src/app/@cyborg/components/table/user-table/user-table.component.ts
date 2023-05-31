@@ -43,7 +43,7 @@ export class UserTableComponent implements OnInit {
 
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
-    this.usersService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+    this.usersService.patch(item.id, {enabled: item.enabled}).subscribe(() => {});
   }
 
   viewUser(item): void {
@@ -56,7 +56,7 @@ export class UserTableComponent implements OnInit {
       context: 'Confirm the deletion of user ' + item.email
     }).onClose.subscribe((res) => {
       if (res) {
-        this.usersService.delete(item.id).subscribe((response) => {
+        this.usersService.delete(item.id).subscribe(() => {
           this.toastrService.show('', 'User deleted', {
             position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
             status: 'success'

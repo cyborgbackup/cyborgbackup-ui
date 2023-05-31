@@ -27,7 +27,7 @@ export class ScheduleTableComponent implements OnInit {
 
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
-    this.schedulesService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+    this.schedulesService.patch(item.id, {enabled: item.enabled}).subscribe(() => {});
   }
 
   setPage(pageInfo) {
@@ -46,7 +46,7 @@ export class ScheduleTableComponent implements OnInit {
       context: 'Confirm the deletion of schedule ' + item.name
     }).onClose.subscribe((res) => {
       if (res) {
-        this.schedulesService.delete(item.id).subscribe((response) => {
+        this.schedulesService.delete(item.id).subscribe(() => {
           this.toastrService.show('', 'Schedule deleted', {
             position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
             status: 'success'

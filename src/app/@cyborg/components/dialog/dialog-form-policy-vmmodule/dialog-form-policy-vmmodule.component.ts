@@ -9,21 +9,21 @@ import {NbDialogRef} from '@nebular/theme';
 })
 export class DialogFormPolicyVMModuleComponent implements OnInit {
   client: any;
-  module: String;
+  module: string;
   vms: any;
   vars: any;
   loading: boolean;
   state: any;
-  checked: {};
-  error: String;
+  checked: object;
+  error: string;
 
   constructor(private policiesService: PoliciesService,
               protected dialogRef: NbDialogRef<any>) {
     this.loading = true;
     this.error = null;
     this.state = {
-      'qemu': true,
-      'lxc': true
+      qemu: true,
+      lxc: true
     };
     this.checked = {};
   }
@@ -51,7 +51,7 @@ export class DialogFormPolicyVMModuleComponent implements OnInit {
     this.state[item] = !this.state[item];
   }
 
-  select(vm, event): void {
+  select(vm): void {
     this.checked[vm.vmid] = !this.checked[vm.vmid];
   }
 
@@ -70,8 +70,8 @@ export class DialogFormPolicyVMModuleComponent implements OnInit {
         });
         const filtered = this.groupBy(res.body, vm => vm.type);
         this.vms = {
-          'qemu': [],
-          'lxc': []
+          qemu: [],
+          lxc: []
         };
         ['qemu', 'lxc'].forEach((type) => {
           this.vms[type] = filtered.get(type);

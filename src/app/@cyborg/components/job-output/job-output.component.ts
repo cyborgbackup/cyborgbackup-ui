@@ -11,10 +11,8 @@ import {Subject} from 'rxjs';
   styleUrls: ['./job-output.component.scss']
 })
 export class JobOutputComponent implements OnInit {
-  private jobId: number;
-  private job: any;
   public events = [];
-  public stdoutOverflowed: boolean = false;
+  public stdoutOverflowed = false;
   pageSize = 100;
   pageToLoad = 1;
   loading = false;
@@ -22,6 +20,8 @@ export class JobOutputComponent implements OnInit {
   jobFinished = false;
   followEngaged = false;
   noMore = false;
+  private jobId: number;
+  private job: any;
 
   constructor(private route: ActivatedRoute,
               private jobsService: JobsService,
@@ -49,7 +49,9 @@ export class JobOutputComponent implements OnInit {
         || this.loading
         || this.noMore
         // || ['successful', 'failed', 'finished'].indexOf(this.job.status) === -1
-    ) { return ; }
+    ) {
+ return ;
+}
     this.loading = true;
     this.jobsService.getEvents(this.jobId, this.pageToLoad)
         .subscribe(nextEvents => {
@@ -76,6 +78,7 @@ export class JobOutputComponent implements OnInit {
       this.websocketService.send({
         groups: {
           jobs: ['status_changed'],
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           job_events: [String(this.jobId)]
         },
       });

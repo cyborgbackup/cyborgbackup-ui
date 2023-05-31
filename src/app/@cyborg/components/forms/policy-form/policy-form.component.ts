@@ -42,23 +42,36 @@ export class PolicyFormComponent implements OnInit {
   ngOnInit() {
     this.formPolicy = this.formBuilder.group({
       name: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       policy_type: ['', Validators.required],
       schedule: ['', Validators.required],
       repository: ['', Validators.required],
       clients: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       extra_vars: [],
       prehook: [''],
       posthook: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       keep_hourly: [{value: null, disabled: true}],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       keep_daily: [{value: null, disabled: true}],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       keep_weekly: [{value: null, disabled: true}],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       keep_monthly: [{value: null, disabled: true}],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       keep_yearly: [{value: null, disabled: true}],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_hourly: [false],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_daily: [false],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_weekly: [false],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_monthly: [false],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_yearly: [false],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       mode_pull: [],
       enabled: []
     });
@@ -71,22 +84,27 @@ export class PolicyFormComponent implements OnInit {
           this.formPolicy.patchValue(this.policy);
           if (this.policy.keep_hourly !== null) {
             this.formPolicy.controls.keep_hourly.enable();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({boolean_keep_hourly: true});
           }
           if (this.policy.keep_daily !== null) {
             this.formPolicy.controls.keep_daily.enable();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({boolean_keep_daily: true});
           }
           if (this.policy.keep_weekly !== null) {
             this.formPolicy.controls.keep_weekly.enable();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({boolean_keep_weekly: true});
           }
           if (this.policy.keep_monthly !== null) {
             this.formPolicy.controls.keep_monthly.enable();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({boolean_keep_monthly: true});
           }
           if (this.policy.keep_yearly !== null) {
             this.formPolicy.controls.keep_yearly.enable();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({boolean_keep_yearly: true});
           }
         });
@@ -119,10 +137,10 @@ export class PolicyFormComponent implements OnInit {
         this.formPolicy.value.policy_type !== 'postgresql';
   }
 
-  editClient(event, client_id): void {
+  editClient(event, clientId): void {
     let client = null;
     this.clients.forEach((el) => {
-      if (el.id === client_id) {
+      if (el.id === clientId) {
         client = el;
       }
     });
@@ -132,30 +150,31 @@ export class PolicyFormComponent implements OnInit {
     } else {
       theClass = DialogFormPolicyDBModuleComponent;
     }
-    const extra_vars = JSON.parse(this.formPolicy.value.extra_vars);
-    if ( !Object.keys(extra_vars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
-      extra_vars['extended_' + this.formPolicy.value['policy_type']] = {};
+    const extraVars = JSON.parse(this.formPolicy.value.extra_vars);
+    if ( !Object.keys(extraVars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
+      extraVars['extended_' + this.formPolicy.value['policy_type']] = {};
     }
-    const extended_vars = extra_vars['extended_' + this.formPolicy.value['policy_type']][client.id];
+    const extendedVars = extraVars['extended_' + this.formPolicy.value['policy_type']][client.id];
     this.dialogService.open(theClass, {
       context: {
         client,
         module: this.formPolicy.value['policy_type'],
-        vars: extended_vars
+        vars: extendedVars
       }
     }).onClose.subscribe((res) => {
       if (res) {
-        if ( !Object.keys(extra_vars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
-          extra_vars['extended_' + this.formPolicy.value['policy_type']] = {};
+        if ( !Object.keys(extraVars).includes('extended_' + this.formPolicy.value['policy_type']) ) {
+          extraVars['extended_' + this.formPolicy.value['policy_type']] = {};
         }
-        extra_vars['extended_' + this.formPolicy.value['policy_type']][client.id] = res;
-        this.formPolicy.patchValue({extra_vars: JSON.stringify(extra_vars, null, 4)});
+        extraVars['extended_' + this.formPolicy.value['policy_type']][client.id] = res;
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        this.formPolicy.patchValue({extra_vars: JSON.stringify(extraVars, null, 4)});
       }
     });
   }
 
   updatePolicy(data) {
-    this.policiesService.patch(this.policyId, data).subscribe((res) => {
+    this.policiesService.patch(this.policyId, data).subscribe(() => {
       this.toastrService.show('', 'Policy updated', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'
@@ -196,12 +215,16 @@ export class PolicyFormComponent implements OnInit {
 
   changeType(model): void {
     if (model === 'mysql' || model === 'postgresql') {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       this.formPolicy.patchValue({extra_vars:  '{\n"user":"",\n"password": ""\n}'});
     } else if (model === 'folders') {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       this.formPolicy.patchValue({extra_vars: '{\n"folders":[""],\n"exclude":[]\n}'});
     } else if (model === 'piped') {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       this.formPolicy.patchValue({extra_vars: '{\n"command":""\n}'});
     } else {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       this.formPolicy.patchValue({extra_vars: '{}'});
     }
   }

@@ -13,11 +13,11 @@ export class DialogFormPolicyDBModuleComponent implements OnInit {
   formCredential: FormGroup;
   vars: any;
   client: any;
-  module: String;
+  module: string;
   dbs: any;
   loading: boolean;
   state: any;
-  checked: {};
+  checked: object;
   error: string;
 
   constructor(private policiesService: PoliciesService,
@@ -93,8 +93,9 @@ export class DialogFormPolicyDBModuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDBs();
-    if (this.vars !== undefined && Object.keys(this.vars).includes('credential'))
-      this.formCredential.patchValue(this.vars['credential']);
+    if (this.vars !== undefined && Object.keys(this.vars).includes('credential')) {
+this.formCredential.patchValue(this.vars['credential']);
+}
   }
 
 }

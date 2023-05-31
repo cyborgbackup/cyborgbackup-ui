@@ -27,8 +27,10 @@ export class ClientFormComponent implements OnInit {
   ngOnInit() {
     this.formClient = this.formBuilder.group({
       hostname: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       bandwidth_limit: [''],
       enabled: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_bandwidth_limit: [false],
       port: [22, [Validators.min(1), Validators.max(65535)]]
     });
@@ -45,6 +47,7 @@ export class ClientFormComponent implements OnInit {
           this.formClient.patchValue(this.client);
           this.policiesForm.patchValue(this.client.summary_fields.policies.map(e => e.id));
           if ( this.client.bandwidth_limit !== '' && this.client.bandwidth_limit > 0 ) {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formClient.patchValue({boolean_bandwidth_limit: true});
           }
         });
@@ -53,7 +56,7 @@ export class ClientFormComponent implements OnInit {
   }
 
   updateClient(data) {
-    this.clientsService.patch(this.clientId, data).subscribe((res) => {
+    this.clientsService.patch(this.clientId, data).subscribe(() => {
       this.toastrService.show('', 'Client updated', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'
@@ -97,6 +100,7 @@ export class ClientFormComponent implements OnInit {
 
   changeBandwidthLimit(value): void {
     const newValue = {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       bandwidth_limit: (value ? 1 : '')
     };
     this.formClient.patchValue(newValue);

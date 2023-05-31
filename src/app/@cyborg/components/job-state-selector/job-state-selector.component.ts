@@ -6,6 +6,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./job-state-selector.component.scss']
 })
 export class JobStateSelectorComponent implements OnInit {
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() change: EventEmitter<any> = new EventEmitter();
   items = [
     {id: 1, name: 'New'},
@@ -28,13 +29,11 @@ export class JobStateSelectorComponent implements OnInit {
     {id: 8, name: 'Pending'},
   ];
 
+  constructor() { }
+
+  ngOnInit() { }
+
   onChange($event): void {
     this.change.emit($event);
   }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

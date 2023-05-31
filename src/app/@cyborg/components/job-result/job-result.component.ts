@@ -9,16 +9,17 @@ import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
   styleUrls: ['./job-result.component.scss']
 })
 export class JobResultComponent implements OnInit {
-  private counter: any;
   public job: any;
   public jobId: number;
-  public stdoutFullScreen: boolean = false;
+  public stdoutFullScreen = false;
   public localServer = localStorage.getItem('localServer') ? localStorage.getItem('localServer') : '';
+  private counter: any;
 
   constructor(private route: ActivatedRoute,
               private jobsService: JobsService,
               private toastrService: NbToastrService) {
     this.job = {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       summary_fields: {
         policy: {},
         client: {},
@@ -66,7 +67,7 @@ export class JobResultComponent implements OnInit {
   }
 
   cancel(): void {
-    this.jobsService.cancelJob(this.jobId).subscribe(data => {
+    this.jobsService.cancelJob(this.jobId).subscribe(() => {
       this.toastrService.show('', 'Job canceled', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'
@@ -85,7 +86,6 @@ export class JobResultComponent implements OnInit {
     this.stdoutFullScreen = !this.stdoutFullScreen;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

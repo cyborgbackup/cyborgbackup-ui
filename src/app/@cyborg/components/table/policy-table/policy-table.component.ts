@@ -28,7 +28,7 @@ export class PolicyTableComponent implements OnInit {
 
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
-    this.policiesService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+    this.policiesService.patch(item.id, {enabled: item.enabled}).subscribe(() => {});
   }
 
   setPage(pageInfo) {
@@ -64,7 +64,7 @@ export class PolicyTableComponent implements OnInit {
       context: 'Confirm the deletion of policy ' + item.name
     }).onClose.subscribe((res) => {
       if (res) {
-        this.policiesService.delete(item.id).subscribe((response) => {
+        this.policiesService.delete(item.id).subscribe(() => {
           this.toastrService.show('', 'Policy deleted', {
             position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
             status: 'success'

@@ -3,7 +3,7 @@ import {NbThemeService} from '@nebular/theme';
 import {ClientsService, JobsService, PoliciesService, StatsService} from '../../services';
 import {HumanSizePipe} from '../../pipes';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {CalendarOptions} from "@fullcalendar/core";
+import {CalendarOptions} from '@fullcalendar/core';
 
 @Component({
   selector: 'cbg-dashboard',
@@ -17,7 +17,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin]
-  }
+  };
   events: any;
 
   clients: number;
@@ -26,10 +26,10 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
   policies: number;
 
   private data: {
-    success: any[],
-    failed: any[],
-    size: any[],
-    dedup: any[]
+    success: any[];
+    failed: any[];
+    size: any[];
+    dedup: any[];
   };
 
   constructor(private theme: NbThemeService,
@@ -87,18 +87,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
               },
             },
             axisLabel: {
-              formatter: (function(value){
-                return new Date(value).toLocaleDateString();
-              }),
+              formatter: (value)=> new Date(value).toLocaleDateString(),
               textStyle: {
                 color: echarts.textColor,
               },
             },
             axisPointer: {
               label: {
-                formatter: function (params) {
-                  return new Date(params.value).toLocaleDateString();
-                }
+                formatter: (params) => new Date(params.value).toLocaleDateString(),
               }
             }
           }
@@ -125,9 +121,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             axisPointer: {
               label: {
-                formatter: function (params) {
-                  return Math.round(params.value);
-                }
+                formatter: (params) => Math.round(params.value)
               }
             }
           },
@@ -135,18 +129,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
             type: 'value',
             name: 'Size',
             axisLabel: {
-              formatter: (function(value) {
-                return new HumanSizePipe().transform(value);
-              }),
+              formatter: (value) => new HumanSizePipe().transform(value),
               textStyle: {
                 color: echarts.textColor,
               },
             },
             axisPointer: {
               label: {
-                formatter: function (params) {
-                  return new HumanSizePipe().transform(params.value);
-                }
+                formatter: (params) => new HumanSizePipe().transform(params.value)
               }
             },
             axisLine: {
@@ -227,6 +217,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
     this.policiesService.count().subscribe((count) => {
       this.policies = count;
     });
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     this.jobsService.count({params: {or__status: ['failed', 'error']}}).subscribe((count) => {
       this.errors = count;
     });

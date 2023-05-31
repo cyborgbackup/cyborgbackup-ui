@@ -25,18 +25,27 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.formUser = this.formBuilder.group({
       email: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       first_name: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       last_name: ['', Validators.required],
       password: [''],
       confirmPassword: [''],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       is_superuser: []
     });
     this.formNotif = this.formBuilder.group({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_daily: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_weekly: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_monthly: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_failed: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_success: [],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       notify_backup_summary: []
     });
 
@@ -53,7 +62,7 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUser(data) {
-    this.usersService.patch(this.userId, data).subscribe((res) => {
+    this.usersService.patch(this.userId, data).subscribe(() => {
       this.toastrService.show('', 'User updated', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'
@@ -103,7 +112,7 @@ export class UserFormComponent implements OnInit {
   submitNotif() {
     if (this.formNotif.value && this.userId !== 0) {
       console.log(this.formNotif.value);
-      this.usersService.patch(this.userId, this.formNotif.value).subscribe((res) => {
+      this.usersService.patch(this.userId, this.formNotif.value).subscribe(() => {
         this.toastrService.show('', 'Notification settings updated', {
           position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
           status: 'success'

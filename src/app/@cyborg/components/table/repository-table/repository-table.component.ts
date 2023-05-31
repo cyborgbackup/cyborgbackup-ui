@@ -27,7 +27,7 @@ export class RepositoryTableComponent implements OnInit {
 
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
-    this.repositoriesService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+    this.repositoriesService.patch(item.id, {enabled: item.enabled}).subscribe(() => {});
   }
 
   setPage(pageInfo) {
@@ -46,7 +46,7 @@ export class RepositoryTableComponent implements OnInit {
       context: 'Confirm the deletion of repository ' + item.name
     }).onClose.subscribe((res) => {
       if (res) {
-        this.repositoriesService.delete(item.id).subscribe((response) => {
+        this.repositoriesService.delete(item.id).subscribe(() => {
           this.toastrService.show('', 'Repository deleted', {
             position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
             status: 'success'

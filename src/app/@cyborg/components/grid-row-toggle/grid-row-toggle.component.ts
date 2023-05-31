@@ -8,18 +8,21 @@ import {NbTreeGridCellDirective} from '@nebular/theme';
 })
 export class GridRowToggleComponent {
   @Input() type: string;
+  @Output()
+      // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onExpand: EventEmitter<any> = new EventEmitter();
   private expandedValue: boolean;
+
+  constructor(private cell: NbTreeGridCellDirective) {}
+
+  get expanded(): boolean {
+    return this.expandedValue;
+  }
 
   @Input()
   set expanded(value: boolean) {
     this.expandedValue = value;
   }
-  get expanded(): boolean {
-    return this.expandedValue;
-  }
-
-  @Output()
-  onExpand: EventEmitter<any> = new EventEmitter();
 
   @HostListener('click', ['$event'])
   toggleRow($event) {
@@ -27,6 +30,4 @@ export class GridRowToggleComponent {
     this.cell.toggleRow();
     $event.stopPropagation();
   }
-
-  constructor(private cell: NbTreeGridCellDirective) {}
 }

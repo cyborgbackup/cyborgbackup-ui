@@ -25,6 +25,7 @@ export class RepositoryFormComponent implements OnInit {
     this.formRepository = this.formBuilder.group({
       name: ['', Validators.required],
       path: ['', Validators.required],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       repository_key: ['', Validators.required],
       enabled: []
     });
@@ -41,7 +42,7 @@ export class RepositoryFormComponent implements OnInit {
   }
 
   updateRepository(data) {
-    this.repositoriesService.patch(this.repositoryId, data).subscribe((res) => {
+    this.repositoriesService.patch(this.repositoryId, data).subscribe(() => {
       this.toastrService.show('', 'Repository updated', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'

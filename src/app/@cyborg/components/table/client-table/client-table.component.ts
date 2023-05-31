@@ -28,12 +28,13 @@ export class ClientTableComponent implements OnInit {
 
   toggleEnabled(item): void {
     item.enabled = !item.enabled;
-    this.clientsService.patch(item.id, {enabled: item.enabled}).subscribe((res) => {});
+    this.clientsService.patch(item.id, {enabled: item.enabled}).subscribe(() => {});
   }
 
   markAsToUpdate(item): void {
     item.can_be_updated = !item.enabled;
-    this.clientsService.patch(item.id, {mark_as_to_update: true}).subscribe((res) => {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    this.clientsService.patch(item.id, {mark_as_to_update: true}).subscribe(() => {
       this.toastrService.show('', 'Client will be updated on next backup', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
         status: 'success'
@@ -57,7 +58,7 @@ export class ClientTableComponent implements OnInit {
       context: 'Confirm the deletion of client ' + item.name
     }).onClose.subscribe((res) => {
       if (res) {
-        this.clientsService.delete(item.id).subscribe((response) => {
+        this.clientsService.delete(item.id).subscribe(() => {
           this.toastrService.show('', 'Client deleted', {
             position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
             status: 'success'

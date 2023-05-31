@@ -10,6 +10,10 @@ export class ServerInterceptor implements HttpInterceptor {
                 @Inject(NB_AUTH_TOKEN_INTERCEPTOR_FILTER) protected filter) {
     }
 
+    protected get authService(): NbAuthService {
+        return this.injector.get(NbAuthService);
+    }
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentServer = localStorage.getItem('localServer');
         if (!this.filter(req)) {
@@ -20,9 +24,5 @@ export class ServerInterceptor implements HttpInterceptor {
         } else {
             return next.handle(req);
         }
-    }
-
-    protected get authService(): NbAuthService {
-        return this.injector.get(NbAuthService);
     }
 }

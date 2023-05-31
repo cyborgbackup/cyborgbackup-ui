@@ -23,7 +23,7 @@ import {
     NbDynamicOverlay,
     NbDynamicOverlayController,
     NbDynamicOverlayHandler, NbMenuItem, NbMenuService, NbOverlayRef,
-    NbPosition, NbTrigger, NbTriggerValues
+    NbPosition, NbTrigger
 } from '@nebular/theme';
 
 
@@ -126,7 +126,7 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
      * Position will be calculated relatively host element based on the position.
      * Can be top, right, bottom and left.
      * */
-    @Input('cbgContextMenuPlacement')
+    @Input()
     position: NbPosition = NbPosition.BOTTOM;
 
     /**
@@ -144,24 +144,13 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
     tag: any;
 
     /**
-     * Basic menu items, will be passed to the internal NbMenuComponent.
-     * */
-    @Input('cbgContextMenu')
-    set items(items: NbMenuItem[]) {
-        this.validateItems(items);
-        this._items = items;
-    }
-
-    /**
      * Describes when the container will be shown.
      * Available options: `click`, `hover`, `hint`, `focus` and `noop`
      * */
     @Input('cbgContextMenuTrigger')
     trigger: NbTrigger = NbTrigger.CLICK;
-    static ngAcceptInputType_trigger: NbTriggerValues;
-
-    @Input('cbgContextMenuClass')
-    contextMenuClass: string = '';
+    @Input()
+    contextMenuClass = '';
 
     protected ref: NbOverlayRef;
     protected container: ComponentRef<any>;
@@ -174,6 +163,15 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
     constructor(private hostRef: ElementRef,
                 private menuService: NbMenuService,
                 private dynamicOverlayHandler: NbDynamicOverlayHandler) {
+    }
+
+    /**
+     * Basic menu items, will be passed to the internal NbMenuComponent.
+     * */
+    @Input('cbgContextMenu')
+    set items(items: NbMenuItem[]) {
+        this.validateItems(items);
+        this._items = items;
     }
 
     ngOnInit() {
@@ -235,7 +233,7 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
 
     /*
      * NbMenuComponent will crash if don't pass menu items to it.
-     * So, we just validating them and throw custom obvious error.
+     * So, we're just validating them and throw custom obvious error.
      * */
     private validateItems(items: NbMenuItem[]) {
         if (!items || !items.length) {
