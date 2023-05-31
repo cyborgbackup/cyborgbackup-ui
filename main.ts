@@ -22,14 +22,14 @@ function createWindow(): BrowserWindow {
             nodeIntegration: true,
             allowRunningInsecureContent: (serve) ? true : false,
         },
-        icon: path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png'),
+        icon: path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png'),
     });
     app.setName('CyBorgBackup');
 
-    if (process.platform == 'darwin') {
-        app.dock.setIcon(path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png'));
+    if (process.platform === 'darwin') {
+        app.dock.setIcon(path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png'));
     } else {
-        win.setRepresentedFilename(path.join(__dirname, '/dist/cyborgbackup-sidebar-white.png'));
+        win.setRepresentedFilename(path.join(__dirname, '/dist/assets/images/cyborgbackup-sidebar-white.png'));
     }
 
     if (serve) {
@@ -108,7 +108,7 @@ try {
         });
 
         setInterval(() => {
-            autoUpdater.checkForUpdates()
+            autoUpdater.checkForUpdates();
         }, 60000);
     }
 

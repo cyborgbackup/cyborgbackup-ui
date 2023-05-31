@@ -11,7 +11,8 @@
     "rfc3161TimeStampServer": "http://timestamp.digicert.com",
     "files": [
       "dist",
-      "main.*"
+      "main.*",
+      "!**/node_modules/*"
     ]
   },
   "nsis": {
@@ -27,7 +28,8 @@
     "entitlementsInherit": "build/entitlements.mac.plist",
     "files": [
       "dist",
-      "main.*"
+      "main.*",
+      "!**/node_modules/*"
     ]
   },
   "dmg": {
@@ -58,7 +60,8 @@
     },
     "files": [
       "dist",
-      "main.*"
+      "main.*",
+      "!**/node_modules/*"
     ]
   }
 }
