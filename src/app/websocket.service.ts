@@ -6,7 +6,7 @@ import { delay, retryWhen, switchMap } from 'rxjs/operators';
 @Injectable()
 export class WebsocketService implements OnDestroy {
   private connection$: WebSocketSubject<any>;
-  private RETRY_SECONDS = 10;
+  private retrySeconds = 10;
   private protocol: string;
   private url: string;
   private host: string;
@@ -43,7 +43,7 @@ export class WebsocketService implements OnDestroy {
             return this.connection$;
           }
         }),
-        retryWhen((errors) => errors.pipe(delay(this.RETRY_SECONDS)))
+        retryWhen((errors) => errors.pipe(delay(this.retrySeconds)))
     );
   }
 

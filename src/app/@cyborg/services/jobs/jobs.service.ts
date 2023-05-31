@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {CrudService} from '../crud/crud.service';
 import {Observable} from 'rxjs';
 
-export interface Job {
+/*export interface Job {
   id: number;
   type: string;
   url: string;
@@ -34,7 +34,7 @@ export interface Job {
   result_traceback: string;
   event_processing_finished: boolean;
   job_type: string;
-}
+}*/
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +63,7 @@ export class JobsService extends CrudService {
     return new Observable((subscriber) => {
       this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe((resultGet: any) => {
         if (resultGet.can_cancel) {
-          this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe((resultPost: any) => {
+          this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe(() => {
             subscriber.next(true);
           });
         } else {
@@ -90,7 +90,6 @@ export class JobsService extends CrudService {
       this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
         subscriber.next(result.count);
       }, (error) => {
-        // console.log('send query', error);
         subscriber.error(error);
       });
     });

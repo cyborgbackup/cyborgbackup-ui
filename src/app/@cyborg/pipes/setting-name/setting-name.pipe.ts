@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SettingNamePipe implements PipeTransform {
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   transform(value: any, args?: any): any {
     const names = value.replace('cyborgbackup_', '').split('_');
     for (let i = 0; i < names.length; i++) {

@@ -16,7 +16,6 @@ export class CrudService {
             this.http.options('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
                 subscriber.next(result.actions);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
@@ -26,10 +25,9 @@ export class CrudService {
         return new Observable((subscriber) => {
             params['page_size'] = size;
             params['page'] = page;
-            this.http.get('/api/v1/' + this.endpoint + '/', {params: params}).subscribe((result: any) => {
+            this.http.get('/api/v1/' + this.endpoint + '/', {params}).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-              // console.log('send query', error);
               subscriber.error(error);
             });
           });
@@ -41,7 +39,6 @@ export class CrudService {
             this.http.get('/api/v1/' + this.endpoint + '/' + id + '/', params).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
@@ -52,7 +49,6 @@ export class CrudService {
             this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
@@ -63,7 +59,6 @@ export class CrudService {
             this.http.post('/api/v1/' + this.endpoint + '/', data).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
@@ -74,7 +69,6 @@ export class CrudService {
             this.http.put('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
@@ -85,7 +79,6 @@ export class CrudService {
             this.http.delete('/api/v1/' + this.endpoint + '/' + id + '/').subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });

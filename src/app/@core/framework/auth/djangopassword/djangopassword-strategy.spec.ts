@@ -4,13 +4,13 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import { async, inject, TestBed } from '@angular/core/testing';
-import { DjangoPasswordAuthStrategy } from './djangopassword-strategy';
+import {async, inject, TestBed} from '@angular/core/testing';
+import {DjangoPasswordAuthStrategy} from './djangopassword-strategy';
 
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { nbAuthCreateToken, NbAuthSimpleToken, NbAuthResult } from '@nebular/auth';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {nbAuthCreateToken, NbAuthSimpleToken, NbAuthResult} from '@nebular/auth';
 
 const ownerStrategyName = 'strategy';
 
@@ -39,13 +39,13 @@ describe('djangopassword-auth-strategy', () => {
         'messages': ['Success message'],
         'errors': ['Error message'],
     };
-    const loginData: any = { email: 'test@test.com', password: '123456' };
+    const loginData: any = {email: 'test@test.com', password: '123456'};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, RouterTestingModule],
             providers: [
-                { provide: DjangoPasswordAuthStrategy, useClass: DjangoPasswordAuthStrategy },
+                {provide: DjangoPasswordAuthStrategy, useClass: DjangoPasswordAuthStrategy},
             ],
         });
     });
@@ -104,11 +104,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('register success', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isSuccess()).toBe(true);
@@ -126,7 +126,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isSuccess()).toBe(false);
@@ -140,7 +140,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/register')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('requestPassword success', (done: DoneFn) => {
@@ -175,7 +175,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/request-pass')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('resetPassword success', (done: DoneFn) => {
@@ -210,7 +210,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/reset-pass')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
         it('logout success', (done: DoneFn) => {
             strategy.logout()
@@ -244,7 +244,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/logout')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('refreshToken success', (done: DoneFn) => {
@@ -280,7 +280,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/refresh-token')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
     });
@@ -326,7 +326,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(true);
@@ -438,7 +438,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -533,7 +533,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -662,12 +662,12 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
         it('register', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -676,7 +676,7 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
@@ -690,7 +690,7 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
@@ -704,7 +704,7 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
@@ -718,7 +718,7 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
@@ -732,7 +732,7 @@ describe('djangopassword-auth-strategy', () => {
                     done();
                 });
 
-            httpMock.expectOne({ method: 'get' })
+            httpMock.expectOne({method: 'get'})
                 .flush(successResponse);
         });
 
@@ -793,11 +793,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('register success', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.getRedirect()).toBe(redirect.success);
@@ -810,7 +810,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.getRedirect()).toBe(redirect.failure);
@@ -819,7 +819,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/register')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('requestPassword success', (done: DoneFn) => {
@@ -845,7 +845,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/request-pass')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('resetPassword success', (done: DoneFn) => {
@@ -871,7 +871,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/reset-pass')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('logout success', (done: DoneFn) => {
@@ -897,7 +897,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/logout')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('refreshToken success', (done: DoneFn) => {
@@ -923,7 +923,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/refresh-token')
-                .flush(successResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(successResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
     });
@@ -983,11 +983,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush(noMessageResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(noMessageResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('register success', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.getMessages()).toEqual(messages.defaultMessages);
@@ -1000,7 +1000,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.getErrors()).toEqual(messages.defaultErrors);
@@ -1009,7 +1009,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/register')
-                .flush(noMessageResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(noMessageResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('requestPassword success', (done: DoneFn) => {
@@ -1035,7 +1035,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/request-pass')
-                .flush({}, { status: 401, statusText: 'Unauthorized' });
+                .flush({}, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('resetPassword success', (done: DoneFn) => {
@@ -1061,7 +1061,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/reset-pass')
-                .flush(noMessageResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(noMessageResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('logout success', (done: DoneFn) => {
@@ -1087,7 +1087,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/logout')
-                .flush(noMessageResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(noMessageResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('refreshToken success', (done: DoneFn) => {
@@ -1113,7 +1113,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/refresh-token')
-                .flush(noMessageResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(noMessageResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
     });
@@ -1145,7 +1145,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -1203,7 +1203,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -1278,11 +1278,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('register success', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -1297,7 +1297,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(true);
@@ -1308,7 +1308,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/register')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('refreshToken success', (done: DoneFn) => {
@@ -1338,7 +1338,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/refresh-token')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
     });
@@ -1387,11 +1387,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('register success', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);
@@ -1406,7 +1406,7 @@ describe('djangopassword-auth-strategy', () => {
         });
 
         it('register fail', (done: DoneFn) => {
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(true);
@@ -1417,7 +1417,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/register')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
         it('refreshToken success', (done: DoneFn) => {
@@ -1447,7 +1447,7 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/refresh-token')
-                .flush(customResponse, { status: 401, statusText: 'Unauthorized' });
+                .flush(customResponse, {status: 401, statusText: 'Unauthorized'});
         });
 
     });
@@ -1472,9 +1472,11 @@ describe('djangopassword-auth-strategy', () => {
                 });
 
             httpMock.expectOne('/api/auth/login')
-                .flush({data: {
+                .flush({
+                    data: {
                         message: 'Successfully logged in!',
-                    }});
+                    }
+                });
         });
 
         it('authenticate does not fail even when no token', (done: DoneFn) => {
@@ -1508,7 +1510,7 @@ describe('djangopassword-auth-strategy', () => {
                     requireValidToken: true,
                 },
             });
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(true);
@@ -1532,7 +1534,7 @@ describe('djangopassword-auth-strategy', () => {
                 },
             });
 
-            strategy.register(loginData)
+            strategy.register()
                 .subscribe((result: NbAuthResult) => {
                     expect(result).toBeTruthy();
                     expect(result.isFailure()).toBe(false);

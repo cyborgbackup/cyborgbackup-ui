@@ -8,10 +8,10 @@ import { expand, takeLast} from 'rxjs/operators';
 })
 export class CatalogsService extends CrudService {
   endpoint = 'catalogs';
+  maxRecursion = 20;
 
   private archiveName: string = null;
   private urlPath: string;
-  maxRecursion = 20;
 
   public getArchivesNames(): Observable<any> {
     return new Observable((subscriber) => {

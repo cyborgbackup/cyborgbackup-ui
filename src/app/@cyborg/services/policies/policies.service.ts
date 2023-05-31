@@ -16,13 +16,11 @@ export class PoliciesService extends CrudService {
         next: (result: any) => {
           const policiesCalendar = [];
           for (const el of result.results ) {
-            policiesCalendar.push(this.http.get(el.related.calendar, params).pipe(map((res: any) => {
-              return {
+            policiesCalendar.push(this.http.get(el.related.calendar, params).pipe(map((res: any) => ({
                 name: el.name,
                   enabled: el.enabled && el.summary_fields.schedule.enabled && el.summary_fields.repository.enabled,
                   schedules: res
-              };
-            })));
+              }))));
           }
           combineLatest(policiesCalendar).subscribe((res) => {
             subscriber.next(res);
@@ -54,7 +52,7 @@ export class PoliciesService extends CrudService {
       return new Observable((subscriber) => {
         this.http.post('/api/v1/' + this.endpoint + '/module/' + module + '/' + client + '/',
             data, {observe: 'response'}).subscribe({
-          next: (result:any) => {
+          next: (result: any) => {
             subscriber.next(result);
           },
           error: (error) => {
@@ -80,8 +78,9 @@ export class PoliciesService extends CrudService {
   public launch(id): Observable<any> {
     return new Observable((subscriber) => {
       const params = {
-        'verbosity': 0,
-        'extra_vars': {}
+        verbosity: 0,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        extra_vars: {}
       };
       this.http.post('/api/v1/' + this.endpoint + '/' + id + '/launch/', params).subscribe({
         next: (res: any) => {

@@ -11,11 +11,9 @@ import {NbAuthJWTToken, NbAuthService} from '@nebular/auth';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
-  private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
+  userPictureOnly = false;
   user: any;
-  displayName: string = 'John Doe';
+  displayName = 'John Doe';
 
   themes = [
     {
@@ -41,6 +39,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         {title: 'Legacy Theme'},
       ]},
     { title: 'Log out', link: '/auth/logout' } ];
+
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

@@ -19,8 +19,7 @@ import {
   NbMenuModule,
   NbSidebarModule,
   NbToastrModule,
-  NbWindowModule,
-  NbThemeModule
+  NbWindowModule
 } from '@nebular/theme';
 import { DjangoPasswordAuthStrategy } from './@core/framework/auth/djangopassword/djangopassword-strategy';
 import { HomeComponent } from './home/home.component';
@@ -77,7 +76,7 @@ import { HttpXSRFInterceptor } from './@cyborg/auth/xsrf.interceptor';
     },
     {
       provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-      useValue: function (req) { return req.url.indexOf('/api/v1/') !== 0; },
+      useValue:  (req) => req.url.indexOf('/api/v1/') !== 0,
     }
   ],
   bootstrap: [AppComponent],

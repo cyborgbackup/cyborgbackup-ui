@@ -14,7 +14,7 @@ export const LEGACY_THEME: NbJSThemeOptions = {
       itemHoverShadowColor: 'rgba(0, 0, 0, 0.5)',
       tooltipBackgroundColor: baseThemeVariables.primary,
       areaOpacity: '0.7',
-      tooltipTextStyleColor: "#ffffff"
+      tooltipTextStyleColor: '#ffffff'
     },
   },
 };
