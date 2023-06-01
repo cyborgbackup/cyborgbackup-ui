@@ -15,6 +15,7 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "./",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
@@ -47,7 +48,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,

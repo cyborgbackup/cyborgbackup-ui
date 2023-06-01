@@ -86,6 +86,7 @@ try {
 
     if (electronIsDev) {
         console.log('Running Development mode');
+        console.log(__dirname);
     } else {
         const server = 'https://download.cyborgbackup.dev';
         const urlUpdate = `${server}/update/${process.platform}/${app.getVersion()}`;

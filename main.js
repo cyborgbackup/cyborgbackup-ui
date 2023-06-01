@@ -72,6 +72,7 @@ try {
     });
     if (electronIsDev) {
         console.log('Running Development mode');
+        console.log(__dirname);
     }
     else {
         var server = 'https://download.cyborgbackup.dev';
