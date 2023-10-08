@@ -2,7 +2,7 @@ Source: cyborgbackup-ui
 Section: system
 Priority: optional
 Maintainer: Gaëtan Ferez <gaetan@cyborgbackup.dev>
-Build-Depends: debhelper (>= 10), docker
+Build-Depends: debhelper (>= 10)
 Standards-Version: 3.9.5
 
 Package: cyborgbackup-ui
