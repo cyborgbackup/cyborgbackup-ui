@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>Archives Catalog</nb-card-header>
       <nb-card-body>
-        <table [nbTreeGrid]="dataSource" >
+        <table [nbTreeGrid]="dataSource" role="presentation" summary="CyBorgBackup Catalog Items">
 
           <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns;" [clickToToggle]="false"></tr>
 
