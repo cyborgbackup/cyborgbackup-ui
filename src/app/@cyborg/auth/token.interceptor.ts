@@ -19,7 +19,9 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!this.filter(req)) {
+        console.log(req.url);
+        console.log(req.url.indexOf('/api/v1/'));
+        if (req.url.includes('/api/v1/')) {
             return this.authService.isAuthenticatedOrRefresh()
                 .pipe(
                     switchMap(authenticated => {

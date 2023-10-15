@@ -24,7 +24,7 @@ import {
 import { DjangoPasswordAuthStrategy } from './@core/framework/auth/djangopassword/djangopassword-strategy';
 import { HomeComponent } from './home/home.component';
 import { TokenInterceptor } from './@cyborg/auth/token.interceptor';
-import { ServerInterceptor } from './@cyborg/auth/server.interceptor';
+import { ServerInterceptor} from './@cyborg/auth/server.interceptor';
 import { NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 import { CyborgModule } from './@cyborg/cyborg.module';
 import { HttpXSRFInterceptor } from './@cyborg/auth/xsrf.interceptor';
@@ -76,7 +76,7 @@ import { HttpXSRFInterceptor } from './@cyborg/auth/xsrf.interceptor';
     },
     {
       provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-      useValue:  (req) => req.url.indexOf('/api/v1/') !== 0,
+      useValue:  (req) => req.url.indexOf('/api/v1/') !== -1,
     }
   ],
   bootstrap: [AppComponent],
