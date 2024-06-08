@@ -72,7 +72,7 @@ export class PolicyFormComponent implements OnInit {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_keep_yearly: [false],
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      mode_pull: [],
+      mode_pull: [false],
       enabled: []
     });
 

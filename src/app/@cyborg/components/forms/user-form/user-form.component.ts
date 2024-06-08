@@ -3,6 +3,7 @@ import {UsersService} from '../../../services/users/users.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {nbAuthCreateToken, NbAuthJWTToken, NbAuthService, NbTokenService} from '@nebular/auth';
 
 @Component({
   selector: 'cbg-user-form',
@@ -19,6 +20,8 @@ export class UserFormComponent implements OnInit {
               private usersService: UsersService,
               private route: ActivatedRoute,
               private toastrService: NbToastrService,
+              private authService: NbAuthService,
+              private tokenService: NbTokenService,
               private router: Router) {
   }
 
@@ -29,8 +32,8 @@ export class UserFormComponent implements OnInit {
       first_name: ['', Validators.required],
       // eslint-disable-next-line @typescript-eslint/naming-convention
       last_name: ['', Validators.required],
-      password: [''],
-      confirmPassword: [''],
+      password: [],
+      confirmPassword: [],
       // eslint-disable-next-line @typescript-eslint/naming-convention
       is_superuser: []
     });
@@ -62,11 +65,25 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUser(data) {
-    this.usersService.patch(this.userId, data).subscribe(() => {
-      this.toastrService.show('', 'User updated', {
-        position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-        status: 'success'
-      });
+    this.usersService.patch(this.userId, data).subscribe((res) => {
+      if(res.headers.keys().indexOf('x-token') !== -1) {
+        const token = nbAuthCreateToken(
+            NbAuthJWTToken,
+            res.headers.get('x-token'),
+            'email'
+        );
+        this.tokenService.set(token).subscribe(()=>{
+          this.toastrService.show('', 'User updated', {
+            position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+            status: 'success'
+          });
+        });
+      }else {
+        this.toastrService.show('', 'User updated', {
+          position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+          status: 'success'
+        });
+      }
     }, (err) => {
       this.toastrService.show(err, 'Error on Update', {
         position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,

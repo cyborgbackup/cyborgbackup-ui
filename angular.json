@@ -65,11 +65,16 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cyborgbackup-ui:build"
+            "browserTarget": "cyborgbackup-ui:build",
+            "servePath": "/"
           },
           "configurations": {
+            "development": {
+              "deployUrl": "/",
+              "baseHref": "/"
+            },
             "production": {
-              "browserTarget": "cyborgbackup-ui:build:production"
+              "browserTarget": "cyborgbackup-ui:build:production",
             }
           }
         },

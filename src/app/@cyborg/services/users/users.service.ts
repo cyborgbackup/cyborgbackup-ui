@@ -15,7 +15,16 @@ export class UsersService extends CrudService {
       this.http.get('/api/v1/me/', params).subscribe((result: any) => {
         subscriber.next(result.results[0]);
       }, (error) => {
-        // console.log('send query', error);
+        subscriber.error(error);
+      });
+    });
+  }
+
+  public patch(id: number, data: object): Observable<any> {
+    return new Observable((subscriber) => {
+      this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data, {observe: 'response'}).subscribe((result: any) => {
+        subscriber.next(result);
+      }, (error) => {
         subscriber.error(error);
       });
     });

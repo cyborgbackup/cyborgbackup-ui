@@ -15,9 +15,6 @@ export class ServerInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentServer = localStorage.getItem('localServer');
-        console.log(currentServer);
-        console.log(req.url);
-        console.log(req.url.startsWith('/api/v1/'));
         if (req.url.startsWith('/api/v1/') && currentServer) {
             req = req.clone({
                 url: currentServer + req.url
