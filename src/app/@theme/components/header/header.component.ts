@@ -32,15 +32,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     currentTheme: string;
 
-    userMenu = [{title: 'Profile', link: '/profile'},
+    userMenu = [
+        {link: '/profile', title: 'Profile'},
         {
-            title: 'Theme', children: [
+            children: [
                 {title: 'Dark Theme'},
                 {title: 'Light Theme'},
                 {title: 'Legacy Theme'},
-            ]
+            ],
+            title: 'Theme',
         },
-        {title: 'Log out', link: '/auth/logout'}];
+        {link: '/auth/logout', title: 'Log out'}];
 
     private destroy$: Subject<void> = new Subject<void>();
 

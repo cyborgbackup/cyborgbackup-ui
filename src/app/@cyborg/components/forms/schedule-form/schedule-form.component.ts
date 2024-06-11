@@ -54,7 +54,7 @@ export class ScheduleFormComponent implements OnInit {
         this.formSchedule = this.formBuilder.group({
             name: ['', Validators.required],
             crontab: ['', Validators.required],
-            enabled: []
+            enabled: [false]
         });
         this.formSchedule.patchValue(this.schedule);
         this.route.paramMap.subscribe(params => {

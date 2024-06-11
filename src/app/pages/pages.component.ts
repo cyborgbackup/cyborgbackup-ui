@@ -30,11 +30,14 @@ export class PagesComponent implements OnInit {
             if (messages.group_name === 'jobs') {
                 if (parseInt(messages.job_id, 10)) {
                     if (messages.status === 'running') {
-                        this.toastrService.primary('Backup job ' + messages.job_id + ' ' + messages.job_name + ' running');
+                        this.toastrService.primary('Backup job '
+                            + messages.job_id + ' ' + messages.job_name + ' running');
                     } else if (messages.status === 'successful') {
-                        this.toastrService.success('Backup job ' + messages.job_id + ' ' + messages.job_name + ' success');
+                        this.toastrService.success('Backup job '
+                            + messages.job_id + ' ' + messages.job_name + ' success');
                     } else if (messages.status === 'failed' || messages.status === 'error') {
-                        this.toastrService.warning('Backup job ' + messages.job_id + ' ' + messages.job_name + ' failed');
+                        this.toastrService.warning('Backup job '
+                            + messages.job_id + ' ' + messages.job_name + ' failed');
                     }
                 }
             }

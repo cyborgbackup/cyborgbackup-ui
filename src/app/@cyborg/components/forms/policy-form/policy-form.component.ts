@@ -46,7 +46,7 @@ export class PolicyFormComponent implements OnInit {
             policy_type: ['', Validators.required],
             schedule: ['', Validators.required],
             repository: ['', Validators.required],
-            clients: [''],
+            clients: [[]],
             // eslint-disable-next-line @typescript-eslint/naming-convention
             extra_vars: [],
             prehook: [''],
@@ -73,7 +73,7 @@ export class PolicyFormComponent implements OnInit {
             boolean_keep_yearly: [false],
             // eslint-disable-next-line @typescript-eslint/naming-convention
             mode_pull: [false],
-            enabled: []
+            enabled: [false]
         });
 
         this.route.paramMap.subscribe(params => {

@@ -28,7 +28,7 @@ export class ClientFormComponent implements OnInit {
         this.formClient = this.formBuilder.group({
             hostname: ['', Validators.required],
             bandwidth_limit: [{value: '', disabled: true}],
-            enabled: [],
+            enabled: [false],
             boolean_bandwidth_limit: [false],
             port: [22, [Validators.min(1), Validators.max(65535)]],
             policiesForm: [],
@@ -45,7 +45,9 @@ export class ClientFormComponent implements OnInit {
                 this.clientsService.get(this.clientId).subscribe((res) => {
                     this.client = res;
                     this.formClient.patchValue(this.client);
-                    this.policiesForm.patchValue(this.client.summary_fields.policies.map(e => e.id));
+                    if (this.client.summary_fields.policies)
+                        this.policiesForm.patchValue(this.client.summary_fields.policies.map(e => e.id));
+
                     if (this.client.bandwidth_limit !== '' && this.client.bandwidth_limit > 0) {
                         // eslint-disable-next-line @typescript-eslint/naming-convention
                         this.formClient.patchValue({boolean_bandwidth_limit: true});

@@ -18,7 +18,8 @@ export class PoliciesService extends CrudService {
                     for (const el of result.results) {
                         policiesCalendar.push(this.http.get(el.related.calendar, params).pipe(map((res: any) => ({
                             name: el.name,
-                            enabled: el.enabled && el.summary_fields.schedule.enabled && el.summary_fields.repository.enabled,
+                            enabled: el.enabled && el.summary_fields.schedule.enabled
+                                && el.summary_fields.repository.enabled,
                             schedules: res
                         }))));
                     }
