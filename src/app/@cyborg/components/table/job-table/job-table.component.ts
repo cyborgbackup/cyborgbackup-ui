@@ -44,7 +44,7 @@ export class JobTableComponent implements OnInit {
     setPage(pageInfo) {
         this.loading = true;
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        const status = {status__in: this.jobsStateSelector.selected.map(e => e.name.toLowerCase()).join(',')};
+        const status = {status__in: this.jobsStateSelector.selected.map((e) => e.name.toLowerCase()).join(',')};
         this.jobsService.fetch(this.page.size, pageInfo.offset + 1, status).subscribe((response) => {
             this.jobs = response.results;
             this.page.totalElements = response.count;

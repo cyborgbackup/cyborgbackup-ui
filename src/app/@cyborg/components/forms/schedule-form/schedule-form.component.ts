@@ -57,7 +57,7 @@ export class ScheduleFormComponent implements OnInit {
             enabled: [false]
         });
         this.formSchedule.patchValue(this.schedule);
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.scheduleId = +params.get('id');
             if (this.scheduleId !== 0) {
                 this.schedulesService.get(this.scheduleId).subscribe((res) => {

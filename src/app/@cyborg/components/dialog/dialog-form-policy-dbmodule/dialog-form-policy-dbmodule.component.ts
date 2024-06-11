@@ -35,9 +35,9 @@ export class DialogFormPolicyDBModuleComponent implements OnInit {
     }
 
     close(save = false) {
-        const filtered = Object.keys(this.checked).filter(key => this.checked[key]);
+        const filtered = Object.keys(this.checked).filter((key) => this.checked[key]);
         const credValues = this.formCredential.value;
-        Object.keys(credValues).forEach(val => {
+        Object.keys(credValues).forEach((val) => {
             if (credValues[val] === null || credValues[val] === '') {
                 delete credValues[val];
             }
@@ -63,7 +63,7 @@ export class DialogFormPolicyDBModuleComponent implements OnInit {
         this.dialogService.open(this.credentialDialog).onClose.subscribe((res) => {
             if (res) {
                 const credValues = this.formCredential.value;
-                Object.keys(credValues).forEach(val => {
+                Object.keys(credValues).forEach((val) => {
                     if (credValues[val] === null || credValues[val] === '') {
                         delete credValues[val];
                     }

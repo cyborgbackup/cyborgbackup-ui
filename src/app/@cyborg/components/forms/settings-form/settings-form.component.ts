@@ -33,8 +33,8 @@ export class SettingsFormComponent implements OnInit {
 
     buildForm(): void {
         const group: any = {};
-        Object.keys(this.settings).forEach(key => {
-            this.settings[key].forEach(inputTemplate => {
+        Object.keys(this.settings).forEach((key) => {
+            this.settings[key].forEach((inputTemplate) => {
                 group[inputTemplate.key] = new FormControl('');
                 this.formData[inputTemplate.key] = inputTemplate.value;
                 inputTemplate.encrypted = false;
@@ -56,7 +56,7 @@ export class SettingsFormComponent implements OnInit {
     ngOnInit() {
         const sets: any = {};
         this.settingsService.fetch().subscribe((res) => {
-            res.results.forEach(item => {
+            res.results.forEach((item) => {
                 if (typeof (sets[item['group']]) === 'undefined') {
                     sets[item['group']] = [];
                 }

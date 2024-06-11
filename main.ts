@@ -5,7 +5,7 @@ import MessageBoxOptions = Electron.MessageBoxOptions;
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1);
-const serve = args.some(val => val === '--serve');
+const serve = args.some((val) => val === '--serve');
 const isEnvSet = 'ELECTRON_IS_DEV' in process.env;
 const getFromEnv = Number.parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
 
@@ -109,7 +109,7 @@ try {
             });
         });
 
-        autoUpdater.on('error', message => {
+        autoUpdater.on('error', (message) => {
             console.error('There was a problem updating the application');
             console.error(message);
         });

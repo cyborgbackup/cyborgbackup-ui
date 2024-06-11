@@ -27,7 +27,7 @@ export class JobResultComponent {
                 schedule: {}
             }
         };
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.jobId = +params.get('id');
             if (this.jobId !== 0) {
                 this.jobsService.get(this.jobId).subscribe((res) => {
@@ -53,7 +53,7 @@ export class JobResultComponent {
     }
 
     downloadLog(): void {
-        this.jobsService.getReport(this.jobId).subscribe(data => {
+        this.jobsService.getReport(this.jobId).subscribe((data) => {
             const blob = new Blob([data], {type: 'text/plain'});
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');

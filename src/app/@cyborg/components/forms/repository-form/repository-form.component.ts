@@ -30,7 +30,7 @@ export class RepositoryFormComponent implements OnInit {
             enabled: [false]
         });
 
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.repositoryId = +params.get('id');
             if (this.repositoryId !== 0) {
                 this.repositoriesService.get(this.repositoryId).subscribe((res) => {

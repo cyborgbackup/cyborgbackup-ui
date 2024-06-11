@@ -26,7 +26,7 @@ export class JobOutputComponent {
     constructor(private route: ActivatedRoute,
                 private jobsService: JobsService,
                 private websocketService: WebsocketService) {
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.jobId = +params.get('id');
             this.jobsService.get(this.jobId).subscribe((res) => {
                 this.job = res;
@@ -54,7 +54,7 @@ export class JobOutputComponent {
         }
         this.loading = true;
         this.jobsService.getEvents(this.jobId, this.pageToLoad)
-            .subscribe(nextEvents => {
+            .subscribe((nextEvents) => {
                 this.events.push(...nextEvents.results);
                 this.loading = false;
                 if (nextEvents.next) {
@@ -69,8 +69,7 @@ export class JobOutputComponent {
         if (['successful', 'failed', 'finished'].indexOf(this.job.status) === -1) {
             this.websocketService.connect().pipe(
                 takeUntil(this.destroyed$)
-            ).subscribe(messages => {
-                console.log(messages);
+            ).subscribe((messages) => {
                 if (messages.type === 'job_event') {
                     this.events.splice(messages.counter - 1, 0, messages);
                 }

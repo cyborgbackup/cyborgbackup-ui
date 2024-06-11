@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (req.url.includes('/api/v1/')) {
             return this.authService.isAuthenticatedOrRefresh()
                 .pipe(
-                    switchMap(authenticated => {
+                    switchMap((authenticated) => {
                         if (authenticated) {
                             return this.authService.getToken().pipe(
                                 switchMap((token: NbAuthToken) => {

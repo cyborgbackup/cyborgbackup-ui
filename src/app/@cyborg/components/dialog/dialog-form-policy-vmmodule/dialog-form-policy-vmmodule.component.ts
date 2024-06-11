@@ -29,7 +29,7 @@ export class DialogFormPolicyVMModuleComponent implements OnInit {
     }
 
     close(save = false) {
-        const filtered = Object.keys(this.checked).filter(key => this.checked[key]).map(x => +x);
+        const filtered = Object.keys(this.checked).filter((key) => this.checked[key]).map(x => +x);
         this.dialogRef.close(save ? filtered : undefined);
     }
 
@@ -68,7 +68,7 @@ export class DialogFormPolicyVMModuleComponent implements OnInit {
                 res.body.forEach((vm) => {
                     this.checked[vm.vmid] = this.vars !== undefined && this.vars.includes(vm.vmid);
                 });
-                const filtered = this.groupBy(res.body, vm => vm.type);
+                const filtered = this.groupBy(res.body, (vm) => vm.type);
                 this.vms = {
                     qemu: [],
                     lxc: []

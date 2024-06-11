@@ -47,7 +47,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
             size: [],
             dedup: []
         };
-        this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+        this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
 
             const colors: any = config.variables;
             const echarts: any = config.variables.echarts;

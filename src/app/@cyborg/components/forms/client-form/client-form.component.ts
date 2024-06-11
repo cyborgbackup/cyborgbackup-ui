@@ -39,14 +39,14 @@ export class ClientFormComponent implements OnInit {
             this.policies = res.results;
         });
 
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.clientId = +params.get('id');
             if (this.clientId !== 0) {
                 this.clientsService.get(this.clientId).subscribe((res) => {
                     this.client = res;
                     this.formClient.patchValue(this.client);
                     if (this.client.summary_fields.policies)
-                        this.policiesForm.patchValue(this.client.summary_fields.policies.map(e => e.id));
+                        this.policiesForm.patchValue(this.client.summary_fields.policies.map((e) => e.id));
 
                     if (this.client.bandwidth_limit !== '' && this.client.bandwidth_limit > 0) {
                         // eslint-disable-next-line @typescript-eslint/naming-convention

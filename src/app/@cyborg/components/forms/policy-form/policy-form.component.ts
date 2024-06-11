@@ -76,7 +76,7 @@ export class PolicyFormComponent implements OnInit {
             enabled: [false]
         });
 
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.policyId = +params.get('id');
             if (this.policyId !== 0) {
                 this.policiesService.get(this.policyId).subscribe((res) => {

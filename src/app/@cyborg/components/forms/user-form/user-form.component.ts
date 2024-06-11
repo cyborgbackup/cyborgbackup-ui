@@ -43,7 +43,7 @@ export class UserFormComponent implements OnInit {
             notify_backup_summary: [false]
         });
 
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params) => {
             this.userId = +params.get('id');
             if (this.userId !== 0) {
                 this.usersService.get(this.userId).subscribe((res) => {
@@ -102,7 +102,6 @@ export class UserFormComponent implements OnInit {
     submitUser() {
         if (this.formUser.valid) {
             const data = this.formUser.value;
-            console.log(data);
             if (data.password === null) {
                 delete data.password;
                 delete data.confirmPassword;

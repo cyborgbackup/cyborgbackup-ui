@@ -17,7 +17,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
 
     getFilteredOptions(value: string): Observable<string[]> {
         return of(value).pipe(
-            map(filterString => this.filter(filterString ? filterString : '')),
+            map((filterString) => this.filter(filterString ? filterString : '')),
         );
     }
 
@@ -50,6 +50,6 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
 
     private filter(value: string): string[] {
         const filterValue = value.toLowerCase();
-        return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
+        return this.options.filter((optionValue) => optionValue.toLowerCase().includes(filterValue));
     }
 }

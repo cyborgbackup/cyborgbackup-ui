@@ -141,14 +141,14 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
             seconds: [0]
         });
 
-        this.minutesForm.valueChanges.subscribe(value => this.computeMinutesCron(value));
+        this.minutesForm.valueChanges.subscribe((value) => this.computeMinutesCron(value));
 
         this.hourlyForm = this.fb.group({
             hours: [1],
             minutes: [0],
             seconds: [0]
         });
-        this.hourlyForm.valueChanges.subscribe(value => this.computeHourlyCron(value));
+        this.hourlyForm.valueChanges.subscribe((value) => this.computeHourlyCron(value));
 
         this.dailyForm = this.fb.group({
             subTab: ['everyDays'],
@@ -167,7 +167,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
                 hourType: [this.getHourType(0)]
             })
         });
-        this.dailyForm.valueChanges.subscribe(value => this.computeDailyCron(value));
+        this.dailyForm.valueChanges.subscribe((value) => this.computeDailyCron(value));
 
         this.weeklyForm = this.fb.group({
             MON: [true],
@@ -182,7 +182,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
             seconds: [defaultSeconds],
             hourType: [this.getHourType(defaultHours)]
         });
-        this.weeklyForm.valueChanges.subscribe(next => this.computeWeeklyCron(next));
+        this.weeklyForm.valueChanges.subscribe((next) => this.computeWeeklyCron(next));
 
         this.monthlyForm = this.fb.group({
             subTab: ['specificDay'],
@@ -204,7 +204,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
                 hourType: [this.getHourType(defaultHours)]
             })
         });
-        this.monthlyForm.valueChanges.subscribe(next => this.computeMonthlyCron(next));
+        this.monthlyForm.valueChanges.subscribe((next) => this.computeMonthlyCron(next));
 
         this.yearlyForm = this.fb.group({
             subTab: ['specificMonthDay'],
@@ -226,12 +226,12 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
                 hourType: [this.getHourType(defaultHours)]
             })
         });
-        this.yearlyForm.valueChanges.subscribe(next => this.computeYearlyCron(next));
+        this.yearlyForm.valueChanges.subscribe((next) => this.computeYearlyCron(next));
 
         this.advancedForm = this.fb.group({
             expression: [this.isCronFlavorQuartz ? '0 15 10 L-2 * ? *' : '15 10 2 * *']
         });
-        this.advancedForm.controls.expression.valueChanges.subscribe(next => this.computeAdvancedExpression(next));
+        this.advancedForm.controls.expression.valueChanges.subscribe((next) => this.computeAdvancedExpression(next));
     }
 
     public dayDisplay(day: string): string {
@@ -335,8 +335,8 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
             this.activeTab = 'weekly';
             this.selectedIndex = 3;
 
-            this.selectOptions.days.forEach(weekDay => this.state.weekly[weekDay] = false);
-            dayOfWeek.split(',').forEach(weekDay => this.state.weekly[weekDay] = true);
+            this.selectOptions.days.forEach((weekDay) => this.state.weekly[weekDay] = false);
+            dayOfWeek.split(',').forEach((weekDay) => this.state.weekly[weekDay] = true);
             const parsedHours = parseInt(hours, 10);
             this.state.weekly.hours = this.getAmPmHour(parsedHours);
             this.state.weekly.hourType = this.getHourType(parsedHours);
