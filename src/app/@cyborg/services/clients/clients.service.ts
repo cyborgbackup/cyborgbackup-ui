@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CrudService} from '../crud/crud.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ClientsService extends CrudService {
-  endpoint = 'clients';
+    endpoint = 'clients';
 
-  public count(): Observable<any> {
-    return new Observable((subscriber) => {
-      const params = {};
-      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-        subscriber.next(result.count);
-      }, (error) => {
-        // console.log('send query', error);
-        subscriber.error(error);
-      });
-    });
-  }
+    public count(): Observable<any> {
+        return new Observable((subscriber) => {
+            const params = {};
+            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
+                subscriber.next(result.count);
+            }, (error) => {
+                // console.log('send query', error);
+                subscriber.error(error);
+            });
+        });
+    }
 }

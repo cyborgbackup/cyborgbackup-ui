@@ -1,14 +1,14 @@
 <div class="row">
-  <nb-card>
-    <nb-card-body>
-      <ng-select [items]="items"
-                 bindLabel="name"
-                 placeholder="Select Status"
-                 appendTo="body"
-                 multiple="true"
-                 [(ngModel)]="selected"
-                 (change)="onChange($event)">
-      </ng-select>
-    </nb-card-body>
-  </nb-card>
+    <nb-card>
+        <nb-card-body>
+            <ng-select [items]="items"
+                       bindLabel="name"
+                       placeholder="Select Status"
+                       appendTo="body"
+                       multiple="true"
+                       [(ngModel)]="selected"
+                       (change)="onChange($event)">
+            </ng-select>
+        </nb-card-body>
+    </nb-card>
 </div>

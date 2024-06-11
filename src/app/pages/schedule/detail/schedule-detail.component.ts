@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'cbg-schedule-detail',
-  templateUrl: './schedule-detail.component.html',
-  styleUrls: ['./schedule-detail.component.scss']
+    selector: 'cbg-schedule-detail',
+    templateUrl: './schedule-detail.component.html',
+    styleUrls: ['./schedule-detail.component.scss']
 })
 export class ScheduleDetailComponent implements OnInit {
-  scheduleId: number;
+    scheduleId: number;
 
-  constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute) {
+    }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.scheduleId = +params.get('id');
-    });
-  }
+    ngOnInit() {
+        this.route.paramMap.subscribe(params => {
+            this.scheduleId = +params.get('id');
+        });
+    }
 }

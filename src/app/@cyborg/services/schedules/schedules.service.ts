@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CrudService} from '../crud/crud.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SchedulesService extends CrudService {
-  endpoint = 'schedules';
+    endpoint = 'schedules';
 }

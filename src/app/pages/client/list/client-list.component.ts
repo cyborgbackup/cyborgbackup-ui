@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'cbg-client',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.scss']
+    selector: 'cbg-client',
+    templateUrl: './client-list.component.html',
+    styleUrls: ['./client-list.component.scss']
 })
-export class ClientListComponent implements OnInit {
+export class ClientListComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+    constructor() {
+    }
 
 }

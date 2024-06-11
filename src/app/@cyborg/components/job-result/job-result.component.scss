@@ -7,8 +7,9 @@
 :host .label {
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 400!important;
+  font-weight: 400 !important;
 }
+
 :host .panelHeader-text {
   color: nb-theme(text-hint-color);
   -ms-flex: 1 0 auto;
@@ -38,7 +39,7 @@
 }
 
 :host .JobResults-badgeAndActionRow {
-  display:flex;
+  display: flex;
   flex: 1 0 auto;
   justify-content: flex-end;
   flex-wrap: wrap;

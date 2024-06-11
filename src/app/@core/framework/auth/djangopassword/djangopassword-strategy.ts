@@ -3,11 +3,11 @@
  * Copyright CyBorgBackup. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of as observableOf } from 'rxjs';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {Observable, of as observableOf} from 'rxjs';
+import {switchMap, map, catchError} from 'rxjs/operators';
 import {
     NbAuthIllegalTokenError,
     NbAuthResult,
@@ -167,7 +167,7 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         }
         const httpOptions = {
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})
+            headers: new HttpHeaders({'Access-Control-Allow-Origin': '*'})
         };
         const requireValidToken = this.getOption(`${module}.requireValidToken`);
         return new Observable<NbAuthResult>((subscriber) => {
@@ -229,11 +229,11 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
                     return res;
                 }),
                 map((res) => new NbAuthResult(
-                        true,
-                        res,
-                        this.getOption(`${module}.redirect.success`),
-                        [],
-                        this.getOption('messages.getter')(module, res, this.options))),
+                    true,
+                    res,
+                    this.getOption(`${module}.redirect.success`),
+                    [],
+                    this.getOption('messages.getter')(module, res, this.options))),
                 catchError((res) => this.handleResponseError(res, module)),
             );
     }
@@ -260,11 +260,11 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
                     return res;
                 }),
                 map((res) => new NbAuthResult(
-                        true,
-                        res,
-                        this.getOption(`${module}.redirect.success`),
-                        [],
-                        this.getOption('messages.getter')(module, res, this.options))),
+                    true,
+                    res,
+                    this.getOption(`${module}.redirect.success`),
+                    [],
+                    this.getOption('messages.getter')(module, res, this.options))),
                 catchError((res) => this.handleResponseError(res, module)),
             );
     }
@@ -293,11 +293,11 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
                     return res;
                 }),
                 map((res) => new NbAuthResult(
-                        true,
-                        res,
-                        this.getOption(`${module}.redirect.success`),
-                        [],
-                        this.getOption('messages.getter')(module, res, this.options))),
+                    true,
+                    res,
+                    this.getOption(`${module}.redirect.success`),
+                    [],
+                    this.getOption('messages.getter')(module, res, this.options))),
                 catchError((res) => this.handleResponseError(res, module)),
             );
     }
@@ -322,12 +322,12 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
                     return res;
                 }),
                 map((res) => new NbAuthResult(
-                        true,
-                        res,
-                        this.getOption(`${module}.redirect.success`),
-                        [],
-                        this.getOption('messages.getter')(module, res, this.options),
-                        this.createToken(this.getOption('token.getter')(module, res, this.options), requireValidToken))),
+                    true,
+                    res,
+                    this.getOption(`${module}.redirect.success`),
+                    [],
+                    this.getOption('messages.getter')(module, res, this.options),
+                    this.createToken(this.getOption('token.getter')(module, res, this.options), requireValidToken))),
                 catchError((res) => this.handleResponseError(res, module)),
             );
     }
@@ -342,7 +342,7 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         }
 
         let servers = JSON.parse(localStorage.getItem('cyborgServers'));
-        if (servers !== null && typeof servers === 'object' && servers.indexOf(server) === -1 ) {
+        if (servers !== null && typeof servers === 'object' && servers.indexOf(server) === -1) {
             servers.push(server);
         } else {
             servers = [server];

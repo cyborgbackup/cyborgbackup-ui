@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'cbg-schedule-list',
-  templateUrl: './schedule-list.component.html',
-  styleUrls: ['./schedule-list.component.scss']
+    selector: 'cbg-schedule-list',
+    templateUrl: './schedule-list.component.html',
+    styleUrls: ['./schedule-list.component.scss']
 })
-export class ScheduleListComponent implements OnInit {
+export class ScheduleListComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+    constructor() {
+    }
 
 }

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { TimePickerComponent } from './cron-time-picker.component';
-import { CronGenComponent } from './cron-editor.component';
+import {TimePickerComponent} from './cron-time-picker.component';
+import {CronGenComponent} from './cron-editor.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
@@ -13,7 +13,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {NbTabsetModule} from "@nebular/theme";
 import {NgSelectModule} from "@ng-select/ng-select";
-
 
 
 @NgModule({
@@ -33,9 +32,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
     exports: [TimePickerComponent, CronGenComponent],
     declarations: [TimePickerComponent, CronGenComponent],
     providers: [
-    //{provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}},
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
-  ]
+        //{provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}},
+        {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+    ]
 })
 export class CronEditorModule {
 }

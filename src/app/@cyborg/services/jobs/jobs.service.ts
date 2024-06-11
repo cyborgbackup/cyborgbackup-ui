@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CrudService} from '../crud/crud.service';
 import {Observable} from 'rxjs';
 
@@ -37,61 +37,61 @@ import {Observable} from 'rxjs';
 }*/
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class JobsService extends CrudService {
-  endpoint = 'jobs';
+    endpoint = 'jobs';
 
-  public getEvents(jobId: number, page: number): Observable<any> {
-    return new Observable((subscriber) => {
-      this.http.get('/api/v1/job_events/', {
-        responseType: 'json',
-        params: {
-          job: String(jobId),
-          order: 'counter',
-          page: String(page)
-        }
-      }).subscribe((result: any) => {
-        subscriber.next(result);
-      }, (error) => {
-        subscriber.error(error);
-      });
-    });
-  }
+    public getEvents(jobId: number, page: number): Observable<any> {
+        return new Observable((subscriber) => {
+            this.http.get('/api/v1/job_events/', {
+                responseType: 'json',
+                params: {
+                    job: String(jobId),
+                    order: 'counter',
+                    page: String(page)
+                }
+            }).subscribe((result: any) => {
+                subscriber.next(result);
+            }, (error) => {
+                subscriber.error(error);
+            });
+        });
+    }
 
-  public cancelJob(jobId: number): Observable<any> {
-    return new Observable((subscriber) => {
-      this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe((resultGet: any) => {
-        if (resultGet.can_cancel) {
-          this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe(() => {
-            subscriber.next(true);
-          });
-        } else {
-          subscriber.error('Cannot cancel this job');
-        }
-      }, (error) => {
-        subscriber.error(error);
-      });
-    });
-  }
+    public cancelJob(jobId: number): Observable<any> {
+        return new Observable((subscriber) => {
+            this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe((resultGet: any) => {
+                if (resultGet.can_cancel) {
+                    this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe(() => {
+                        subscriber.next(true);
+                    });
+                } else {
+                    subscriber.error('Cannot cancel this job');
+                }
+            }, (error) => {
+                subscriber.error(error);
+            });
+        });
+    }
 
-  public getReport(jobId: number): Observable<any> {
-    return new Observable((subscriber) => {
-      this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe((result: any) => {
-        subscriber.next(result);
-      }, (error) => {
-        subscriber.error(error);
-      });
-    });
-  }
+    public getReport(jobId: number): Observable<any> {
+        return new Observable((subscriber) => {
+            this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe((result: any) => {
+                subscriber.next(result);
+            }, (error) => {
+                subscriber.error(error);
+            });
+        });
+    }
 
-  public count(params = {}): Observable<any> {
-    return new Observable((subscriber) => {
-      this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-        subscriber.next(result.count);
-      }, (error) => {
-        subscriber.error(error);
-      });
-    });
-  }
+    public count(params = {}): Observable<any> {
+        return new Observable((subscriber) => {
+            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
+                subscriber.next(result.count);
+            }, (error) => {
+                subscriber.error(error);
+            });
+        });
+    }
 }

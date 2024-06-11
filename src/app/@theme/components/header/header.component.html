@@ -1,20 +1,20 @@
 <div class="header-container">
-  <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-      <nb-icon icon="menu-2-outline"></nb-icon>
-    </a>
-    <a class="logo" href="#" (click)="navigateHome()"><span>CyBorg</span>Backup</a>
-  </div>
+    <div class="logo-container">
+        <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+            <nb-icon icon="menu-2-outline"></nb-icon>
+        </a>
+        <a class="logo" href="#" (click)="navigateHome()"><span>CyBorg</span>Backup</a>
+    </div>
 </div>
 
 <div class="header-container">
-  <nb-actions size="small">
-    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
-      <nb-user [nbContextMenu]="userMenu"
-               [onlyPicture]="userPictureOnly"
-               [name]="displayName"
-               picture="https://www.gravatar.com/avatar/{{ user.email | cbgMd5 }}">
-      </nb-user>
-    </nb-action>
-  </nb-actions>
+    <nb-actions size="small">
+        <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+            <nb-user [nbContextMenu]="userMenu"
+                     [onlyPicture]="userPictureOnly"
+                     [name]="displayName"
+                     picture="https://www.gravatar.com/avatar/{{ user.email | cbgMd5 }}">
+            </nb-user>
+        </nb-action>
+    </nb-actions>
 </div>

@@ -1,157 +1,165 @@
 <form *ngIf="formProfile" [formGroup]="formProfile" (ngSubmit)="submit()">
-  <nb-card>
-    <nb-card-header>General Information</nb-card-header>
-    <nb-card-body>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <label for="inputFirstName" class="label col-sm-3 col-form-label">First Name</label>
-            <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputFirstName" formControlName="first_name" placeholder="First Name"/>
+    <nb-card>
+        <nb-card-header>General Information</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <label for="inputFirstName" class="label col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" nbInput fullWidth id="inputFirstName" formControlName="first_name"
+                                   placeholder="First Name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <label for="inputLastName" class="label col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" nbInput fullWidth id="inputLastName" formControlName="last_name"
+                                   placeholder="Last Name"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <label for="inputLastName" class="label col-sm-3 col-form-label">Last Name</label>
-            <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputLastName" formControlName="last_name" placeholder="Last Name"/>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-header>Contact Information</nb-card-header>
+        <nb-card-body>
+            <div class="row form-group">
+                <label for="inputEmail" class="label col-sm-1 col-form-label">Email</label>
+                <div class="col-sm-11">
+                    <input type="email" nbInput fullWidth id="inputEmail" formControlName="email" placeholder="Email"
+                           email="true"/>
+                    <ng-container
+                            *ngIf="formProfile.controls['email'].touched && formProfile.controls['email'].invalid">
+                        <p class="caption status-danger" *ngIf="formProfile.controls['email'].errors?.required">
+                            Email is required!
+                        </p>
+                        <p class="caption status-danger" *ngIf="formProfile.controls['email'].errors?.pattern">
+                            Email is not valid
+                        </p>
+                    </ng-container>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-header>Contact Information</nb-card-header>
-    <nb-card-body>
-      <div class="row form-group">
-        <label for="inputEmail" class="label col-sm-1 col-form-label">Email</label>
-        <div class="col-sm-11">
-          <input type="email" nbInput fullWidth id="inputEmail" formControlName="email" placeholder="Email" email="true"/>
-          <ng-container *ngIf="formProfile.controls['email'].touched && formProfile.controls['email'].invalid">
-            <p class="caption status-danger" *ngIf="formProfile.controls['email'].errors?.required">
-              Email is required!
-            </p>
-            <p class="caption status-danger" *ngIf="formProfile.controls['email'].errors?.pattern">
-              Email is not valid
-            </p>
-          </ng-container>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-header>Change Password</nb-card-header>
-    <nb-card-body>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <label for="inputPassword" class="label col-sm-3 col-form-label">Password</label>
-            <div class="col-sm-9">
-              <input
-                      type="password"
-                      nbInput
-                      *ngIf="formProfile.controls['password']"
-                      [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
-                      fullWidth
-                      id="inputPassword"
-                      formControlName="password"
-                      placeholder="Password"
-              />
-              <ng-container *ngIf="formProfile.controls['password'].touched">
-                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
-                  Password does not match the confirm password.
-                </p>
-              </ng-container>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-header>Change Password</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <label for="inputPassword" class="label col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input
+                                    type="password"
+                                    nbInput
+                                    *ngIf="formProfile.controls['password']"
+                                    [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
+                                    fullWidth
+                                    id="inputPassword"
+                                    formControlName="password"
+                                    placeholder="Password"
+                            />
+                            <ng-container *ngIf="formProfile.controls['password'].touched">
+                                <p class="caption status-danger"
+                                   *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
+                                    Password does not match the confirm password.
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <label for="inputPassConfirm" class="label col-sm-3 col-form-label">Password
+                            Confirmation</label>
+                        <div class="col-sm-9">
+                            <input
+                                    type="password"
+                                    *ngIf="formProfile.controls['password']"
+                                    [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
+                                    nbInput
+                                    fullWidth
+                                    id="inputPassConfirm"
+                                    formControlName="password_confirm"
+                                    placeholder="Password Confirmation"
+                            />
+                            <ng-container *ngIf="formProfile.controls['password_confirm'].touched">
+                                <p class="caption status-danger"
+                                   *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
+                                    Password does not match the confirm password.
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <label for="inputPassConfirm" class="label col-sm-3 col-form-label">Password Confirmation</label>
-            <div class="col-sm-9">
-              <input
-                      type="password"
-                      *ngIf="formProfile.controls['password']"
-                      [status]="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value ? 'danger' : 'basic'"
-                      nbInput
-                      fullWidth
-                      id="inputPassConfirm"
-                      formControlName="password_confirm"
-                      placeholder="Password Confirmation"
-              />
-              <ng-container *ngIf="formProfile.controls['password_confirm'].touched">
-                <p class="caption status-danger" *ngIf="formProfile.controls['password'].value !== formProfile.controls['password_confirm'].value">
-                  Password does not match the confirm password.
-                </p>
-              </ng-container>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-header>Email Notification</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="offset-sm-6 col-sm-6">
+                            <nb-toggle formControlName="notify_backup_failed">When backup failed</nb-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-sm-9">
+                            <nb-toggle formControlName="notify_backup_daily">Backup Daily Reports</nb-toggle>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-header>Email Notification</nb-card-header>
-    <nb-card-body>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="offset-sm-6 col-sm-6">
-              <nb-toggle formControlName="notify_backup_failed">When backup failed</nb-toggle>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="offset-sm-6 col-sm-6">
+                            <nb-toggle formControlName="notify_backup_success">When backup success</nb-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-sm-9">
+                            <nb-toggle formControlName="notify_backup_weekly">Backup Weekly Reports</nb-toggle>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="col-sm-9">
-              <nb-toggle formControlName="notify_backup_daily">Backup Daily Reports</nb-toggle>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="offset-sm-6 col-sm-6">
+                            <nb-toggle formControlName="notify_backup_summary">Backup job summary before start
+                            </nb-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-sm-9">
+                            <nb-toggle formControlName="notify_backup_monthly">Backup Monthly Reports</nb-toggle>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="offset-sm-6 col-sm-6">
-              <nb-toggle formControlName="notify_backup_success">When backup success</nb-toggle>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-body>
+            <div class="form-group row">
+                <div class="offset-sm-5 col-sm-5">
+                    <button type="submit" nbButton status="warning">Save</button>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="col-sm-9">
-              <nb-toggle formControlName="notify_backup_weekly">Backup Weekly Reports</nb-toggle>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="offset-sm-6 col-sm-6">
-              <nb-toggle formControlName="notify_backup_summary">Backup job summary before start</nb-toggle>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row form-group">
-            <div class="col-sm-9">
-              <nb-toggle formControlName="notify_backup_monthly">Backup Monthly Reports</nb-toggle>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-body>
-      <div class="form-group row">
-        <div class="offset-sm-5 col-sm-5">
-          <button type="submit" nbButton status="warning">Save</button>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
+        </nb-card-body>
+    </nb-card>
 </form>

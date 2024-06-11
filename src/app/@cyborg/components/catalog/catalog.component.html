@@ -1,131 +1,135 @@
 <div class="row">
-  <div class="col-8">
-    <nb-card>
-      <nb-card-header>Archives Catalog</nb-card-header>
-      <nb-card-body>
-        <table [nbTreeGrid]="dataSource" role="presentation">
+    <div class="col-8">
+        <nb-card>
+            <nb-card-header>Archives Catalog</nb-card-header>
+            <nb-card-body>
+                <table [nbTreeGrid]="dataSource" role="presentation">
 
-          <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns;" [clickToToggle]="false"></tr>
+                    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns;" [clickToToggle]="false"></tr>
 
-          <ng-container [nbTreeGridColumnDef]="customColumn">
-            <td nbTreeGridCell *nbTreeGridCellDef="let row" (click)="getInfos(row)">
-              <cbg-grid-row-toggle [type]="row.data.type" (onExpand)="getDataExpanded(row)" [expanded]="row.expanded"></cbg-grid-row-toggle>
-              <button class="btn-context" [cbgContextMenu]="items"
-                    cbgContextMenuTrigger="noop"
-                    (contextmenu)="open(row, $event)">
-                {{row.data[customColumn]}}
-              </button>
-            </td>
-          </ng-container>
+                    <ng-container [nbTreeGridColumnDef]="customColumn">
+                        <td nbTreeGridCell *nbTreeGridCellDef="let row" (click)="getInfos(row)">
+                            <cbg-grid-row-toggle [type]="row.data.type" (onExpand)="getDataExpanded(row)"
+                                                 [expanded]="row.expanded"></cbg-grid-row-toggle>
+                            <button class="btn-context" [cbgContextMenu]="items"
+                                    cbgContextMenuTrigger="noop"
+                                    (contextmenu)="open(row, $event)">
+                                {{ row.data[customColumn] }}
+                            </button>
+                        </td>
+                    </ng-container>
 
-        </table>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="offset-1 col-3">
-    <nb-card>
-      <nb-card-header>Archive Detail</nb-card-header>
-      <nb-card-body>
-        <div class="row">
-          Name : {{ archiveDetail.archive_name }}
-        </div>
-        <div class="row">
-          Client : {{ archiveDetail.hostname }}
-        </div>
-        <div class="row">
-          Type : {{ archiveDetail.policy_type }}
-        </div>
-        <div class="row">
-          Original size : {{ archiveDetail.original_size | humanSize }}
-        </div>
-        <div class="row">
-          Compressed size : {{ archiveDetail.compressed_size | humanSize }}
-        </div>
-        <div class="row">
-          Deduplicated size : {{ archiveDetail.deduplicated_size | humanSize }}
-        </div>
-        <div class="row">
-          Started : {{ archiveDetail.started | longDate }}
-        </div>
-        <div class="row">
-          Duration : {{ archiveDetail.elapsed * 1000 | date:'mm:ss'  }}
-        </div>
-      </nb-card-body>
-    </nb-card>
-    <nb-card class="sticky">
-      <nb-card-header>Item Detail</nb-card-header>
-      <nb-card-body>
-        <div class="row">
-          Filename : {{itemDetail.name}}
-        </div>
-        <div class="row">
-          File mode : {{itemDetail.mode}}
-        </div>
-        <div class="row">
-          Healthy : {{itemDetail.healthy}}
-        </div>
-        <div class="row">
-          Owner : {{itemDetail.owner}}
-        </div>
-        <div class="row">
-          Group : {{itemDetail.group}}
-        </div>
-        <div class="row">
-          Size : {{itemDetail.size | humanSize }}
-        </div>
-        <div class="row">
-          Mtime : {{itemDetail.mtime | longDate }}
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
+                </table>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="offset-1 col-3">
+        <nb-card>
+            <nb-card-header>Archive Detail</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    Name : {{ archiveDetail.archive_name }}
+                </div>
+                <div class="row">
+                    Client : {{ archiveDetail.hostname }}
+                </div>
+                <div class="row">
+                    Type : {{ archiveDetail.policy_type }}
+                </div>
+                <div class="row">
+                    Original size : {{ archiveDetail.original_size | humanSize }}
+                </div>
+                <div class="row">
+                    Compressed size : {{ archiveDetail.compressed_size | humanSize }}
+                </div>
+                <div class="row">
+                    Deduplicated size : {{ archiveDetail.deduplicated_size | humanSize }}
+                </div>
+                <div class="row">
+                    Started : {{ archiveDetail.started | longDate }}
+                </div>
+                <div class="row">
+                    Duration : {{ archiveDetail.elapsed * 1000 | date:'mm:ss' }}
+                </div>
+            </nb-card-body>
+        </nb-card>
+        <nb-card class="sticky">
+            <nb-card-header>Item Detail</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    Filename : {{ itemDetail.name }}
+                </div>
+                <div class="row">
+                    File mode : {{ itemDetail.mode }}
+                </div>
+                <div class="row">
+                    Healthy : {{ itemDetail.healthy }}
+                </div>
+                <div class="row">
+                    Owner : {{ itemDetail.owner }}
+                </div>
+                <div class="row">
+                    Group : {{ itemDetail.group }}
+                </div>
+                <div class="row">
+                    Size : {{ itemDetail.size | humanSize }}
+                </div>
+                <div class="row">
+                    Mtime : {{ itemDetail.mtime | longDate }}
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
 </div>
 
 <ng-template #restoreDialog let-data let-ref="dialogRef">
-  <nb-card>
-    <nb-card-header>Restore Job</nb-card-header>
-    <nb-card-body>
-      <form [formGroup]="formRestore" submit="launchRestore()" >
-        <div class="row">
-          <div class="col-sm-12" *ngIf="data.tag.type !== 'date'">
-            Restore of <b>"{{ data.tag.name }}"</b> from archive <b>"{{ data.tag.archive_name }}"</b>
-          </div>
-          <div class="col-sm-12" *ngIf="data.tag.type === 'date'">
-            Restore archive <b>"{{ data.tag.archive_name }}"</b>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputDestination" class="label col-sm-3 form-control-label">Select Destination Host</label>
-          <div class="col-sm-9">
-            <ng-select formControlName="destination" id="inputDestination" placeholder="Destination...">
-              <ng-option value="repository">Repository</ng-option>
-              <ng-option value="client">Client</ng-option>
-              <ng-option value="other">Other</ng-option>
-            </ng-select>
-          </div>
-        </div>
-        <div class="form-group row" *ngIf="formRestore.controls['destination'].value === 'other'" >
-          <label for="inputHost" class="label col-sm-3 form-control-label">SSH Host URL</label>
-          <div class="col-sm-9">
-            <input type="text" nbInput fullWidth formControlName="host" id="inputHost" placeholder="Enter SSH Url"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputPath" class="label col-sm-3 form-control-label">Destination folder</label>
-          <div class="col-sm-9">
-            <input type="text" nbInput fullWidth formControlName="dest_folder" id="inputPath" placeholder="Enter path folder of item"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="offset-sm-3 col-sm-9">
-            <nb-toggle formControlName="dry_run">Dry-run</nb-toggle>
-          </div>
-        </div>
-      </form>
-    </nb-card-body>
-    <nb-card-footer>
-      <button nbButton (click)="ref.close()">Cancel</button>
-      <button nbButton status="danger" (click)="ref.close(true)">Restore</button>
-    </nb-card-footer>
-  </nb-card>
+    <nb-card>
+        <nb-card-header>Restore Job</nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="formRestore" submit="launchRestore()">
+                <div class="row">
+                    <div class="col-sm-12" *ngIf="data.tag.type !== 'date'">
+                        Restore of <b>"{{ data.tag.name }}"</b> from archive <b>"{{ data.tag.archive_name }}"</b>
+                    </div>
+                    <div class="col-sm-12" *ngIf="data.tag.type === 'date'">
+                        Restore archive <b>"{{ data.tag.archive_name }}"</b>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputDestination" class="label col-sm-3 form-control-label">Select Destination
+                        Host</label>
+                    <div class="col-sm-9">
+                        <ng-select formControlName="destination" id="inputDestination" placeholder="Destination...">
+                            <ng-option value="repository">Repository</ng-option>
+                            <ng-option value="client">Client</ng-option>
+                            <ng-option value="other">Other</ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="form-group row" *ngIf="formRestore.controls['destination'].value === 'other'">
+                    <label for="inputHost" class="label col-sm-3 form-control-label">SSH Host URL</label>
+                    <div class="col-sm-9">
+                        <input type="text" nbInput fullWidth formControlName="host" id="inputHost"
+                               placeholder="Enter SSH Url"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPath" class="label col-sm-3 form-control-label">Destination folder</label>
+                    <div class="col-sm-9">
+                        <input type="text" nbInput fullWidth formControlName="dest_folder" id="inputPath"
+                               placeholder="Enter path folder of item"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-3 col-sm-9">
+                        <nb-toggle formControlName="dry_run">Dry-run</nb-toggle>
+                    </div>
+                </div>
+            </form>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton (click)="ref.close()">Cancel</button>
+            <button nbButton status="danger" (click)="ref.close(true)">Restore</button>
+        </nb-card-footer>
+    </nb-card>
 </ng-template>

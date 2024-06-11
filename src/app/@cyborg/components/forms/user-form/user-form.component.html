@@ -1,102 +1,110 @@
 <div class="row">
     <div class="col-md-6">
-      <nb-card>
-        <nb-card-header>User Information</nb-card-header>
-        <nb-card-body>
-          <form [formGroup]="formUser" (ngSubmit)="submitUser()">
-            <div class="form-group row">
-              <label for="inputEmail" class="label col-sm-3 form-control-label">Email</label>
-              <div class="col-sm-9">
-                <input type="email" nbInput formControlName="email" [status]="formUser.controls.email.errors? 'danger':''" fullWidth id="inputEmail" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputFirstName" class="label col-sm-3 form-control-label">First Name</label>
-              <div class="col-sm-9">
-                <input type="text" nbInput fullWidth [status]="formUser.controls.first_name.errors? 'danger':''" formControlName="first_name" id="inputFirstName" placeholder="First Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputLastName" class="label col-sm-3 form-control-label">Last Name</label>
-              <div class="col-sm-9">
-                <input type="text" nbInput fullWidth [status]="formUser.controls.last_name.errors? 'danger':''" formControlName="last_name" id="inputLastName" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword" class="label col-sm-3 form-control-label">Password</label>
-              <div class="col-sm-9">
-                <input type="password" nbInput fullWidth id="inputPassword" formControlName="password" placeholder="Password">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassConf" class="label col-sm-3 form-control-label"></label>
-              <div class="col-sm-9">
-                <input type="password" nbInput fullWidth id="inputPassConf" formControlName="confirmPassword" placeholder="Password Confirmation">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="offset-sm-3 col-sm-9">
-                <nb-toggle formControlName="is_superuser">Super Admin</nb-toggle>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="offset-sm-3 col-sm-9">
-                <button type="submit" nbButton status="warning">Save</button>
-              </div>
-            </div>
-          </form>
-        </nb-card-body>
-      </nb-card>
+        <nb-card>
+            <nb-card-header>User Information</nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="formUser" (ngSubmit)="submitUser()">
+                    <div class="form-group row">
+                        <label for="inputEmail" class="label col-sm-3 form-control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" nbInput formControlName="email"
+                                   [status]="formUser.controls.email.errors? 'danger':''" fullWidth id="inputEmail"
+                                   placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputFirstName" class="label col-sm-3 form-control-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" nbInput fullWidth
+                                   [status]="formUser.controls.first_name.errors? 'danger':''"
+                                   formControlName="first_name" id="inputFirstName" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputLastName" class="label col-sm-3 form-control-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" nbInput fullWidth
+                                   [status]="formUser.controls.last_name.errors? 'danger':''"
+                                   formControlName="last_name" id="inputLastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="label col-sm-3 form-control-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" nbInput fullWidth id="inputPassword" formControlName="password"
+                                   placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassConf" class="label col-sm-3 form-control-label"></label>
+                        <div class="col-sm-9">
+                            <input type="password" nbInput fullWidth id="inputPassConf"
+                                   formControlName="confirmPassword" placeholder="Password Confirmation">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <nb-toggle formControlName="is_superuser">Super Admin</nb-toggle>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" nbButton status="warning">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
     </div>
 
     <div class="col-md-6">
-      <nb-card>
-        <nb-card-header>Notification</nb-card-header>
-        <nb-card-body>
-          <form [formGroup]="formNotif" (ngSubmit)="submitNotif()">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_daily">Notify Backup Daily</nb-toggle>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_weekly">Notify Backup Weekly</nb-toggle>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_monthly">Notify Backup Monthly</nb-toggle>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_success">Notify Backup Success</nb-toggle>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_failed">Notify Backup Failed</nb-toggle>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <nb-toggle formControlName="notify_backup_summary">Notify Backup Summary</nb-toggle>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="offset-sm-3 col-sm-9">
-                <button type="submit" nbButton status="warning">Save</button>
-              </div>
-            </div>
-          </form>
-        </nb-card-body>
-      </nb-card>
+        <nb-card>
+            <nb-card-header>Notification</nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="formNotif" (ngSubmit)="submitNotif()">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_daily">Notify Backup Daily</nb-toggle>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_weekly">Notify Backup Weekly</nb-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_monthly">Notify Backup Monthly</nb-toggle>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_success">Notify Backup Success</nb-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_failed">Notify Backup Failed</nb-toggle>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <nb-toggle formControlName="notify_backup_summary">Notify Backup Summary</nb-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" nbButton status="warning">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
     </div>
 </div>

@@ -19,6 +19,7 @@
       &.mat-radio-checked .mat-radio-outer-circle {
         border-color: $primary;
       }
+
       .mat-radio-inner-circle,
       .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
       &.mat-radio-checked .mat-radio-persistent-ripple,
@@ -31,6 +32,7 @@
       &.mat-radio-checked .mat-radio-outer-circle {
         border-color: $primary;
       }
+
       .mat-radio-inner-circle,
       .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
       &.mat-radio-checked .mat-radio-persistent-ripple,
@@ -43,9 +45,11 @@
     &.mat-primary .mat-checkbox-background {
       background-color: $primary;
     }
+
     &.mat-accent .mat-checkbox-background {
       background-color: $primary;
     }
+
     &.mat-warn .mat-checkbox-background {
       background-color: $primary;
     }

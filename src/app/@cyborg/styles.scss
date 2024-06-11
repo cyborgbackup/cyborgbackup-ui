@@ -9,23 +9,28 @@
 .job-error {
   color: #d9534f;
 }
+
 .icon-failures-true a:hover {
   color: #d9534f;
 }
+
 .job-failures-true {
   padding-top: 5px;
   color: #d9534f;
 }
+
 .job-event-status,
 .license-status {
   padding-top: 5px;
 }
+
 .job-new,
 .license-valid,
 .job-success,
 .job-successful {
   color: #5cb85c;
 }
+
 .icon-host-all,
 .icon-host-failed,
 .icon-job-active,
@@ -41,6 +46,7 @@
     // content: '\F111';
   }
 }
+
 .icon-job-stopped,
 .icon-job-error,
 .icon-job-canceled,
@@ -51,6 +57,7 @@
     // content: '\F06A';
   }
 }
+
 .icon-job-pending,
 .icon-job-waiting,
 .icon-job-new,
@@ -60,6 +67,7 @@
     // content: '\F10C';
   }
 }
+
 .icon-job-active,
 .icon-job-running,
 .icon-job-success,
@@ -68,18 +76,22 @@
 .icon-job-OK {
   color: #5cb85c;
 }
+
 .icon-job-skipped {
   color: #2dbaba;
 }
+
 .icon-job-running {
   -webkit-animation: pulsate 1.5s linear infinite alternate;
   -moz-animation: pulsate 1.5s linear infinite alternate;
   animation: pulsate 1.5s linear infinite alternate;
 }
+
 .icon-job-changed,
 .job-changed {
   color: #ff9900;
 }
+
 .icon-host-failed,
 .icon-job-stopped,
 .icon-job-error,
@@ -88,12 +100,15 @@
 .icon-job-canceled {
   color: #d9534f;
 }
+
 .icon-host-all {
   color: #337ab7;
 }
+
 .icon-job-unreachable {
   color: #ff0000;
 }
+
 .icon-job-none,
 .icon-job-pending,
 .icon-job-waiting,
@@ -102,24 +117,30 @@
   color: #a9a9a9;
   opacity: 0.45;
 }
+
 .icon-schedule-enabled-true::before {
   // content: '\F04D';
 }
+
 .icon-schedule-enabled-false::before {
   // content: '\F04B';
 }
+
 .icon-socket-ok::before {
   // content: '\F111';
   color: #5cb85c;
 }
+
 .icon-socket-error::before {
   // content: '\F111';
   color: #d9534f;
 }
+
 .icon-socket-connecting::before {
   // content: '\F042';
   color: #ff9900;
 }
+
 div.row {
   margin: 10px;
 }
@@ -134,6 +155,7 @@ div.row {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes pulsate {
   0% {
     -webkit-transform: scale(0.3);
@@ -144,15 +166,16 @@ div.row {
     opacity: 1;
   }
 }
+
 @keyframes pulsate {
   0% {
     -webkit-transform: scale(0.3);
-    transform:scale(0.3);
+    transform: scale(0.3);
     opacity: 0.2;
   }
   100% {
     -webkit-transform: scale(1.1);
-    transform:scale(1.1);
+    transform: scale(1.1);
     opacity: 1;
   }
 }

@@ -15,8 +15,8 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {filter, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import {
     NbAdjustableConnectedPositionStrategy,
     NbAdjustment, NbContextMenuComponent,
@@ -199,7 +199,7 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
 
     rebuild() {
         this.dynamicOverlay = this.configureDynamicOverlay()
-                .rebuild();
+            .rebuild();
     }
 
     show() {
@@ -244,7 +244,7 @@ export class ContextMenuDirective implements NbDynamicOverlayController, OnChang
     private subscribeOnItemClick() {
         this.menuService.onItemClick()
             .pipe(
-                filter(({ tag }) => tag === this.tag),
+                filter(({tag}) => tag === this.tag),
                 takeUntil(this.destroy$),
             )
             .subscribe(() => this.hide());

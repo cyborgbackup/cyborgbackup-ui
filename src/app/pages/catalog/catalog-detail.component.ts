@@ -1,15 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+
 @Component({
-  selector: 'cbg-catalog-detail',
-  templateUrl: './catalog-detail.component.html',
-  styleUrls: ['./catalog-detail.component.scss']
+    selector: 'cbg-catalog-detail',
+    templateUrl: './catalog-detail.component.html',
+    styleUrls: ['./catalog-detail.component.scss']
 })
-export class CatalogDetailComponent implements OnInit {
+export class CatalogDetailComponent {
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+    constructor() {
+    }
 
 }

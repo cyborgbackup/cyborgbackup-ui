@@ -13,7 +13,7 @@
         <div class="row listVM">
             <mat-list *ngIf="!loading && error === null">
                 <ng-container *ngIf="dbs !== undefined">
-                    <div mat-subheader >
+                    <div mat-subheader>
                         <span class="check-header">
                             <input type="checkbox" name="checkAll" (change)="checkAll($event)"/>
                         </span>
@@ -21,20 +21,20 @@
                             All
                         </a>
                     </div>
-                    <mat-list-item *ngFor="let db of dbs" >
+                    <mat-list-item *ngFor="let db of dbs">
                         <div class="item row" (click)="select(db)">
                             <div class="col-sm-1">
                                 <input type="checkbox" name="check-{{db.name}}" [(ngModel)]="checked[db.name]"/>
                             </div>
                             <div class="col-sm-10">
-                                <div mat-line>{{db.name}}</div>
+                                <div mat-line>{{ db.name }}</div>
                             </div>
                         </div>
                     </mat-list-item>
                 </ng-container>
             </mat-list>
             <span *ngIf="!loading && error !== null">
-                {{error}}
+                {{ error }}
             </span>
         </div>
     </nb-card-body>
@@ -48,23 +48,26 @@
     <nb-card>
         <nb-card-header>DB Credential</nb-card-header>
         <nb-card-body>
-            <form [formGroup]="formCredential" submit="editCredential()" >
+            <form [formGroup]="formCredential" submit="editCredential()">
                 <div class="form-group row">
                     <label for="inputUser" class="label col-sm-3 form-control-label">User</label>
                     <div class="col-sm-9">
-                        <input type="text" nbInput fullWidth formControlName="user" id="inputUser" placeholder="Enter DB User"/>
+                        <input type="text" nbInput fullWidth formControlName="user" id="inputUser"
+                               placeholder="Enter DB User"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword" class="label col-sm-3 form-control-label">Password</label>
                     <div class="col-sm-9">
-                        <input type="password" nbInput fullWidth formControlName="password" id="inputPassword" placeholder="Enter DB password"/>
+                        <input type="password" nbInput fullWidth formControlName="password" id="inputPassword"
+                               placeholder="Enter DB password"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="label col-sm-3 form-control-label">Port</label>
                     <div class="col-sm-9">
-                        <input type="number" nbInput fullWidth formControlName="port" id="inputPort" placeholder="Enter DB Port"/>
+                        <input type="number" nbInput fullWidth formControlName="port" id="inputPort"
+                               placeholder="Enter DB Port"/>
                     </div>
                 </div>
             </form>

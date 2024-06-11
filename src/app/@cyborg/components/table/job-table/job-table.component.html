@@ -1,26 +1,30 @@
 <cbg-job-state-selector #jobsStateSelector (change)="onChange()"></cbg-job-state-selector>
 
 <nb-card>
-  <nb-card-body>
-    <ngx-datatable
-        [rows]="jobs"
-        columnMode="flex"
-        [columns]="columns"
-        [externalPaging]="true"
-        [footerHeight]="50"
-        [count]="page.totalElements"
-        [offset]="page.pageNumber"
-        [limit]="page.size"
-        (page)="setPage($event)">
-    </ngx-datatable>
-  </nb-card-body>
+    <nb-card-body>
+        <ngx-datatable
+                [rows]="jobs"
+                columnMode="flex"
+                [columns]="columns"
+                [externalPaging]="true"
+                [footerHeight]="50"
+                [count]="page.totalElements"
+                [offset]="page.pageNumber"
+                [limit]="page.size"
+                (page)="setPage($event)">
+        </ngx-datatable>
+    </nb-card-body>
 </nb-card>
 
 <ng-template #jobStatus let-value="value">
-  <fa-icon icon="circle" class="icon-job-{{value}}"></fa-icon>
+    <fa-icon icon="circle" class="icon-job-{{value}}"></fa-icon>
 </ng-template>
 
 <ng-template #actionButtons let-row="row" let-value="value">
-  <button nbButton status="info" size="tiny" (click)='viewJobResults(row)'><fa-icon icon="search"></fa-icon></button>
-  <button nbButton status="danger" size="tiny" (click)='viewJobResults(row)'><fa-icon icon="trash-alt"></fa-icon></button>
+    <button nbButton status="info" size="tiny" (click)='viewJobResults(row)'>
+        <fa-icon icon="search"></fa-icon>
+    </button>
+    <button nbButton status="danger" size="tiny" (click)='viewJobResults(row)'>
+        <fa-icon icon="trash-alt"></fa-icon>
+    </button>
 </ng-template>

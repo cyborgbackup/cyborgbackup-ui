@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SchedulesService } from './schedules.service';
+import {SchedulesService} from './schedules.service';
 
 describe('SchedulesService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+    beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: SchedulesService = TestBed.get(SchedulesService);
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        const service: SchedulesService = TestBed.get(SchedulesService);
+        expect(service).toBeTruthy();
+    });
 });

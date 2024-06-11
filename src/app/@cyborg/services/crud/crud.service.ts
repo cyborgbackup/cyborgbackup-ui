@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CrudService {
     protected endpoint: string;
 
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient) {
+    }
 
     public options(): Observable<any> {
         return new Observable((subscriber) => {
@@ -21,16 +22,16 @@ export class CrudService {
         });
     }
 
-    public fetch(size= 100, page= 1, params = {}): Observable<any> {
+    public fetch(size = 100, page = 1, params = {}): Observable<any> {
         return new Observable((subscriber) => {
             params['page_size'] = size;
             params['page'] = page;
             this.http.get('/api/v1/' + this.endpoint + '/', {params}).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-              subscriber.error(error);
+                subscriber.error(error);
             });
-          });
+        });
     }
 
     public get(id: number): Observable<any> {

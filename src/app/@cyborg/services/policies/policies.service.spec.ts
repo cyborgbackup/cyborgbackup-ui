@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PoliciesService } from './policies.service';
+import {PoliciesService} from './policies.service';
 
 describe('JobsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+    beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: PoliciesService = TestBed.get(PoliciesService);
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        const service: PoliciesService = TestBed.get(PoliciesService);
+        expect(service).toBeTruthy();
+    });
 });

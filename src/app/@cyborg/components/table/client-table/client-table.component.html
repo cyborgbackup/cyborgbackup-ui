@@ -1,44 +1,57 @@
 <div class="button-toolbar">
-  <button nbButton status="success" (click)="goToAddClient()"><fa-icon icon="plus"></fa-icon>&nbsp;Add Client</button>
+    <button nbButton status="success" (click)="goToAddClient()">
+        <fa-icon icon="plus"></fa-icon>&nbsp;Add Client
+    </button>
 </div>
 <nb-card>
-  <nb-card-body>
-    <ngx-datatable
-            [rows]="clients"
-            [columns]="columns"
-            columnMode="flex"
-            [externalPaging]="true"
-            [footerHeight]="50"
-            [count]="page.totalElements"
-            [offset]="page.pageNumber"
-            [limit]="page.size"
-            (page)="setPage($event)"
-    ></ngx-datatable>
-  </nb-card-body>
+    <nb-card-body>
+        <ngx-datatable
+                [rows]="clients"
+                [columns]="columns"
+                columnMode="flex"
+                [externalPaging]="true"
+                [footerHeight]="50"
+                [count]="page.totalElements"
+                [offset]="page.pageNumber"
+                [limit]="page.size"
+                (page)="setPage($event)"
+        ></ngx-datatable>
+    </nb-card-body>
 </nb-card>
 
 <ng-template #versionField let-row="row" let-value="value">
-  {{ row.version }}
-  <button nbButton *ngIf="row.can_be_updated && !row.mark_as_to_update" size="tiny" status="success" (click)='markAsToUpdate(row)'><fa-icon icon="angle-double-up"></fa-icon></button>
+    {{ row.version }}
+    <button nbButton *ngIf="row.can_be_updated && !row.mark_as_to_update" size="tiny" status="success"
+            (click)='markAsToUpdate(row)'>
+        <fa-icon icon="angle-double-up"></fa-icon>
+    </button>
 </ng-template>
 
 <ng-template #enabledButton let-row="row" let-value="value">
-  <button nbButton *ngIf="row.enabled" size="tiny" status="success" (click)='toggleEnabled(row)'><fa-icon icon="check"></fa-icon></button>
-  <button nbButton *ngIf="!row.enabled" size="tiny" status="danger" (click)='toggleEnabled(row)'><fa-icon icon="times"></fa-icon></button>
+    <button nbButton *ngIf="row.enabled" size="tiny" status="success" (click)='toggleEnabled(row)'>
+        <fa-icon icon="check"></fa-icon>
+    </button>
+    <button nbButton *ngIf="!row.enabled" size="tiny" status="danger" (click)='toggleEnabled(row)'>
+        <fa-icon icon="times"></fa-icon>
+    </button>
 </ng-template>
 
 <ng-template #actionButtons let-row="row" let-value="value">
-  <button nbButton status="info" size="tiny" (click)='viewClient(row)'><fa-icon icon="search"></fa-icon></button>&nbsp;
-  <button nbButton status="danger" size="tiny" (click)='deleteClient(row)'><fa-icon icon="trash-alt"></fa-icon></button>
+    <button nbButton status="info" size="tiny" (click)='viewClient(row)'>
+        <fa-icon icon="search"></fa-icon>
+    </button>&nbsp;
+    <button nbButton status="danger" size="tiny" (click)='deleteClient(row)'>
+        <fa-icon icon="trash-alt"></fa-icon>
+    </button>
 </ng-template>
 
 <ng-template #confirmationDialog let-data let-ref="dialogRef">
-  <nb-card>
-    <nb-card-header>Confirmation</nb-card-header>
-    <nb-card-body>{{ data }}</nb-card-body>
-    <nb-card-footer>
-      <button nbButton (click)="ref.close()">Cancel</button>
-      <button nbButton status="danger" (click)="ref.close(true)">Confirm</button>
-    </nb-card-footer>
-  </nb-card>
+    <nb-card>
+        <nb-card-header>Confirmation</nb-card-header>
+        <nb-card-body>{{ data }}</nb-card-body>
+        <nb-card-footer>
+            <button nbButton (click)="ref.close()">Cancel</button>
+            <button nbButton status="danger" (click)="ref.close(true)">Confirm</button>
+        </nb-card-footer>
+    </nb-card>
 </ng-template>

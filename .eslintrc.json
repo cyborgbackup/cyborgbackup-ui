@@ -32,7 +32,7 @@
           "fit",
           "fdescribe"
         ],
-        "@typescript-eslint/dot-notation": "error",
+        "@typescript-eslint/dot-notation": "off",
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "error",
         "no-underscore-dangle": "off",
