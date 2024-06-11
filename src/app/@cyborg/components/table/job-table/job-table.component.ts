@@ -33,7 +33,6 @@ export class JobTableComponent implements OnInit {
     }
 
     cancelItem(item): void {
-        console.log('tutu');
         console.log(item);
     }
 

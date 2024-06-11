@@ -14,7 +14,6 @@ export class StatsService extends CrudService {
             this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
                 subscriber.next(result);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });

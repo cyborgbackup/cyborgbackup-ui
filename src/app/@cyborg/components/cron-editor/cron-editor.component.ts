@@ -131,8 +131,6 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
 
         const [defaultHours, defaultMinutes, defaultSeconds] = this.options.defaultTime.split(':').map(Number);
 
-        console.log('inited');
-
         this.cronForm = new FormControl(this.cron);
 
         this.minutesForm = this.fb.group({
@@ -259,13 +257,6 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
     }
 
     public handleModelChange(cron: string) {
-        // if (this.isDirty) {
-        //   this.isDirty = false;
-        //   return;
-        // } else {
-        //   this.isDirty = false;
-        // }
-
         this.cron = cron;
 
         if (!this.cronIsValid(cron)) {
@@ -402,8 +393,6 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
 
             this.state.advanced.expression = origCron;
         }
-        // console.log(this.activeTab);
-        // console.log(this.selectedIndex);
     }
 
     private computeMinutesCron(state: any) {

@@ -51,7 +51,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
 
             const colors: any = config.variables;
             const echarts: any = config.variables.echarts;
-            console.log(echarts);
             this.options = {
                 backgroundColor: echarts.bg,
                 tooltip: {
@@ -179,7 +178,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
                     },
                 ],
             };
-            console.log(this.options);
             this.statsService.fetch().subscribe((res) => {
                 for (const el of res) {
                     this.data.success.push([new Date(el.date).toISOString(), el.success]);

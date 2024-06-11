@@ -48,7 +48,6 @@ export class UserTableComponent implements OnInit {
     }
 
     viewUser(item): void {
-        console.log('toto');
         this.router.navigate(['/user/edit/' + item.id + '/']);
     }
 

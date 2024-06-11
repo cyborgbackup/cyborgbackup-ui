@@ -226,7 +226,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
         }).onClose.subscribe((res) => {
             if (res && this.formRestore.valid) {
                 const data = this.formRestore.value;
-                console.log(item);
                 data['archive_name'] = item.tag.archive_name;
                 data['item'] = '';
                 if (item.tag.type !== 'date') {

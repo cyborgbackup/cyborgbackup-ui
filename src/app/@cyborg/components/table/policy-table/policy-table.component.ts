@@ -44,7 +44,6 @@ export class PolicyTableComponent implements OnInit {
     }
 
     launchPolicy(item): void {
-        console.log('Fire');
         this.policiesService.launch(item.id).subscribe((res) => {
             if (res) {
                 this.toastrService.show('', 'Policy Job Launched', {

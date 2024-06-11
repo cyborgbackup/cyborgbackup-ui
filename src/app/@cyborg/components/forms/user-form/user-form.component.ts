@@ -118,7 +118,6 @@ export class UserFormComponent implements OnInit {
 
     submitNotif() {
         if (this.formNotif.value && this.userId !== 0) {
-            console.log(this.formNotif.value);
             this.usersService.patch(this.userId, this.formNotif.value).subscribe(() => {
                 this.toastrService.show('', 'Notification settings updated', {
                     position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,

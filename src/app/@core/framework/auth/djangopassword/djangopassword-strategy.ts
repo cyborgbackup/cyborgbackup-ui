@@ -246,9 +246,6 @@ export class DjangoPasswordAuthStrategy extends NbAuthStrategy {
         if (data.hasOwnProperty('server')) {
             url = data.server + url;
         }
-        console.log(tokenKey);
-        console.log(this.route.snapshot);
-        console.log(this.route.snapshot.queryParams[tokenKey]);
         data[tokenKey] = this.route.snapshot.queryParams[tokenKey];
         return this.http.request(method, url, {body: data, observe: 'response'})
             .pipe(

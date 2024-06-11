@@ -48,7 +48,6 @@ export class JobOutputComponent {
         if (this.job === undefined
             || this.loading
             || this.noMore
-            // || ['successful', 'failed', 'finished'].indexOf(this.job.status) === -1
         ) {
             return;
         }
@@ -77,7 +76,6 @@ export class JobOutputComponent {
             this.websocketService.send({
                 groups: {
                     jobs: ['status_changed'],
-                    // eslint-disable-next-line @typescript-eslint/naming-convention
                     job_events: [String(this.jobId)]
                 },
             });

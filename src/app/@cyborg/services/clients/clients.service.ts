@@ -14,7 +14,6 @@ export class ClientsService extends CrudService {
             this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
                 subscriber.next(result.count);
             }, (error) => {
-                // console.log('send query', error);
                 subscriber.error(error);
             });
         });
