@@ -3,6 +3,86 @@
 // framework component styles
 //@use '@nebular/theme/styles/globals' as *;
 
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((
+        color: (
+                primary: mat.define-palette(mat.$blue-palette),
+                accent: mat.define-palette(mat.$blue-grey-palette),
+        ),
+  // Only include `typography` and `density` in the default dark theme.
+        typography: mat.define-typography-config(),
+        density: 0,
+));
+
+// Define a light theme
+$light-theme: mat.define-light-theme((
+        color: (
+                primary: mat.define-palette(mat.$blue-palette),
+                accent: mat.define-palette(mat.$blue-palette),
+        ),
+));
+
+$legacy-palette: (
+        50: #dff1f0,
+        100: #b0dcd8,
+        200: #7dc6be,
+        300: #49afa4,
+        400: #209e91,
+        500: #008d7f,
+        600: #008072,
+        700: #007163,
+        800: #006154,
+        900: #004539,
+        contrast: (
+                50: rgba(black, 0.87),
+                100: rgba(black, 0.87),
+                200: rgba(black, 0.87),
+                300: white,
+                400: white,
+                500: white,
+                600: white,
+                700: white,
+                800: white,
+                900: white,
+        )
+);
+
+$legacy-theme: mat.define-light-theme((
+        color: (
+                primary: mat.define-palette($legacy-palette),
+                accent: mat.define-palette($legacy-palette),
+        ),
+));
+
+@mixin create-dark-theme() {
+  @include mat.all-component-themes($dark-theme);
+}
+
+@mixin create-light-theme() {
+  @include mat.all-component-themes($light-theme);
+}
+
+@mixin create-legacy-theme() {
+  @include mat.all-component-themes($legacy-theme);
+}
+
+
+.dark-theme {
+  @include create-dark-theme();
+}
+
+.light-theme {
+  @include create-light-theme();
+}
+
+.legacy-theme {
+  @include create-legacy-theme();
+}
+
 $font-path: '/assets/fonts/';
 @-webkit-keyframes spin {
   0%{transform:rotate(0); }

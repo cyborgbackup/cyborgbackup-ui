@@ -10,17 +10,15 @@
   }
 
   $primary: nb-theme(color-primary-default);
-
   .mat-radio-outer-circle {
     border-color: $primary;
   }
 
-  .mat-radio-button {
+  .mat-mdc-radio-button {
     &.mat-primary {
       &.mat-radio-checked .mat-radio-outer-circle {
         border-color: $primary;
       }
-
       .mat-radio-inner-circle,
       .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
       &.mat-radio-checked .mat-radio-persistent-ripple,
@@ -33,7 +31,6 @@
       &.mat-radio-checked .mat-radio-outer-circle {
         border-color: $primary;
       }
-
       .mat-radio-inner-circle,
       .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
       &.mat-radio-checked .mat-radio-persistent-ripple,
@@ -42,22 +39,19 @@
       }
     }
   }
-
   .mat-checkbox-indeterminate, .mat-checkbox-checked {
     &.mat-primary .mat-checkbox-background {
       background-color: $primary;
     }
-
     &.mat-accent .mat-checkbox-background {
       background-color: $primary;
     }
-
     &.mat-warn .mat-checkbox-background {
       background-color: $primary;
     }
   }
 
-  .mat-checkbox-checked:not(.mat-checkbox-disabled),
+  .mat-mdc-checkbox-checked:not(.mat-checkbox-disabled),
   .mat-checkbox:active:not(.mat-checkbox-disabled) {
     &.mat-primary .mat-ripple-element {
       background: $primary;

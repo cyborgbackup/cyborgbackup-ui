@@ -28,28 +28,19 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.formUser = this.formBuilder.group({
       email: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       first_name: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       last_name: ['', Validators.required],
       password: [],
       confirmPassword: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      is_superuser: []
+      is_superuser: [false]
     });
     this.formNotif = this.formBuilder.group({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_daily: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_weekly: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_monthly: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_failed: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_success: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      notify_backup_summary: []
+      notify_backup_daily: [false],
+      notify_backup_weekly: [false],
+      notify_backup_monthly: [false],
+      notify_backup_failed: [false],
+      notify_backup_success: [false],
+      notify_backup_summary: [false]
     });
 
     this.route.paramMap.subscribe(params => {

@@ -65,7 +65,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cyborgbackup-ui:build",
+            "buildTarget": "cyborgbackup-ui:build",
             "servePath": "/"
           },
           "configurations": {
@@ -74,7 +74,7 @@
               "baseHref": "/"
             },
             "production": {
-              "browserTarget": "cyborgbackup-ui:build:production",
+              "browserTarget": "cyborgbackup-ui:build:production"
             }
           }
         },
@@ -147,10 +147,8 @@
       }
     }
   },
-  "defaultProject": "cyborgbackup-ui",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
     },
     "@schematics/angular:directive": {}
   },

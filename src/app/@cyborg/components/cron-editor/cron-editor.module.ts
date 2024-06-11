@@ -11,21 +11,25 @@ import {CommonModule} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 //import {MAT_LABEL_GLOBAL_OPTIONS} from '@angular/material/core';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {NbTabsetModule} from "@nebular/theme";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTabsModule,
-    MatListModule,
-    MatSelectModule,
-    MatInputModule,
-    MatRadioModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatListModule,
+        MatSelectModule,
+        MatInputModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        NbTabsetModule,
+        NgSelectModule
+    ],
     exports: [TimePickerComponent, CronGenComponent],
     declarations: [TimePickerComponent, CronGenComponent],
     providers: [

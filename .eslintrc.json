@@ -16,52 +16,55 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint-config-prettier"
+      ],
+      "plugins": [
+        "eslint-plugin-rxjs",
+        "@typescript-eslint"
       ],
       "rules": {
-        "@angular-eslint/component-selector": [
+        "quotes": "off",
+        "dot-notation": "off",
+        "no-restricted-globals": [
           "error",
-          {
-            "type": "element",
-            "prefix": [
-              "ngx",
-              "cbg"
-            ],
-            "style": "kebab-case"
-          }
+          "fit",
+          "fdescribe"
         ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": [
-              "ngx",
-              "cbg"
-            ],
-            "style": "camelCase"
-          }
-        ],
-        "@typescript-eslint/consistent-type-definitions": "error",
-        "@typescript-eslint/dot-notation": "off",
-        "jsdoc/newline-after-description": "off",
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
-          {
-            "accessibility": "explicit"
-          }
-        ],
-        "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-use-before-define": "error",
-        "brace-style": [
-          "error",
-          "1tbs"
-        ],
-        "id-blacklist": "off",
-        "id-match": "off",
+        "@typescript-eslint/dot-notation": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
         "no-underscore-dangle": "off",
-        "valid-typeof": "error"
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "rxjs/no-unsafe-takeuntil": [
+          "error",
+          {
+            "allow": [
+              "count",
+              "defaultIfEmpty",
+              "endWith",
+              "every",
+              "finalize",
+              "finally",
+              "isEmpty",
+              "last",
+              "max",
+              "min",
+              "publish",
+              "publishBehavior",
+              "publishLast",
+              "publishReplay",
+              "reduce",
+              "share",
+              "shareReplay",
+              "skipLast",
+              "takeLast",
+              "throwIfEmpty",
+              "toArray"
+            ]
+          }
+        ]
       }
     },
     {

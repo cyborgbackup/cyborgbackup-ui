@@ -9,6 +9,7 @@ import {ContextMenuDirective} from '../context-menu/context-menu.directive';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CDK_TABLE, CdkTable} from '@angular/cdk/table';
 
 interface FSEntry {
     name: string;
@@ -19,7 +20,6 @@ interface FSEntry {
     group?: string;
     healthy?: boolean;
     mode?: string;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     archive_name?: string;
 }
 
@@ -56,20 +56,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
         group: '',
         healthy: undefined,
         mode: '',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         archive_name: ''
     };
     public archiveDetail = {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         archive_name: undefined,
         hostname: undefined,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         policy_type: undefined,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         original_size: undefined,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         compressed_size: undefined,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         deduplicated_size: undefined,
         started: undefined,
         elapsed: undefined
@@ -88,9 +82,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.loadInitialTree();
         this.formRestore = this.formBuilder.group({
             destination: ['', Validators.required],
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             dest_folder: [],
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             dry_run: [false],
             host: ['']
         });
@@ -165,7 +157,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
                                     group: v.group,
                                     mode: v.mode,
                                     healthy: v.healthy,
-                                    // eslint-disable-next-line @typescript-eslint/naming-convention
                                     archive_name: entry.data.archive_name,
                                 },
                                 children: []
@@ -303,7 +294,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
                 }
                 if (!found) {
                     const tmpEntry = {
-                        // eslint-disable-next-line @typescript-eslint/naming-convention
                         data: {name: archiveDate, type: 'date', archive_name: d.archive_name},
                         children: []
                     };

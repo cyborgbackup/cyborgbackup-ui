@@ -17,7 +17,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
 
     getFilteredOptions(value: string): Observable<string[]> {
         return of(value).pipe(
-            map(filterString => this.filter(filterString)),
+            map(filterString => this.filter(filterString ? filterString : '')),
         );
     }
 
@@ -30,7 +30,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (process && process.versions.hasOwnProperty('electron')) {
+        if (process && process.versions && process.versions.hasOwnProperty('electron')) {
             this.electronRunning = true;
         }
         const savedServers = JSON.parse(localStorage.getItem('cyborgServers'));

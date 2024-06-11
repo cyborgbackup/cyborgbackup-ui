@@ -1,95 +1,59 @@
-
-
 .cron-editor-main {
-  @include mat-elevation(1);
+    @include mat-elevation(1);
 }
 
 .cron-editor-main .cron-editor-container {
 }
 
 .cron-editor-tab-content {
-  height: 200px;
-  margin-top: 24px;
-  border-radius: 8px;
+    margin-top: 24px;
+    border-radius: 8px;
 }
 
 .cron-editor-main .cron-editor-container .cron-editor-radio {
-  width: 20px;
-  display: inline-block;
+    width: 20px;
+    display: inline-block;
 }
 
 .cron-editor-main .cron-editor-container .cron-editor-select,
 .cron-editor-main .cron-editor-container .cron-editor-input,
 .cron-editor-main .cron-editor-container .cron-editor-checkbox {
-  display: inline-block;
+    display: inline-block;
 }
 
 .cron-editor-main .cron-editor-container .well-time-wrapper {
-  padding-left: 20px;
+    padding-left: 20px;
 }
 
 .cron-editor-main .cron-editor-container .inline-block {
-  display: inline-block;
+    display: inline-block;
 }
-
-.cron-editor-main .cron-editor-container .minutes,
-.cron-editor-main .cron-editor-container .hours,
-.cron-editor-main .cron-editor-container .days,
-.cron-editor-main .cron-editor-container .seconds {
-
-}
-
-.cron-editor-main .cron-editor-container .months {
- }
-
-.cron-editor-main .cron-editor-container .month-days {
-
-}
-
-.cron-editor-main .cron-editor-container .months-small {
- }
-
-.cron-editor-main .cron-editor-container .day-order-in-month {
- }
-
-.cron-editor-main .cron-editor-container .week-days {
- }
-
-.cron-editor-main .cron-editor-container .advanced-cron-editor-input {
- }
 
 .cron-editor-main .cron-editor-container .hour-types {
-  width: 70px;
 }
 
 .nav-tabs li a {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.cron-editor-daily {
+    display: flex;
+}
+
+.cron-editor-dail-hours {
+    align-self: center;
 }
 
 .cron-editor-radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
+    flex-direction: column;
+    margin: 15px 0;
+    display: inline-flex;
 }
 
 .cron-editor-radio-button {
-  margin: 5px;
+    margin: 5px;
 }
 
 .checkbox-margin {
-  margin: 0 10px;
-}
-
-::ng-deep .mat-select-panel {
-    background: #fff;
-}
-::ng-deep  .mat-select-panel:not([class*=mat-elevation-z]) {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-::ng-deep .mat-tab-body.mat-tab-body-active {
-    overflow-y: hidden !important;
-}
-::ng-deep .mat-tab-body-content {
-    overflow: visible !important;
+    margin: 0 10px;
 }

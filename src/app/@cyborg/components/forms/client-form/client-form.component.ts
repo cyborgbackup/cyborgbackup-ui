@@ -27,12 +27,12 @@ export class ClientFormComponent implements OnInit {
   ngOnInit() {
     this.formClient = this.formBuilder.group({
       hostname: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      bandwidth_limit: [''],
+      bandwidth_limit: [{value: '', disabled: true}],
       enabled: [],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       boolean_bandwidth_limit: [false],
-      port: [22, [Validators.min(1), Validators.max(65535)]]
+      port: [22, [Validators.min(1), Validators.max(65535)]],
+      policiesForm: [],
+      behind_firewall: [false]
     });
 
     this.policiesService.fetch().subscribe((res) => {
@@ -100,14 +100,13 @@ export class ClientFormComponent implements OnInit {
 
   changeBandwidthLimit(value): void {
     const newValue = {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       bandwidth_limit: (value ? 1 : '')
     };
     this.formClient.patchValue(newValue);
     if (value) {
-      this.formClient.controls['bandwidth_limit'].enable();
+      this.formClient.controls.bandwidth_limit.enable();
     } else {
-      this.formClient.controls['bandwidth_limit'].disable();
+      this.formClient.controls.bandwidth_limit.disable();
     }
   }
 }
