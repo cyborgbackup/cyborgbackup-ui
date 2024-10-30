@@ -30,7 +30,7 @@ jobs:
         uses: dawidd6/action-debian-package@v1
         with:
           artifacts_directory: output
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         with:
           name: debian-package
           path: output
@@ -46,19 +46,19 @@ jobs:
           npm run build:electron
       - name: Electron-Builder Linux App
         run: npm run package:linux
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-linux-app.AppImage
           path: packages/cyborgbackup-*.AppImage
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-linux-app.snap
           path: packages/cyborgbackup-*.snap
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-linux-app.deb
           path: packages/cyborgbackup-*.deb
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-linux-app.rpm
           path: packages/cyborgbackup-*.rpm
@@ -80,7 +80,7 @@ jobs:
           npm run build:electron
       - name: Electron-Builder Windows App
         run: npm run package:win
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-win-app.exe
           path: packages/cyborgbackup.*.exe
@@ -96,7 +96,7 @@ jobs:
           npm run build:electron
       - name: Electron-Builder MacOS App
         run: npm run package:mac
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: cyborgbackup-mac-app.dmg
           path: packages/cyborgbackup.*.dmg
