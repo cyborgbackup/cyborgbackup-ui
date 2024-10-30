@@ -28,6 +28,7 @@ import {ServerInterceptor} from './@cyborg/auth/server.interceptor';
 import {NB_AUTH_TOKEN_INTERCEPTOR_FILTER} from '@nebular/auth';
 import {CyborgModule} from './@cyborg/cyborg.module';
 import {HttpXSRFInterceptor} from './@cyborg/auth/xsrf.interceptor';
+import {AuthInterceptor} from "./@cyborg/auth/auth.interceptor";
 
 @NgModule({
     declarations: [
@@ -72,6 +73,11 @@ import {HttpXSRFInterceptor} from './@cyborg/auth/xsrf.interceptor';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ServerInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
             multi: true
         },
         {
