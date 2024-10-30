@@ -33,7 +33,7 @@
                             <nb-toggle formControlName="enabled">Enabled</nb-toggle>
                         </div>
                         <div class="col-sm-3">
-                            <nb-toggle formControlName="force_ready">Force Ready</nb-toggle>
+                            <nb-toggle *ngIf="!repository.ready" formControlName="force_ready">Force Ready</nb-toggle>
                         </div>
                     </div>
                     <div class="form-group row">

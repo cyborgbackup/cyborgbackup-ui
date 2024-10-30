@@ -63,7 +63,7 @@
                                   nbTooltipPlacement="top">?</span>
                         </div>
                         <div class="col-sm-3">
-                            <nb-toggle formControlName="force_ready">Force Ready</nb-toggle>
+                            <nb-toggle *ngIf="!client.ready" formControlName="force_ready">Force Ready</nb-toggle>
                         </div>
                     </div>
                     <div class="form-group row">
