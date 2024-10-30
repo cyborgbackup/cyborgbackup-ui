@@ -27,7 +27,8 @@ export class RepositoryFormComponent implements OnInit {
             path: ['', Validators.required],
             // eslint-disable-next-line @typescript-eslint/naming-convention
             repository_key: ['', Validators.required],
-            enabled: [false]
+            enabled: [false],
+            force_ready: [false]
         });
 
         this.route.paramMap.subscribe((params) => {

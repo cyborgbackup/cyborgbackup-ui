@@ -30,6 +30,7 @@ export class ClientFormComponent implements OnInit {
             bandwidth_limit: [{value: '', disabled: true}],
             enabled: [false],
             boolean_bandwidth_limit: [false],
+            force_ready: [false],
             port: [22, [Validators.min(1), Validators.max(65535)]],
             policiesForm: [],
             behind_firewall: [false]
