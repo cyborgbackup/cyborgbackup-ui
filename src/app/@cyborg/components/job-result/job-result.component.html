@@ -3,24 +3,38 @@
         <nb-card>
             <nb-card-body>
                 <div class="panelHeader row">
-                    <div class="panelHeader-text col-sm-9">Details</div>
-                    <div class="panelHeader-button col-sm-3">
-                        <button nbTooltip="Relaunch Job" nbTooltipStatus="primary" nbButton size="tiny"
-                                class="StandardOut-actionButton"
-                                data-tip-watch="toggleStdoutFullscreenTooltip"
-                                data-placement="top"
-                                [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
-                                (click)="relaunch()">
-                            <fa-icon icon="rocket"></fa-icon>
-                        </button>
-                        <button nbTooltip="Cancel Job" nbTooltipStatus="primary" nbButton size="tiny"
-                                class="StandardOut-actionButton"
-                                data-tip-watch="toggleStdoutFullscreenTooltip"
-                                data-placement="top"
-                                [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
-                                (click)="cancel()">
-                            <fa-icon icon="stop-circle"></fa-icon>
-                        </button>
+                    <div class="panelHeader-text col-sm-7">Details</div>
+                    <div class="panelHeader-button col-sm-5 row m-0">
+                        <div class="col text-center" *ngIf="job.job_type === 'job'">
+                            <button nbTooltip="Check Integrity Job" nbTooltipStatus="primary" nbButton size="tiny"
+                                    class="StandardOut-actionButton mx-1"
+                                    data-tip-watch="toggleStdoutFullscreenTooltip"
+                                    data-placement="top"
+                                    [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                                    (click)="checkIntegrity()">
+                                <fa-icon icon="list-check"></fa-icon>
+                            </button>
+                        </div>
+                        <div class="col text-center" *ngIf="job.status === 'successful' || job.status === 'failed'">
+                            <button nbTooltip="Relaunch Job" nbTooltipStatus="primary" nbButton size="tiny"
+                                    class="StandardOut-actionButton mx-1"
+                                    data-tip-watch="toggleStdoutFullscreenTooltip"
+                                    data-placement="top"
+                                    [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                                    (click)="relaunch()">
+                                <fa-icon icon="rocket"></fa-icon>
+                            </button>
+                        </div>
+                        <div class="col text-center" *ngIf="job.status === 'waiting' || job.status === 'running' || job.status === 'pending'">
+                            <button nbTooltip="Cancel Job" nbTooltipStatus="primary" nbButton size="tiny"
+                                    class="StandardOut-actionButton mx-1"
+                                    data-tip-watch="toggleStdoutFullscreenTooltip"
+                                    data-placement="top"
+                                    [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
+                                    (click)="cancel()">
+                                <fa-icon icon="stop-circle"></fa-icon>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -140,7 +154,7 @@
 
                             <!-- FULL-SCREEN TOGGLE ACTION -->
                             <button nbButton nbTooltip="Expand display" nbTooltipStatus="primary" size="tiny"
-                                    class="StandardOut-actionButton"
+                                    class="StandardOut-actionButton m-1"
                                     data-tip-watch="toggleStdoutFullscreenTooltip"
                                     data-placement="top"
                                     [ngClass]="{'StandardOut-actionButton--active': stdoutFullScreen}"
@@ -166,7 +180,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <cbg-job-output></cbg-job-output>
+                    <cbg-job-output class="p-0"></cbg-job-output>
                 </div>
             </nb-card-body>
         </nb-card>

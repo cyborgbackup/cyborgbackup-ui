@@ -51,46 +51,72 @@ export class JobsService extends CrudService {
                     order: 'counter',
                     page: String(page)
                 }
-            }).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            }).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public cancelJob(jobId: number): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe((resultGet: any) => {
-                if (resultGet.can_cancel) {
-                    this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe(() => {
-                        subscriber.next(true);
-                    });
-                } else {
-                    subscriber.error('Cannot cancel this job');
+            this.http.get('/api/v1/jobs/' + jobId + '/cancel/').subscribe({
+                next: (resultGet: any) => {
+                    if (resultGet.can_cancel) {
+                        this.http.post('/api/v1/jobs/' + jobId + '/cancel/', null).subscribe(() => {
+                            subscriber.next(true);
+                        });
+                    } else {
+                        subscriber.error('Cannot cancel this job');
+                    }
+                }, error: (error) => {
+                    subscriber.error(error);
                 }
-            }, (error) => {
-                subscriber.error(error);
+            });
+        });
+    }
+
+    public checkIntegrity(jobId: number): Observable<any> {
+        return new Observable((subscriber) => {
+            this.http.get('/api/v1/jobs/' + jobId + '/check/').subscribe({
+                next: (resultGet: any) => {
+                    if (resultGet.can_check) {
+                        this.http.post('/api/v1/jobs/' + jobId + '/check/', null).subscribe(() => {
+                            subscriber.next(true);
+                        });
+                    } else {
+                        subscriber.error('Cannot check this job');
+                    }
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public getReport(jobId: number): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/jobs/' + jobId + '/stdout/?format=txt_download', {responseType: 'text'}).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public count(params = {}): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-                subscriber.next(result.count);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.count);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }

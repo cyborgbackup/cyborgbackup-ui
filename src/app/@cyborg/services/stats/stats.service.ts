@@ -11,10 +11,12 @@ export class StatsService extends CrudService {
     public fetch(): Observable<any> {
         return new Observable((subscriber) => {
             const params = {};
-            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }

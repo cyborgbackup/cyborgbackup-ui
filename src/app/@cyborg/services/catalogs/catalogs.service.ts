@@ -17,10 +17,12 @@ export class CatalogsService extends CrudService {
         return new Observable((subscriber) => {
             const params = {};
             const url = '/api/v1/jobs/?fields=archive_name&not__archive_name=&archive_name__isnull=False&order=-archive_name&page_size=10000';
-            this.http.get(url, params).subscribe((result: any) => {
-                subscriber.next(result.results);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get(url, params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.results);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
@@ -29,10 +31,12 @@ export class CatalogsService extends CrudService {
         return new Observable((subscriber) => {
             const params = {};
             const url = '/api/v1/jobs/?archive_name=' + archiveName;
-            this.http.get(url, params).subscribe((result: any) => {
-                subscriber.next(result.results[0]);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get(url, params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.results[0]);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
@@ -64,16 +68,18 @@ export class CatalogsService extends CrudService {
         }
         return new Observable((subscriber) => {
             const url = '/api/v1/escatalogs/?archive_name=' + this.archiveName;
-            this.http.get(url, {}).subscribe((result: any) => {
-                if (result.count > 0) {
-                    this.requestPages(path, recursive).subscribe((data) => {
-                        subscriber.next(data.results);
-                    });
-                } else {
-                    subscriber.next(false);
+            this.http.get(url, {}).subscribe({
+                next: (result: any) => {
+                    if (result.count > 0) {
+                        this.requestPages(path, recursive).subscribe((data) => {
+                            subscriber.next(data.results);
+                        });
+                    } else {
+                        subscriber.next(false);
+                    }
+                }, error: (error) => {
+                    subscriber.error(error);
                 }
-            }, (error) => {
-                subscriber.error(error);
             });
         });
     }

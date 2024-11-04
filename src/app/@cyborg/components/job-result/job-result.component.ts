@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {JobsService} from '../../services';
 import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {takeUntil} from "rxjs/operators";
+import {WebsocketService} from "../../../websocket.service";
+import {Subject} from "rxjs";
 
 @Component({
     selector: 'cbg-job-result',
@@ -12,12 +15,14 @@ export class JobResultComponent {
     public job: any;
     public jobId: number;
     public stdoutFullScreen = false;
+    destroyed$ = new Subject();
     public localServer = localStorage.getItem('localServer') ? localStorage.getItem('localServer') : '';
     private counter: any;
 
     constructor(private route: ActivatedRoute,
                 private jobsService: JobsService,
-                private toastrService: NbToastrService) {
+                private toastrService: NbToastrService,
+                private websocketService: WebsocketService) {
         this.job = {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             summary_fields: {
@@ -32,6 +37,7 @@ export class JobResultComponent {
             if (this.jobId !== 0) {
                 this.jobsService.get(this.jobId).subscribe((res) => {
                     this.job = res;
+                    this.startWebsocket();
                     if (this.job.status === 'running') {
                         this.startCounter();
                     }
@@ -68,24 +74,62 @@ export class JobResultComponent {
     }
 
     cancel(): void {
-        this.jobsService.cancelJob(this.jobId).subscribe(() => {
-            this.toastrService.show('', 'Job canceled', {
-                position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-                status: 'success'
-            });
-        }, (err) => {
-            this.toastrService.show(err, 'Cannot cancel this Job', {
-                position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-                status: 'danger'
-            });
+        this.jobsService.cancelJob(this.jobId).subscribe({
+            next: () => {
+                this.toastrService.show('', 'Job canceled', {
+                    position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+                    status: 'success'
+                });
+            }
+            ,
+            error: (err) => {
+                this.toastrService.show(err, 'Cannot cancel this Job', {
+                    position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+                    status: 'danger'
+                });
+            }
         });
     }
 
     relaunch(): void {
     }
 
+    checkIntegrity(): void {
+        this.jobsService.checkIntegrity(this.jobId).subscribe({
+            next: () => {
+                this.toastrService.show('', 'Job check launched', {
+                    position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+                    status: 'success'
+                });
+            },
+            error: (err) => {
+                this.toastrService.show(err, 'Cannot launch check on this Job', {
+                    position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+                    status: 'danger'
+                });
+            }
+        });
+    }
+
     toggleStdoutFullscreen(): void {
         this.stdoutFullScreen = !this.stdoutFullScreen;
+    }
+
+    startWebsocket(): void {
+        if (['successful', 'failed', 'finished'].indexOf(this.job.status) === -1) {
+            this.websocketService.connect().pipe(
+                takeUntil(this.destroyed$)
+            ).subscribe((messages) => {
+                if (messages.group_name === 'jobs' && this.jobId === messages.job_id) {
+                    this.jobsService.get(this.jobId).subscribe((res) => {
+                        this.job = res;
+                        if (this.job.status === 'running') {
+                            this.startCounter();
+                        }
+                    });
+                }
+            });
+        }
     }
 
 }

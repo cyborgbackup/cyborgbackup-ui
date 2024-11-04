@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, retry, timer} from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
-import {delay, retryWhen, switchMap} from 'rxjs/operators';
+import {delay, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class WebsocketService implements OnDestroy {
@@ -43,7 +43,12 @@ export class WebsocketService implements OnDestroy {
                     return this.connection$;
                 }
             }),
-            retryWhen((errors) => errors.pipe(delay(this.retrySeconds)))
+            retry({
+                delay: (error, retryCount) => {
+                    console.log(`Retry attempt #${retryCount}`);
+                    return timer(this.retrySeconds);
+                }
+            })
         );
     }
 

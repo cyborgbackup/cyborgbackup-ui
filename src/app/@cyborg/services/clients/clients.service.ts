@@ -11,10 +11,12 @@ export class ClientsService extends CrudService {
     public count(): Observable<any> {
         return new Observable((subscriber) => {
             const params = {};
-            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-                subscriber.next(result.count);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/' + this.endpoint + '/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.count);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }

@@ -12,20 +12,24 @@ export class UsersService extends CrudService {
     public me(): Observable<any> {
         return new Observable((subscriber) => {
             const params = {};
-            this.http.get('/api/v1/me/', params).subscribe((result: any) => {
-                subscriber.next(result.results[0]);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/me/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.results[0]);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public patch(id: number, data: object): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data, {observe: 'response'}).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data, {observe: 'response'}).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }

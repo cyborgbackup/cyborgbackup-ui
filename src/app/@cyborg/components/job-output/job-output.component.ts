@@ -71,6 +71,8 @@ export class JobOutputComponent {
             ).subscribe((messages) => {
                 if (messages.type === 'job_event') {
                     this.events.splice(messages.counter - 1, 0, messages);
+                }else{
+                    console.log(messages);
                 }
             });
             this.websocketService.send({

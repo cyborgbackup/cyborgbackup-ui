@@ -14,10 +14,12 @@ export class CrudService {
     public options(): Observable<any> {
         return new Observable((subscriber) => {
             const params = {};
-            this.http.options('/api/v1/' + this.endpoint + '/', params).subscribe((result: any) => {
-                subscriber.next(result.actions);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.options('/api/v1/' + this.endpoint + '/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result.actions);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
@@ -26,10 +28,12 @@ export class CrudService {
         return new Observable((subscriber) => {
             params['page_size'] = size;
             params['page'] = page;
-            this.http.get('/api/v1/' + this.endpoint + '/', {params}).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/' + this.endpoint + '/', {params}).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
@@ -37,50 +41,60 @@ export class CrudService {
     public get(id: number): Observable<any> {
         return new Observable((subscriber) => {
             const params = {};
-            this.http.get('/api/v1/' + this.endpoint + '/' + id + '/', params).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.get('/api/v1/' + this.endpoint + '/' + id + '/', params).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public patch(id: number, data: object): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.patch('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public post(data: object): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.post('/api/v1/' + this.endpoint + '/', data).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.post('/api/v1/' + this.endpoint + '/', data).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public put(id: number, data: object): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.put('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.put('/api/v1/' + this.endpoint + '/' + id + '/', data).subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }
 
     public delete(id: number): Observable<any> {
         return new Observable((subscriber) => {
-            this.http.delete('/api/v1/' + this.endpoint + '/' + id + '/').subscribe((result: any) => {
-                subscriber.next(result);
-            }, (error) => {
-                subscriber.error(error);
+            this.http.delete('/api/v1/' + this.endpoint + '/' + id + '/').subscribe({
+                next: (result: any) => {
+                    subscriber.next(result);
+                }, error: (error) => {
+                    subscriber.error(error);
+                }
             });
         });
     }

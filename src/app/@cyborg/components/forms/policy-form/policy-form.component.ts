@@ -223,7 +223,10 @@ export class PolicyFormComponent implements OnInit {
         } else if (model === 'piped') {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({extra_vars: '{\n"command":""\n}'});
-        } else {
+        } else if (model === 'rootfs') {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            this.formPolicy.patchValue({extra_vars: '{\n"with_partition_table": false\n}'});
+        }else {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             this.formPolicy.patchValue({extra_vars: '{}'});
         }

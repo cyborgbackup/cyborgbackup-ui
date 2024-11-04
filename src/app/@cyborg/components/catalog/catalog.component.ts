@@ -62,6 +62,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         archive_name: undefined,
         hostname: undefined,
         policy_type: undefined,
+        repository_name: undefined,
         original_size: undefined,
         compressed_size: undefined,
         deduplicated_size: undefined,
@@ -183,6 +184,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
                             this.archiveDetail[k] = res.summary_fields.policy.policy_type;
                         } else if (k === 'hostname') {
                             this.archiveDetail[k] = res.summary_fields.client.hostname;
+                        } else if (k === 'repository_name') {
+                            this.archiveDetail[k] = res.summary_fields.repository.name;
                         } else {
                             this.archiveDetail[k] = res[k];
                         }
