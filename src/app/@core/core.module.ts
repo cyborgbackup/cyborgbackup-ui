@@ -34,7 +34,7 @@ export const NB_CORE_PROVIDERS = [
                 },
                 logout: {
                     endpoint: '/api/logout/',
-                    method: 'get',
+                    method: 'post',
                     redirect: {
                         success: '/welcome',
                         failure: null,
